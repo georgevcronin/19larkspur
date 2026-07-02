@@ -3,353 +3,425 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>19 Larkspur Terrace — Quick Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<title>How the house works - 19 Larkspur Terrace</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   body {
-    font-family: 'EB Garamond', Georgia, serif;
-    color: #1a1a1a;
-    background: #faf9f6;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: #0b0c0c;
+    background: #ffffff;
     margin: 0;
-    padding: 2rem 1rem;
+    -webkit-font-smoothing: antialiased;
   }
-  .page {
-    max-width: 720px;
+  a { color: #1d70b8; }
+  a:visited { color: #4c2c92; }
+  a:hover { color: #003078; }
+  a:focus {
+    outline: 3px solid transparent;
+    color: #0b0c0c;
+    background-color: #ffdd00;
+    box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+    text-decoration: none;
+  }
+  .width-container {
+    max-width: 960px;
     margin: 0 auto;
-    padding: 0 0 3rem;
+    padding: 0 15px;
   }
-  .site-nav {
+  @media (min-width: 40.0625em) {
+    .width-container { padding: 0 30px; }
+  }
+  /* Header */
+  .govuk-header {
+    background: #0b0c0c;
+    border-bottom: 10px solid #1d70b8;
+  }
+  .govuk-header__inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 8px 15px;
     display: flex;
-    justify-content: flex-end;
-    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom: 1.5rem;
+    gap: 6px 20px;
   }
-  .site-nav a {
-    font-family: 'EB Garamond', serif;
-    font-size: 14px;
+  @media (min-width: 40.0625em) {
+    .govuk-header__inner { padding: 8px 30px; }
+  }
+  .govuk-header__logo {
+    color: #ffffff;
     text-decoration: none;
-    color: #1a1a1a;
-    border: 1px solid #1a1a1a;
-    border-radius: 4px;
-    padding: 6px 14px;
-    transition: background 0.15s, color 0.15s;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
-  .site-nav a:hover { background: #1a1a1a; color: #faf9f6; }
-  .site-nav a.primary { background: #1a1a1a; color: #faf9f6; }
-  .site-nav a.primary:hover { background: #333; }
-  .cover {
-    text-align: center;
-    padding: 1rem 1rem 2rem;
-    border-bottom: 2px solid #1a1a1a;
-    margin-bottom: 2rem;
+  .govuk-header__logo:visited { color: #ffffff; }
+  .govuk-header__logo:hover { color: #ffffff; border-bottom: 3px solid #ffffff; margin-bottom: -3px; }
+  .govuk-header__logo:focus { color: #0b0c0c; background: #ffdd00; box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c; }
+  .govuk-header__crest { font-size: 26px; }
+  .govuk-header__service {
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 700;
+    text-decoration: none;
   }
-  .cover-seal {
-    width: 64px; height: 64px;
-    border: 2px solid #1a1a1a;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1.2rem;
-    font-size: 26px;
+  .govuk-header__service:visited { color: #ffffff; }
+  /* Phase banner */
+  .phase-banner {
+    border-bottom: 1px solid #b1b4b6;
+    padding: 10px 0;
+    font-size: 16px;
   }
-  .cover h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    margin: 0 0 0.4rem;
-    line-height: 1.3;
-  }
-  .cover .subtitle {
-    font-style: italic;
-    font-size: 15px;
-    color: #555;
-    margin: 0;
-  }
-  .toc {
-    background: #f2f0eb;
-    border-radius: 10px;
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-  .toc h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+  .phase-banner .width-container { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .govuk-tag {
+    display: inline-block;
+    background: #1d70b8;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    margin: 0 0 0.8rem;
-    color: #555;
+    padding: 5px 8px 4px;
   }
-  .toc-list {
-    list-style: none;
-    margin: 0; padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px 24px;
-  }
-  .toc-list li a {
-    font-size: 14px;
-    color: #555;
-    text-decoration: none;
+  /* Typography */
+  main { padding: 30px 0 50px; display: block; }
+  .govuk-caption-xl {
+    font-size: 27px;
+    line-height: 1.11;
+    color: #505a5f;
     display: block;
-    padding: 2px 0;
-    border-bottom: 0.5px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
+    margin: 0 0 5px;
   }
-  .toc-list li a:hover { color: #1a1a1a; border-color: #ccc; }
-  .section-header {
-    margin: 2.5rem 0 1rem;
-    padding-top: 1.5rem;
-    border-top: 0.5px solid #ccc;
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.04;
+    margin: 0 0 30px;
   }
-  .section-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0;
+  h2 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.11;
+    margin: 45px 0 20px;
   }
-  .section-intro {
-    font-size: 15px;
-    color: #555;
-    margin: 0.3rem 0 1rem;
-    line-height: 1.6;
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 30px 0 15px;
   }
-  .ref-table {
+  p, li {
+    font-size: 19px;
+    line-height: 1.3157;
+    margin: 0 0 20px;
+  }
+  li { margin-bottom: 5px; }
+  .govuk-body-l { font-size: 24px; line-height: 1.25; }
+  .clause-ref { color: #505a5f; font-size: 16px; }
+  @media (max-width: 40.0525em) {
+    h1 { font-size: 32px; }
+    h2 { font-size: 27px; }
+    h3 { font-size: 21px; }
+    p, li { font-size: 16px; }
+    .govuk-body-l { font-size: 19px; }
+    .govuk-caption-xl { font-size: 21px; }
+  }
+  /* Contents list */
+  .contents-label {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+  .contents-list {
+    list-style: none;
+    margin: 0 0 40px;
+    padding: 0;
+  }
+  .contents-list li {
+    font-size: 16px;
+    margin-bottom: 8px;
+    padding-left: 25px;
+    position: relative;
+  }
+  .contents-list li::before {
+    content: "\2014";
+    position: absolute;
+    left: 0;
+    color: #0b0c0c;
+  }
+  /* Section break */
+  .section-break {
+    border: 0;
+    border-bottom: 1px solid #b1b4b6;
+    margin: 40px 0;
+  }
+  /* Tables */
+  .govuk-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 13.5px;
-    margin: 0.75rem 0 1rem;
+    margin: 0 0 30px;
   }
-  .ref-table th {
-    background: #f2f0eb;
-    font-weight: 500;
+  .govuk-table th, .govuk-table td {
+    font-size: 19px;
+    line-height: 1.3157;
     text-align: left;
-    padding: 7px 10px;
-    border: 0.5px solid #ccc;
-    font-family: 'EB Garamond', serif;
-    font-size: 13px;
-    letter-spacing: 0.02em;
-  }
-  .ref-table td {
-    padding: 6px 10px;
-    border: 0.5px solid #ccc;
     vertical-align: top;
-    line-height: 1.5;
+    padding: 10px 20px 10px 0;
+    border-bottom: 1px solid #b1b4b6;
   }
-  .ref-table tr:nth-child(even) td { background: #f8f7f4; }
-  .situation {
-    background: #f2f0eb;
-    border-left: 3px solid #888;
-    border-radius: 0 8px 8px 0;
-    padding: 0.85rem 1.1rem;
-    margin: 0.75rem 0;
+  .govuk-table th { font-weight: 700; }
+  @media (max-width: 40.0525em) {
+    .govuk-table th, .govuk-table td { font-size: 16px; }
   }
-  .situation-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    font-style: italic;
-    font-size: 15px;
-    margin-bottom: 0.35rem;
+  /* Inset text */
+  .govuk-inset-text {
+    border-left: 10px solid #b1b4b6;
+    padding: 15px;
+    margin: 30px 0;
   }
-  .situation p { font-size: 14.5px; margin: 0; line-height: 1.7; color: #1a1a1a; }
-  .situation .clause-ref { color: #888; font-size: 12.5px; font-style: italic; }
-  .rights-list {
-    margin: 0.5rem 0 0;
-    padding: 0;
-    list-style: none;
-  }
-  .rights-list li {
+  .govuk-inset-text p:last-child { margin-bottom: 0; }
+  /* Warning text */
+  .govuk-warning-text {
     display: flex;
-    gap: 12px;
-    font-size: 15px;
-    line-height: 1.7;
-    margin: 0.5rem 0;
+    gap: 15px;
+    margin: 30px 0;
+    align-items: flex-start;
   }
-  .rights-numeral {
-    font-family: 'Playfair Display', serif;
-    color: #777;
-    font-size: 13px;
-    min-width: 22px;
-    padding-top: 3px;
+  .govuk-warning-text__icon {
     flex-shrink: 0;
-  }
-  .closing {
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-    border-top: 2px solid #1a1a1a;
-    text-align: center;
-  }
-  .closing p {
-    font-size: 15px;
-    color: #555;
-    margin: 0 0 1rem;
-  }
-  .closing-links {
-    display: flex;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #0b0c0c;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 1;
   }
-  .closing-links a {
-    font-family: 'EB Garamond', serif;
-    font-size: 15px;
+  .govuk-warning-text__text { font-weight: 700; padding-top: 5px; }
+  /* Buttons */
+  .govuk-button {
+    display: inline-block;
+    background: #00703c;
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1;
     text-decoration: none;
-    color: #1a1a1a;
-    border: 1px solid #1a1a1a;
-    border-radius: 4px;
-    padding: 8px 18px;
-    transition: background 0.15s, color 0.15s;
+    padding: 10px 15px;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 0 #002d18;
+    margin: 0 15px 20px 0;
+    cursor: pointer;
   }
-  .closing-links a:hover { background: #1a1a1a; color: #faf9f6; }
-  .closing-links a.primary { background: #1a1a1a; color: #faf9f6; }
-  .closing-links a.primary:hover { background: #333; }
+  .govuk-button:visited { color: #ffffff; }
+  .govuk-button:hover { background: #005a30; color: #ffffff; }
+  .govuk-button:focus { background: #ffdd00; color: #0b0c0c; box-shadow: 0 2px 0 #0b0c0c; }
+  .govuk-button--secondary {
+    background: #f3f2f1;
+    color: #0b0c0c;
+    box-shadow: 0 2px 0 #929191;
+  }
+  .govuk-button--secondary:visited { color: #0b0c0c; }
+  .govuk-button--secondary:hover { background: #dbdad9; color: #0b0c0c; }
+  .govuk-button--start {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 8px 10px 7px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .govuk-button--start svg { flex-shrink: 0; }
+  /* Rights numbered list */
+  .rights-list { padding-left: 20px; margin: 0 0 20px; }
+  .rights-list li { margin-bottom: 10px; }
+  /* Footer */
+  .govuk-footer {
+    background: #f3f2f1;
+    border-top: 1px solid #b1b4b6;
+    padding: 40px 0 25px;
+    font-size: 16px;
+    color: #0b0c0c;
+  }
+  .govuk-footer__meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .govuk-footer a { color: #0b0c0c; }
+  .govuk-footer__licence { max-width: 500px; }
+  .govuk-footer__licence p { font-size: 16px; margin-bottom: 10px; }
+  .govuk-footer__copyright {
+    text-align: right;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .govuk-footer__links { list-style: none; padding: 0; margin: 0 0 30px; display: flex; flex-wrap: wrap; gap: 15px 30px; }
+  .govuk-footer__links li { font-size: 16px; margin: 0; }
 </style>
 </head>
 <body>
-<div class="page">
 
-  <nav class="site-nav">
-    <a href="constitution.html">Read the Full Constitution</a>
-    <a class="primary" href="constitution.pdf" download>Download PDF &#8681;</a>
-  </nav>
-
-  <div class="cover">
-    <div class="cover-seal">⚖</div>
-    <h1>19 Larkspur Terrace</h1>
-    <p class="subtitle">A plain-English guide to how the house actually works</p>
+<header class="govuk-header">
+  <div class="govuk-header__inner">
+    <a href="index.html" class="govuk-header__logo"><span class="govuk-header__crest">&#9878;</span> 19&nbsp;Larkspur&nbsp;Terrace</a>
+    <a href="constitution.html" class="govuk-header__service">The Constitution</a>
   </div>
+</header>
 
-  <div class="toc">
-    <h2>On this page</h2>
-    <ul class="toc-list">
-      <li><a href="#who">Who this covers</a></li>
-      <li><a href="#committees">The committees, at a glance</a></li>
-      <li><a href="#passes">Passes</a></li>
-      <li><a href="#situations">Common situations</a></li>
-      <li><a href="#punishments">Punishments, briefly</a></li>
-      <li><a href="#rights">Your rights</a></li>
-      <li><a href="#changing">Changing a rule</a></li>
-    </ul>
+<div class="phase-banner">
+  <div class="width-container">
+    <span class="govuk-tag">Official</span>
+    <span>This guidance reflects the current law of the house. Complaints go to the Rules Committee.</span>
   </div>
+</div>
 
-  <div id="who" class="section-header"><h2>Who This Covers</h2></div>
-  <p class="section-intro">The five permanent housemates — George Cronin, George Bale, Alexander Pear, Freddie Austin Smith, and Oliver Shawyer — are bound by every rule here, all the time, while in the house. Visitors are signed in with a Visitor Pass and are subject to the same rules while on the premises. An <strong>EVP (Executive Visitor Pass)</strong> is an upgrade for regulars: it lets a visitor vote in committee elections, but they have to earn it first (see below).</p>
+<div class="width-container">
+<main>
 
-  <div id="committees" class="section-header"><h2>The Committees, At a Glance</h2></div>
-  <p class="section-intro">Every committee has 2 members by default, elected monthly, with at least 1 member kept in post at all times. Here's who handles what:</p>
-  <table class="ref-table">
-    <thead><tr><th>Committee</th><th>What they actually do</th></tr></thead>
+  <span class="govuk-caption-xl">House guidance</span>
+  <h1>How the house works</h1>
+
+  <p class="govuk-body-l">A plain-English guide to living at 19 Larkspur Terrace: your rights, the committees, the passes, and what happens when something goes wrong.</p>
+
+  <a href="constitution.html" class="govuk-button govuk-button--start">Read the full constitution
+    <svg width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path></svg>
+  </a>
+  <a href="constitution.pdf" download class="govuk-button govuk-button--secondary">Download the constitution (PDF)</a>
+
+  <p class="contents-label">Contents</p>
+  <ul class="contents-list">
+    <li><a href="#who">Who this covers</a></li>
+    <li><a href="#committees">The committees, at a glance</a></li>
+    <li><a href="#passes">Passes</a></li>
+    <li><a href="#situations">Common situations</a></li>
+    <li><a href="#punishments">Punishments, briefly</a></li>
+    <li><a href="#rights">Your rights</a></li>
+    <li><a href="#changing">Changing a rule</a></li>
+  </ul>
+
+  <hr class="section-break">
+
+  <h2 id="who">Who this covers</h2>
+  <p>The five permanent housemates &mdash; George Cronin, George Bale, Alexander Pear, Freddie Austin Smith, and Oliver Shawyer &mdash; are bound by every rule here, all the time, while in the house. Visitors are signed in with a Visitor Pass and are subject to the same rules while on the premises.</p>
+  <p>An <strong>EVP (Executive Visitor Pass)</strong> is an upgrade for regulars: it lets a visitor vote in committee elections, but they have to earn it first (see <a href="#situations">common situations</a>).</p>
+
+  <h2 id="committees">The committees, at a glance</h2>
+  <p>Every committee has 2 members by default, elected monthly, with at least 1 member kept in post at all times.</p>
+  <table class="govuk-table">
+    <thead><tr><th style="width:35%">Committee</th><th>What they actually do</th></tr></thead>
     <tbody>
       <tr><td>Kitchen / Living Room / Corridor / Stairs / Bedroom</td><td>Handle offences in their own room</td></tr>
       <tr><td>Bathroom (1st floor / 2nd floor)</td><td>Each floor is independently governed by its own owners</td></tr>
       <tr><td>Committee Committee</td><td>Runs everyone else's elections; also verifies EVP applications</td></tr>
-      <tr><td>Rules Committee</td><td>The only body that can propose changes to this Constitution; runs the Committee Committee's elections</td></tr>
+      <tr><td>Rules Committee</td><td>The only body that can propose changes to the constitution; runs the Committee Committee's elections</td></tr>
       <tr><td>Pass Committee</td><td>Keeps the passes stocked in their proper spots</td></tr>
-      <tr><td>Location Committee</td><td>Settles "where were you" disputes — e.g. whether someone was properly served papers, or whether a grace-period timer was correctly paused</td></tr>
+      <tr><td>Location Committee</td><td>Settles "where were you" disputes &mdash; for example whether someone was properly served papers, or whether a grace-period timer was correctly paused</td></tr>
       <tr><td>Inter-Room Committee</td><td>Forms on the spot when an offence crosses into more than one room's territory</td></tr>
     </tbody>
   </table>
 
-  <div id="passes" class="section-header"><h2>Passes</h2></div>
-  <table class="ref-table">
+  <h2 id="passes">Passes</h2>
+  <table class="govuk-table">
     <thead><tr><th>Pass</th><th>What it's for</th><th>Kept where</th></tr></thead>
     <tbody>
-      <tr><td>Temporary Cutlery Pass</td><td>Visitors get 20 minutes of cutlery use; can renew back-to-back as many times as they like, just not overlapping</td><td>Near the cutlery drawer</td></tr>
-      <tr><td>Temporary Crockery Pass</td><td>Borrowing someone's crockery — needs their signature, no weekly limit</td><td>Kitchen cupboard / near the fridge</td></tr>
-      <tr><td>Temporary Bathroom Pass</td><td>Using the other floor's bathroom — needs a floor owner's countersignature, max 3 times a week</td><td>Back of the relevant bathroom door</td></tr>
+      <tr><td>Temporary Cutlery Pass</td><td>Visitors get 20 minutes of cutlery use; renewable back-to-back as many times as they like, just not overlapping</td><td>Near the cutlery drawer</td></tr>
+      <tr><td>Temporary Crockery Pass</td><td>Borrowing someone's crockery &mdash; needs their signature, no weekly limit</td><td>Kitchen cupboard or near the fridge</td></tr>
+      <tr><td>Temporary Bathroom Pass</td><td>Using the other floor's bathroom &mdash; needs a floor owner's countersignature, maximum 3 times a week</td><td>Back of the relevant bathroom door</td></tr>
     </tbody>
   </table>
 
-  <div id="situations" class="section-header"><h2>Common Situations</h2></div>
-  <p class="section-intro">Real scenarios, and what actually happens.</p>
+  <h2 id="situations">Common situations</h2>
 
-  <div class="situation">
-    <div class="situation-title">"The kitchen's a mess and it's not mine."</div>
-    <p>If a reasonable person would say it's been left in an unacceptable state, a 12-hour grace period starts. Still bad after that? A Kitchen Committee member — or any housemate — can start a prosecution. <span class="clause-ref">Art. 11</span></p>
+  <h3>The kitchen's a mess and it's not mine</h3>
+  <p>If a reasonable person would say it's been left in an unacceptable state, a 12-hour grace period starts. Still bad after that? A Kitchen Committee member &mdash; or any housemate &mdash; can start a prosecution. <span class="clause-ref">(Article 11)</span></p>
+
+  <h3>Someone's being too loud in the living room</h3>
+  <p>Judged case by case against the usual standard for that time and situation. A 6-hour grace period runs on time actually spent in the house &mdash; it pauses when they leave and resumes when they're back. <span class="clause-ref">(Article 12)</span></p>
+
+  <h3>I need to use the other floor's bathroom</h3>
+  <p>Get a Temporary Bathroom Pass countersigned by an owner of that floor &mdash; maximum 3 times a week. An owner can refuse with a valid reason (reasonable-person test; disputed refusals go to tribunal). "I forgot the pass" does not work as a defence. <span class="clause-ref">(Article 13)</span></p>
+
+  <h3>Someone's bedroom smells and it's leaking into the corridor</h3>
+  <p>That's a cross-jurisdiction offence between the Bedroom and Corridor Committees &mdash; it automatically triggers the Inter-Room Committee. <span class="clause-ref">(Articles 14 and 10)</span></p>
+
+  <h3>It's after 11pm and someone won't keep it down</h3>
+  <p>Curfew runs 11pm to 7am. Whether a bedroom door is open or closed is entirely the occupant's call &mdash; but they own responsibility for any noise either way. <span class="clause-ref">(Article 14)</span></p>
+
+  <h3>A friend is coming round and wants to eat with us</h3>
+  <p>Sign them in with a Visitor Pass. They get a 20-minute Temporary Cutlery Pass, and can take out a fresh one back-to-back for as long as they're here, as long as passes never overlap. <span class="clause-ref">(Articles 2 and 11)</span></p>
+
+  <h3>I want to get my partner or a regular friend an EVP</h3>
+  <p>They need to: visit at least twice a week, join a house social outing weekly, and be known and accepted by every housemate for a month. The Committee Committee checks eligibility, then the housemates (not existing EVP holders) vote to ratify. Maximum 5 EVP holders at any time. <span class="clause-ref">(Article 3)</span></p>
+
+  <h3>I think someone's committed an offence</h3>
+  <p>Any housemate or EVP holder can bring a prosecution. Serve the defendant papers displaying "YOU'VE BEEN SERVED" in large writing. Cannot find them? A reasonable attempt to deliver the papers still counts &mdash; the Location Committee rules if that's disputed. A jury of 1 to 5 people who aren't either of you decides guilt by majority vote; a tied jury is broken by a housemate's sibling with no connection to either side. <span class="clause-ref">(Articles 18 to 20)</span></p>
+
+  <div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+    <span class="govuk-warning-text__text">You must serve papers within 3 days of the offence, or the case is void.</span>
   </div>
 
-  <div class="situation">
-    <div class="situation-title">"Someone's being too loud in the living room."</div>
-    <p>Judged case-by-case against the usual standard for that time and situation. A 6-hour grace period runs on time actually spent in the house — it pauses when they leave and resumes when they're back. <span class="clause-ref">Art. 12</span></p>
-  </div>
+  <h3>The offence spans more than one room</h3>
+  <p>The Inter-Room Committee handles it: the person prosecuting nominates which committees are involved, those committees vote on who else needs a seat, and each confirmed committee sends its own representative. <span class="clause-ref">(Article 10)</span></p>
 
-  <div class="situation">
-    <div class="situation-title">"I need to use the other floor's bathroom."</div>
-    <p>Get a Temporary Bathroom Pass countersigned by an owner of that floor — max 3 times a week. An owner can refuse with a valid reason (reasonable-person test; disputed refusals go to tribunal). No pass is no excuse — "I forgot" doesn't work as a defence. <span class="clause-ref">Art. 13</span></p>
-  </div>
+  <h3>I've been found guilty and think it's unfair</h3>
+  <p>Say the phrase &mdash; <em>"Stop it, I do not like this anymore!"</em> &mdash; and your punishment is postponed up to a week (once per offence). If the verdict wasn't unanimous, you can also demand an appeal within 48 hours if you have evidence the original tribunal never saw; the new hearing happens within 72 hours, with a fresh jury. Unanimous verdicts cannot be appealed, and you only get one appeal per offence. <span class="clause-ref">(Bill of Rights Article I; Article 22)</span></p>
 
-  <div class="situation">
-    <div class="situation-title">"Someone's bedroom smells and it's leaking into the corridor."</div>
-    <p>That's a cross-jurisdiction offence between the Bedroom and Corridor Committees — it automatically triggers the Inter-Room Committee. <span class="clause-ref">Art. 14, 10</span></p>
-  </div>
+  <h3>What actually happens to me if I'm found guilty?</h3>
+  <p>The Punishment Room has 7 tiers, from 5 to 20 minutes, sometimes with no phone, no light, or a controlled speaker &mdash; the jury can vote down whatever's proposed, as many times as it takes. Cleaning Punishments (6 tiers, one room up to the whole house) can stack on top of a Punishment Room tier or stand alone; the jury can vote those down too. <span class="clause-ref">(Articles 16 and 17)</span></p>
 
-  <div class="situation">
-    <div class="situation-title">"It's after 11pm and someone won't keep it down."</div>
-    <p>Curfew runs 11pm–7am. Whether a bedroom door is open or closed is entirely the occupant's call — but they own responsibility for any noise either way. <span class="clause-ref">Art. 14</span></p>
-  </div>
+  <h3>I don't think the Rules Committee is doing its job</h3>
+  <p>Anyone outside the Rules Committee can vote to impeach a member &mdash; but it has to be unanimous among everyone else, and it only removes one member at a time. A replacement is elected immediately. <span class="clause-ref">(Article 6)</span></p>
 
-  <div class="situation">
-    <div class="situation-title">"A friend is coming round and wants to eat with us."</div>
-    <p>Sign them in with a Visitor Pass. They get a 20-minute Temporary Cutlery Pass, and can take out a fresh one back-to-back for as long as they're here, as long as passes never overlap. <span class="clause-ref">Art. 2, 11</span></p>
-  </div>
-
-  <div class="situation">
-    <div class="situation-title">"I want to get my partner or a regular friend an EVP."</div>
-    <p>They need to: visit at least twice a week, join a house social outing weekly, and be known and accepted by every housemate for a month. The Committee Committee checks eligibility, then the housemates (not existing EVP holders) vote to ratify. Max 5 EVP holders at any time. <span class="clause-ref">Art. 3</span></p>
-  </div>
-
-  <div class="situation">
-    <div class="situation-title">"I think someone's committed an offence."</div>
-    <p>Any housemate or EVP holder can bring a prosecution. Serve them papers (must say "YOU'VE BEEN SERVED" in large writing) within 3 days of the offence, or the case is void. Can't find them? A reasonable attempt to deliver the papers still counts — the Location Committee rules if that's disputed. A jury of 1–5 people who aren't either of you decides guilt by majority vote; a tied jury is broken by a housemate's sibling with no connection to either side. <span class="clause-ref">Art. 18–20</span></p>
-  </div>
-
-  <div class="situation">
-    <div class="situation-title">"The offence spans more than one room."</div>
-    <p>The Inter-Room Committee handles it: the person prosecuting nominates which committees are involved, those committees vote on who else needs a seat, and each confirmed committee sends its own representative. <span class="clause-ref">Art. 10</span></p>
-  </div>
-
-  <div class="situation">
-    <div class="situation-title">"I've been found guilty and think it's unfair."</div>
-    <p>Say the phrase — <em>"Stop it, I do not like this anymore!"</em> — and your punishment is postponed up to a week (once per offence). If the verdict wasn't unanimous, you can also demand an appeal within 48 hours if you have evidence the original tribunal never saw; the new hearing happens within 72 hours, with a fresh jury. Unanimous verdicts can't be appealed, and you only get one appeal per offence. <span class="clause-ref">BoR I, Art. 22</span></p>
-  </div>
-
-  <div class="situation">
-    <div class="situation-title">"What actually happens to me if I'm found guilty?"</div>
-    <p>The Punishment Room has 7 tiers, from 5 to 20 minutes, sometimes with no phone, no light, or a controlled speaker — the jury can vote down whatever's proposed, as many times as it takes. Cleaning Punishments (6 tiers, one room up to the whole house) can stack on top of a Punishment Room tier or stand alone; the jury can vote those down too. <span class="clause-ref">Art. 16–17</span></p>
-  </div>
-
-  <div class="situation">
-    <div class="situation-title">"I don't think the Rules Committee is doing its job."</div>
-    <p>Anyone outside the Rules Committee can vote to impeach a member — but it has to be unanimous among everyone else, and it only removes one member at a time. A replacement is elected immediately. <span class="clause-ref">Art. 6</span></p>
-  </div>
-
-  <div id="punishments" class="section-header"><h2>Punishments, Briefly</h2></div>
-  <p class="section-intro">Two systems, which can stack: the Punishment Room (timed sit-downs, 5–20 minutes, escalating restrictions) and Cleaning Punishments (an actual chore, scaled from one room to the whole house). The jury always has the final say on whether a proposed punishment is too harsh. See the full Constitution for the exact tier tables.</p>
-
-  <div id="rights" class="section-header"><h2>Your Rights</h2></div>
-  <p class="section-intro">Nothing in this Constitution can ever water these down — not even a future amendment.</p>
-  <ul class="rights-list">
-    <li><span class="rights-numeral">I.</span><span>You can postpone any punishment up to a week by saying the phrase, once per offence.</span></li>
-    <li><span class="rights-numeral">II.</span><span>You're entitled to a timely tribunal — a prosecution can't be dragged out indefinitely.</span></li>
-    <li><span class="rights-numeral">III.</span><span>You can't be tried twice for the same offence, aside from the one allowed appeal.</span></li>
-    <li><span class="rights-numeral">IV.</span><span>Both sides can call witnesses — though nobody can be forced to show up.</span></li>
-    <li><span class="rights-numeral">V.</span><span>Your bedroom is yours. No one enters without your explicit permission.</span></li>
-    <li><span class="rights-numeral">VI.</span><span>You're presumed innocent until a jury says otherwise.</span></li>
+  <h2 id="punishments">Punishments, briefly</h2>
+  <p>Two systems, which can stack:</p>
+  <ul>
+    <li>the <strong>Punishment Room</strong> &mdash; timed sit-downs, 5 to 20 minutes, with escalating restrictions</li>
+    <li><strong>Cleaning Punishments</strong> &mdash; an actual chore, scaled from one room to the whole house</li>
   </ul>
+  <p>The jury always has the final say on whether a proposed punishment is too harsh. See the <a href="constitution.html">full constitution</a> for the exact tier tables.</p>
 
-  <div id="changing" class="section-header"><h2>Changing a Rule</h2></div>
-  <p class="section-intro">Only the Rules Committee can propose an amendment, and it only takes effect once the full house ratifies it by majority vote. The Bill of Rights above is permanently off-limits to amendment.</p>
+  <h2 id="rights">Your rights</h2>
+  <p>Nothing in the constitution can ever water these down &mdash; not even a future amendment.</p>
+  <ol class="rights-list">
+    <li>You can postpone any punishment up to a week by saying the phrase, once per offence.</li>
+    <li>You're entitled to a timely tribunal &mdash; a prosecution cannot be dragged out indefinitely.</li>
+    <li>You cannot be tried twice for the same offence, aside from the one allowed appeal.</li>
+    <li>Both sides can call witnesses &mdash; though nobody can be forced to show up.</li>
+    <li>Your bedroom is yours. No one enters without your explicit permission.</li>
+    <li>You're presumed innocent until a jury says otherwise.</li>
+  </ol>
 
-  <div class="closing">
-    <p>This page is a plain-English summary. Where anything here and the formal document disagree, the formal document governs.</p>
-    <div class="closing-links">
-      <a class="primary" href="constitution.html">Read the Full Constitution</a>
-      <a href="constitution.pdf" download>Download PDF</a>
+  <h2 id="changing">Changing a rule</h2>
+  <p>Only the Rules Committee can propose an amendment, and it only takes effect once the full house ratifies it by majority vote. The Bill of Rights above is permanently off-limits to amendment.</p>
+
+  <div class="govuk-inset-text">
+    <p>This page is a plain-English summary. Where anything here and the formal document disagree, the <a href="constitution.html">formal constitution</a> governs.</p>
+  </div>
+
+</main>
+</div>
+
+<footer class="govuk-footer">
+  <div class="width-container">
+    <ul class="govuk-footer__links">
+      <li><a href="constitution.html">The full constitution</a></li>
+      <li><a href="constitution.pdf" download>Download PDF</a></li>
+    </ul>
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__licence">
+        <p>All content is available under the Open Household Licence v1.0, except where otherwise stated.</p>
+      </div>
+      <div class="govuk-footer__copyright">&copy; House copyright</div>
     </div>
   </div>
+</footer>
 
-</div>
 </body>
 </html>

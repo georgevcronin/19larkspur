@@ -3,363 +3,404 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>19 Larkspur Terrace Declaration of Independence Constitution</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<title>The Constitution - 19 Larkspur Terrace</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   body {
-    font-family: 'EB Garamond', Georgia, serif;
-    color: #1a1a1a;
-    background: #faf9f6;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: #0b0c0c;
+    background: #ffffff;
     margin: 0;
-    padding: 2rem 1rem;
+    -webkit-font-smoothing: antialiased;
   }
-  .constitution {
-    max-width: 720px;
+  a { color: #1d70b8; }
+  a:visited { color: #4c2c92; }
+  a:hover { color: #003078; }
+  a:focus {
+    outline: 3px solid transparent;
+    color: #0b0c0c;
+    background-color: #ffdd00;
+    box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+    text-decoration: none;
+  }
+  .width-container {
+    max-width: 960px;
     margin: 0 auto;
-    padding: 0 0 3rem;
+    padding: 0 15px;
   }
-  .cover {
-    text-align: center;
-    padding: 2.5rem 1rem 2rem;
-    border-bottom: 2px solid #1a1a1a;
-    margin-bottom: 2rem;
+  @media (min-width: 40.0625em) {
+    .width-container { padding: 0 30px; }
   }
-  .cover-seal {
-    width: 64px; height: 64px;
-    border: 2px solid #1a1a1a;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1.2rem;
-    font-size: 26px;
+  /* Header */
+  .govuk-header {
+    background: #0b0c0c;
+    border-bottom: 10px solid #1d70b8;
   }
-  .cover h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    margin: 0 0 0.3rem;
-    line-height: 1.3;
-  }
-  .cover .subtitle {
-    font-style: italic;
-    font-size: 15px;
-    color: #555;
-    margin: 0 0 1.2rem;
-  }
-  .cover-names {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px 16px;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 0.8rem;
-  }
-  .toc {
-    background: #f2f0eb;
-    border-radius: 10px;
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 2rem;
-  }
-  .toc h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin: 0 0 0.8rem;
-    color: #555;
-  }
-  .toc-list {
-    list-style: none;
-    margin: 0; padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px 24px;
-  }
-  .toc-list li {
-    font-size: 14px;
-    color: #555;
-    cursor: pointer;
-    padding: 2px 0;
-    border-bottom: 0.5px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
-  }
-  .toc-list li:hover { color: #1a1a1a; border-color: #ccc; }
-  .part-header {
+  .govuk-header__inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 8px 15px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin: 2.5rem 0 1rem;
-    padding-top: 1.5rem;
-    border-top: 0.5px solid #ccc;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px 20px;
   }
-  .part-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #777;
-    white-space: nowrap;
+  @media (min-width: 40.0625em) {
+    .govuk-header__inner { padding: 8px 30px; }
   }
-  .part-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0;
+  .govuk-header__logo {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
-  .article-title {
-    font-family: 'Playfair Display', serif;
+  .govuk-header__logo:visited { color: #ffffff; }
+  .govuk-header__logo:hover { color: #ffffff; border-bottom: 3px solid #ffffff; margin-bottom: -3px; }
+  .govuk-header__logo:focus { color: #0b0c0c; background: #ffdd00; box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c; }
+  .govuk-header__crest { font-size: 26px; }
+  .govuk-header__service {
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .govuk-header__service:visited { color: #ffffff; }
+  /* Phase banner */
+  .phase-banner {
+    border-bottom: 1px solid #b1b4b6;
+    padding: 10px 0;
     font-size: 16px;
-    font-weight: 600;
-    margin: 1.5rem 0 0.5rem;
   }
+  .phase-banner .width-container { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .govuk-tag {
+    display: inline-block;
+    background: #1d70b8;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 8px 4px;
+  }
+  /* Breadcrumbs */
+  .govuk-breadcrumbs {
+    font-size: 16px;
+    margin: 15px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .govuk-breadcrumbs li { margin: 0; }
+  .govuk-breadcrumbs li:not(:last-child)::after {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid #505a5f;
+    border-right: 1px solid #505a5f;
+    transform: rotate(45deg);
+    margin: 0 10px 1px;
+  }
+  .govuk-breadcrumbs a { color: #0b0c0c; }
+  /* Typography */
+  main { padding: 30px 0 50px; display: block; }
+  .govuk-caption-xl {
+    font-size: 27px;
+    line-height: 1.11;
+    color: #505a5f;
+    display: block;
+    margin: 0 0 5px;
+  }
+  .govuk-caption-part {
+    font-size: 19px;
+    color: #505a5f;
+    display: block;
+    margin: 0 0 5px;
+    font-weight: 400;
+  }
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.04;
+    margin: 0 0 20px;
+  }
+  h2 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.11;
+    margin: 0 0 20px;
+  }
+  .part-header {
+    margin: 50px 0 20px;
+    padding-top: 30px;
+    border-top: 1px solid #b1b4b6;
+  }
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 35px 0 15px;
+  }
+  p, li {
+    font-size: 19px;
+    line-height: 1.3157;
+    margin: 0 0 20px;
+  }
+  .govuk-body-l { font-size: 24px; line-height: 1.25; }
+  @media (max-width: 40.0525em) {
+    h1 { font-size: 32px; }
+    h2 { font-size: 27px; }
+    h3 { font-size: 21px; }
+    p, li { font-size: 16px; }
+    .govuk-body-l { font-size: 19px; }
+    .govuk-caption-xl { font-size: 21px; }
+  }
+  /* Clauses */
   .clause {
     display: flex;
-    gap: 12px;
-    margin: 0.35rem 0;
-    font-size: 15px;
-    line-height: 1.7;
+    gap: 15px;
+    margin: 0 0 15px;
+    font-size: 19px;
+    line-height: 1.3157;
   }
   .clause-num {
-    font-weight: 500;
-    min-width: 32px;
-    color: #777;
-    font-size: 13px;
-    padding-top: 2px;
+    font-weight: 700;
+    min-width: 42px;
     flex-shrink: 0;
   }
   .subclause {
     display: flex;
-    gap: 10px;
-    margin: 0.2rem 0 0.2rem 2rem;
-    font-size: 14px;
-    line-height: 1.65;
-    font-style: italic;
+    gap: 12px;
+    margin: 0 0 10px 57px;
+    font-size: 19px;
+    line-height: 1.3157;
   }
-  .subclause-letter { min-width: 20px; color: #777; flex-shrink: 0; }
-  .constitution-table {
+  .subclause-letter { min-width: 30px; flex-shrink: 0; color: #505a5f; }
+  @media (max-width: 40.0525em) {
+    .clause, .subclause { font-size: 16px; }
+    .subclause { margin-left: 40px; }
+  }
+  /* Contents list */
+  .contents-label {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+  .contents-list {
+    list-style: none;
+    margin: 0 0 20px;
+    padding: 0;
+  }
+  .contents-list li {
+    font-size: 16px;
+    margin-bottom: 8px;
+    padding-left: 25px;
+    position: relative;
+  }
+  .contents-list li::before {
+    content: "\2014";
+    position: absolute;
+    left: 0;
+    color: #0b0c0c;
+  }
+  /* Tables */
+  .govuk-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 13.5px;
-    margin: 0.75rem 0 1rem;
+    margin: 0 0 30px;
   }
-  .constitution-table th {
-    background: #f2f0eb;
-    font-weight: 500;
+  .govuk-table th, .govuk-table td {
+    font-size: 19px;
+    line-height: 1.3157;
     text-align: left;
-    padding: 7px 10px;
-    border: 0.5px solid #ccc;
-    font-family: 'EB Garamond', serif;
-    font-size: 13px;
-    letter-spacing: 0.02em;
-  }
-  .constitution-table td {
-    padding: 6px 10px;
-    border: 0.5px solid #ccc;
     vertical-align: top;
-    line-height: 1.5;
+    padding: 10px 20px 10px 0;
+    border-bottom: 1px solid #b1b4b6;
   }
-  .constitution-table tr:nth-child(even) td { background: #f8f7f4; }
-  .bor-article {
-    background: #f2f0eb;
-    border-left: 3px solid #888;
-    border-radius: 0 8px 8px 0;
-    padding: 0.75rem 1rem;
-    margin: 0.75rem 0;
+  .govuk-table th { font-weight: 700; }
+  @media (max-width: 40.0525em) {
+    .govuk-table th, .govuk-table td { font-size: 16px; }
   }
-  .bor-article-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    font-size: 15px;
-    margin-bottom: 0.3rem;
+  /* Inset text (Bill of Rights) */
+  .govuk-inset-text {
+    border-left: 10px solid #b1b4b6;
+    padding: 15px;
+    margin: 30px 0;
   }
-  .bor-article p { font-size: 14px; margin: 0.2rem 0; line-height: 1.65; }
-  .command-phrase { font-style: italic; font-weight: 500; border-bottom: 1px solid #888; }
+  .govuk-inset-text p:last-child { margin-bottom: 0; }
+  .bor-title { font-weight: 700; font-size: 19px; margin-bottom: 10px; }
+  .command-phrase { font-style: italic; font-weight: 700; }
   .served-badge {
     display: inline-block;
-    border: 1.5px solid #1a1a1a;
+    border: 2px solid #0b0c0c;
     padding: 2px 10px;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    border-radius: 2px;
-    margin: 0 2px;
+    font-weight: 700;
+    letter-spacing: 1px;
   }
-  .tiers-wrap {
-    border: 0.5px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 0.75rem 0 1rem;
+  /* Buttons */
+  .govuk-button {
+    display: inline-block;
+    background: #00703c;
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 0 #002d18;
+    margin: 0 15px 20px 0;
+    cursor: pointer;
   }
-  .tiers-header {
-    display: flex;
-    gap: 10px;
-    padding: 6px 10px;
-    background: #f2f0eb;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #777;
-    font-weight: 500;
-    border-bottom: 0.5px solid #ccc;
-  }
-  .tiers-header span:first-child { min-width: 80px; }
-  .tiers-header span:nth-child(2) { min-width: 90px; }
-  .punishment-tier {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 7px 10px;
-    border-bottom: 0.5px solid #ccc;
-    font-size: 14px;
-  }
-  .punishment-tier:last-child { border-bottom: none; }
-  .punishment-tier:nth-child(even) { background: #f8f7f4; }
-  .tier-badge { min-width: 80px; font-weight: 500; font-size: 13px; color: #555; }
-  .tier-duration { min-width: 90px; font-weight: 500; }
-  .tier-conditions { color: #555; font-style: italic; font-size: 13.5px; }
+  .govuk-button:visited { color: #ffffff; }
+  .govuk-button:hover { background: #005a30; color: #ffffff; }
+  .govuk-button:focus { background: #ffdd00; color: #0b0c0c; box-shadow: 0 2px 0 #0b0c0c; }
+  /* Ratification */
   .ratification {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 2px solid #1a1a1a;
-  }
-  .ratification h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0 0 0.5rem;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 5px solid #0b0c0c;
   }
   .sig-block {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 2rem;
-    margin-top: 1.5rem;
+    gap: 30px 40px;
+    margin-top: 30px;
   }
   .sig-line {
-    border-bottom: 1px solid #1a1a1a;
+    border-bottom: 1px solid #0b0c0c;
     padding-bottom: 4px;
-    margin-bottom: 4px;
-    min-height: 36px;
+    margin-bottom: 6px;
+    min-height: 40px;
   }
-  .sig-name { font-size: 13px; color: #555; }
-  .site-nav {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 1rem 1rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
+  .sig-name { font-size: 16px; color: #505a5f; }
+  /* Footer */
+  .govuk-footer {
+    background: #f3f2f1;
+    border-top: 1px solid #b1b4b6;
+    padding: 40px 0 25px;
+    font-size: 16px;
+    color: #0b0c0c;
   }
-  .site-nav a {
-    font-family: 'EB Garamond', serif;
-    font-size: 14px;
-    text-decoration: none;
-    color: #1a1a1a;
-    border: 1px solid #1a1a1a;
-    border-radius: 4px;
-    padding: 6px 14px;
-    transition: background 0.15s, color 0.15s;
-  }
-  .site-nav a:hover { background: #1a1a1a; color: #faf9f6; }
-  .site-nav a.primary { background: #1a1a1a; color: #faf9f6; }
-  .site-nav a.primary:hover { background: #333; }
+  .govuk-footer__meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .govuk-footer a { color: #0b0c0c; }
+  .govuk-footer__licence { max-width: 500px; }
+  .govuk-footer__licence p { font-size: 16px; margin-bottom: 10px; }
+  .govuk-footer__copyright { text-align: right; font-weight: 700; white-space: nowrap; }
+  .govuk-footer__links { list-style: none; padding: 0; margin: 0 0 30px; display: flex; flex-wrap: wrap; gap: 15px 30px; }
+  .govuk-footer__links li { font-size: 16px; margin: 0; }
   @media print {
-    .site-nav { display: none; }
+    .govuk-header, .phase-banner, .govuk-breadcrumbs, .page-actions, .govuk-footer { display: none; }
   }
 </style>
 </head>
 <body>
-<nav class="site-nav">
-  <a href="index.html">&larr; Back to the Quick Guide</a>
-  <a class="primary" href="constitution.pdf" download>Download PDF &#8681;</a>
-</nav>
-<div class="constitution">
 
-  <div class="cover">
-    <div class="cover-seal">⚖</div>
-    <h1>19 Larkspur Terrace<br>Declaration of Independence Constitution</h1>
-    <p class="subtitle">The Supreme Law of the House</p>
-    <div class="cover-names">
-      <span>George Cronin</span><span>George Bale</span><span>Alexander Pear</span>
-      <span>Freddie Austin Smith</span><span>Oliver Shawyer</span>
-    </div>
+<header class="govuk-header">
+  <div class="govuk-header__inner">
+    <a href="index.html" class="govuk-header__logo"><span class="govuk-header__crest">&#9878;</span> 19&nbsp;Larkspur&nbsp;Terrace</a>
+    <a href="constitution.html" class="govuk-header__service">The Constitution</a>
+  </div>
+</header>
+
+<div class="phase-banner">
+  <div class="width-container">
+    <span class="govuk-tag">Official</span>
+    <span>This is the supreme law of the house, as ratified by the five housemates.</span>
+  </div>
+</div>
+
+<div class="width-container">
+
+<ol class="govuk-breadcrumbs">
+  <li><a href="index.html">Home</a></li>
+  <li>The Constitution</li>
+</ol>
+
+<main>
+
+  <span class="govuk-caption-xl">The supreme law of the house</span>
+  <h1>19 Larkspur Terrace Declaration of Independence Constitution</h1>
+
+  <div class="page-actions">
+    <a href="constitution.pdf" download class="govuk-button">Download this constitution (PDF)</a>
   </div>
 
-  <div class="toc">
-    <h2>Contents</h2>
-    <ul class="toc-list">
-      <li onclick="document.getElementById('p1').scrollIntoView({behavior:'smooth'})">I. Preamble</li>
-      <li onclick="document.getElementById('p2').scrollIntoView({behavior:'smooth'})">II. Membership &amp; Visitors</li>
-      <li onclick="document.getElementById('p3').scrollIntoView({behavior:'smooth'})">III. The Committee System</li>
-      <li onclick="document.getElementById('p4').scrollIntoView({behavior:'smooth'})">IV. Room Legislation</li>
-      <li onclick="document.getElementById('p5').scrollIntoView({behavior:'smooth'})">V. Prosecution &amp; Tribunal</li>
-      <li onclick="document.getElementById('p6').scrollIntoView({behavior:'smooth'})">VI. Bill of Rights</li>
-      <li onclick="document.getElementById('p7').scrollIntoView({behavior:'smooth'})">VII. Constitutional Amendments</li>
-      <li onclick="document.getElementById('sched').scrollIntoView({behavior:'smooth'})">Schedule A — Committee Directory</li>
-    </ul>
-  </div>
+  <p class="contents-label">Contents</p>
+  <ul class="contents-list">
+    <li><a href="#p1">Part I &mdash; Preamble</a></li>
+    <li><a href="#p2">Part II &mdash; Membership and Visitors</a></li>
+    <li><a href="#p3">Part III &mdash; The Committee System</a></li>
+    <li><a href="#p4">Part IV &mdash; Room Legislation</a></li>
+    <li><a href="#p5">Part V &mdash; Prosecution and Tribunal</a></li>
+    <li><a href="#p6">Part VI &mdash; Bill of Rights</a></li>
+    <li><a href="#p7">Part VII &mdash; Constitutional Amendments</a></li>
+    <li><a href="#sched">Schedule A &mdash; Committee Directory</a></li>
+  </ul>
 
   <div id="p1" class="part-header">
-    <span class="part-number">Part I</span>
-    <h2 class="part-title">Preamble</h2>
+    <span class="govuk-caption-part">Part I</span>
+    <h2>Preamble</h2>
   </div>
-  <div class="clause"><span class="clause-num"></span><span>We, the housemates of 19 Larkspur Terrace, in order to form a more perfect household, establish justice, ensure domestic tranquillity, and promote the general welfare of all who dwell within, do hereby ordain and establish this Constitution as the supreme law of the house. All persons residing within, visiting, or otherwise subject to the jurisdiction of 19 Larkspur Terrace shall be bound by its provisions.</span></div>
+  <p>We, the housemates of 19 Larkspur Terrace, in order to form a more perfect household, establish justice, ensure domestic tranquillity, and promote the general welfare of all who dwell within, do hereby ordain and establish this Constitution as the supreme law of the house. All persons residing within, visiting, or otherwise subject to the jurisdiction of 19 Larkspur Terrace shall be bound by its provisions.</p>
 
   <div id="p2" class="part-header">
-    <span class="part-number">Part II</span>
-    <h2 class="part-title">Membership &amp; Visitors</h2>
+    <span class="govuk-caption-part">Part II</span>
+    <h2>Membership &amp; Visitors</h2>
   </div>
 
-  <div class="article-title">Article 1 — Housemates</div>
+  <h3>Article 1 &mdash; Housemates</h3>
   <div class="clause"><span class="clause-num">1.1</span><span>The five permanent housemates of 19 Larkspur Terrace are: George Cronin, George Bale, Alexander Pear, Freddie Austin Smith, and Oliver Shawyer.</span></div>
   <div class="clause"><span class="clause-num">1.2</span><span>Membership is fixed for the duration of this Constitution. There shall be no new housemates and no departing housemates during the constitutional period.</span></div>
   <div class="clause"><span class="clause-num">1.3</span><span>All housemates are subject to the full provisions of this Constitution at all times whilst within the house and its jurisdictional spaces.</span></div>
 
-  <div class="article-title">Article 2 — Visitors</div>
+  <h3>Article 2 &mdash; Visitors</h3>
   <div class="clause"><span class="clause-num">2.1</span><span>Any non-member wishing to enter 19 Larkspur Terrace must be signed in by means of a standard Visitor Pass upon entry.</span></div>
   <div class="clause"><span class="clause-num">2.2</span><span>Visitors are fully subject to the law of this Constitution whilst on the premises and may be prosecuted for offences committed therein.</span></div>
   <div class="clause"><span class="clause-num">2.3</span><span>Visitors are entitled to a Temporary Cutlery Pass upon entry, granting twenty (20) minutes of cutlery usage.</span></div>
 
-  <div class="article-title">Article 3 — Executive Visitor Pass (EVP)</div>
+  <h3>Article 3 &mdash; Executive Visitor Pass (EVP)</h3>
   <div class="clause"><span class="clause-num">3.1</span><span>The EVP is an elevated visitor status granting additional rights within the house, including participation in committee member elections.</span></div>
   <div class="clause"><span class="clause-num">3.2</span><span>To qualify, a visitor must satisfy all of the following:</span></div>
   <div class="subclause"><span class="subclause-letter">(a)</span><span>Visit the house consistently at a minimum of twice per week;</span></div>
   <div class="subclause"><span class="subclause-letter">(b)</span><span>Attend at least one social outing with the house per week; and</span></div>
   <div class="subclause"><span class="subclause-letter">(c)</span><span>Be known and accepted by every housemate for a minimum of one month.</span></div>
   <div class="clause"><span class="clause-num">3.3</span><span>Qualification is verified by the Committee Committee, then ratified by tribunal vote of the housemates only.</span></div>
-  <div class="clause"><span class="clause-num">3.4</span><span>Maximum five (5) EVP holders at any one time. EVP may be revoked by prosecution and tribunal vote of housemates only — no external jury members permitted for revocation proceedings.</span></div>
+  <div class="clause"><span class="clause-num">3.4</span><span>Maximum five (5) EVP holders at any one time. EVP may be revoked by prosecution and tribunal vote of housemates only &mdash; no external jury members permitted for revocation proceedings.</span></div>
 
   <div id="p3" class="part-header">
-    <span class="part-number">Part III</span>
-    <h2 class="part-title">The Committee System</h2>
+    <span class="govuk-caption-part">Part III</span>
+    <h2>The Committee System</h2>
   </div>
 
-  <div class="article-title">Article 4 — General Committee Provisions</div>
+  <h3>Article 4 &mdash; General Committee Provisions</h3>
   <div class="clause"><span class="clause-num">4.1</span><span>All committees, unless otherwise specified, shall consist of two (2) members.</span></div>
   <div class="clause"><span class="clause-num">4.2</span><span>All housemates are default candidates for every committee, elected by ranked choice voting of the full house, including a candidate voting on their own race. EVP holders may also vote in committee elections.</span></div>
   <div class="clause"><span class="clause-num">4.3</span><span>A housemate may sit on as many committees as they are elected to, without restriction. Each housemate may abstain from candidacy for one (1) committee of their choosing.</span></div>
   <div class="clause"><span class="clause-num">4.4</span><span>Every committee holds elections once per month, except the Committee Committee, which follows its own staggered cycle under 5.2, and the Inter-Room Committee (Article 10), which is ad-hoc and holds none.</span></div>
   <div class="clause"><span class="clause-num">4.5</span><span>Every committee must maintain a minimum of one (1) member at all times. If membership would otherwise fall to zero, an election to fill the vacancy is held immediately.</span></div>
 
-  <div class="article-title">Article 5 — The Committee Committee</div>
+  <h3>Article 5 &mdash; The Committee Committee</h3>
   <div class="clause"><span class="clause-num">5.1</span><span>Manages the voting process of all other committees and oversees all committee elections.</span></div>
   <div class="clause"><span class="clause-num">5.2</span><span>Operates on a staggered election cycle of once every two months, convening one week before the monthly committee elections.</span></div>
   <div class="clause"><span class="clause-num">5.3</span><span>If prosecuted for mismanagement or rigging of an election, the prosecution shall be brought by the Rules Committee. Conversely, if the Rules Committee is prosecuted, the Committee Committee brings that prosecution. Each serves as the other's check and balance.</span></div>
   <div class="clause"><span class="clause-num">5.4</span><span>Any dispute between the Rules Committee and the Committee Committee that does not amount to a prosecution under 5.3 shall be resolved by tribunal vote of the full house.</span></div>
   <div class="clause"><span class="clause-num">5.5</span><span>Notwithstanding 5.1, elections for the Committee Committee itself are administered by the Rules Committee.</span></div>
 
-  <div class="article-title">Article 6 — The Rules Committee</div>
+  <h3>Article 6 &mdash; The Rules Committee</h3>
   <div class="clause"><span class="clause-num">6.1</span><span>Holds exclusive authority to propose amendments to this Constitution, per the procedure set out in Part VII.</span></div>
-  <div class="clause"><span class="clause-num">6.2</span><span>Any individual member of the Rules Committee may be impeached by a <strong>unanimous</strong> vote of every housemate and EVP holder who is not a member of the Rules Committee. Impeachment removes only the named member — where the Rules Committee has more than one member, each must be impeached separately. Upon impeachment, the vacated seat is filled by immediate election.</span></div>
+  <div class="clause"><span class="clause-num">6.2</span><span>Any individual member of the Rules Committee may be impeached by a <strong>unanimous</strong> vote of every housemate and EVP holder who is not a member of the Rules Committee. Impeachment removes only the named member &mdash; where the Rules Committee has more than one member, each must be impeached separately. Upon impeachment, the vacated seat is filled by immediate election.</span></div>
 
-  <div class="article-title">Article 7 — The Pass Committee</div>
+  <h3>Article 7 &mdash; The Pass Committee</h3>
   <div class="clause"><span class="clause-num">7.1</span><span>Oversees all temporary passes, ensuring they are stocked and correctly placed at their designated locations:</span></div>
-  <table class="constitution-table">
+  <table class="govuk-table">
     <thead><tr><th>Pass type</th><th>Location</th></tr></thead>
     <tbody>
       <tr><td>Temporary Bathroom Pass (2nd floor)</td><td>Back of the 2nd floor bathroom door</td></tr>
@@ -369,12 +410,12 @@
     </tbody>
   </table>
 
-  <div class="article-title">Article 8 — The Location Committee</div>
-  <div class="clause"><span class="clause-num">8.1</span><span>Either party to a matter under this Constitution may refer a dispute over a person's location, whereabouts, or presence within the house to the Location Committee for a ruling — including the validity of a service attempt under Article 19, and whether a grace-period timer was correctly paused or resumed under 12.2.</span></div>
-  <div class="clause"><span class="clause-num">8.2</span><span>Its rulings are not final; either party may escalate to a jury trial under 20.1–20.3.</span></div>
+  <h3>Article 8 &mdash; The Location Committee</h3>
+  <div class="clause"><span class="clause-num">8.1</span><span>Either party to a matter under this Constitution may refer a dispute over a person's location, whereabouts, or presence within the house to the Location Committee for a ruling &mdash; including the validity of a service attempt under Article 19, and whether a grace-period timer was correctly paused or resumed under 12.2.</span></div>
+  <div class="clause"><span class="clause-num">8.2</span><span>Its rulings are not final; either party may escalate to a jury trial under 20.1&ndash;20.3.</span></div>
 
-  <div class="article-title">Article 9 — Room-Based Committees</div>
-  <table class="constitution-table">
+  <h3>Article 9 &mdash; Room-Based Committees</h3>
+  <table class="govuk-table">
     <thead><tr><th>Committee</th><th>Jurisdiction</th><th>Size</th></tr></thead>
     <tbody>
       <tr><td>Kitchen Committee</td><td>Kitchen</td><td>2</td></tr>
@@ -387,66 +428,68 @@
     </tbody>
   </table>
 
-  <div class="article-title">Article 10 — The Inter-Room Committee</div>
+  <h3>Article 10 &mdash; The Inter-Room Committee</h3>
   <div class="clause"><span class="clause-num">10.1</span><span>A temporary, ad-hoc body convened whenever an offence may implicate more than one committee's jurisdiction. The prosecuting party nominates the committees they believe are implicated, provisionally seeding the Inter-Room Committee with one representative from each.</span></div>
   <div class="clause"><span class="clause-num">10.2</span><span>By simple majority of its provisional members, the Inter-Room Committee decides which councils must be represented for the offence, adding representatives from any further committee found to hold jurisdiction.</span></div>
   <div class="clause"><span class="clause-num">10.3</span><span>Once composition is settled, one (1) representative sits per committee so determined, regardless of that committee's size, selected by that committee itself. A member sitting on more than one relevant committee is automatically selected for all. Disbands upon resolution.</span></div>
 
   <div id="p4" class="part-header">
-    <span class="part-number">Part IV</span>
-    <h2 class="part-title">Room Legislation</h2>
+    <span class="govuk-caption-part">Part IV</span>
+    <h2>Room Legislation</h2>
   </div>
 
-  <div class="article-title">Article 11 — The Kitchen</div>
-  <div class="clause"><span class="clause-num">11.1</span><span>Disturbance to the status quo is determined by the <em>reasonable person test</em> — whether a reasonable person would consider the kitchen to have been left in an unacceptable state.</span></div>
+  <h3>Article 11 &mdash; The Kitchen</h3>
+  <div class="clause"><span class="clause-num">11.1</span><span>Disturbance to the status quo is determined by the <em>reasonable person test</em> &mdash; whether a reasonable person would consider the kitchen to have been left in an unacceptable state.</span></div>
   <div class="clause"><span class="clause-num">11.2</span><span>Upon a disturbance being identified, a twelve (12) hour grace period commences. If unresolved, a Kitchen Committee member may commence prosecution.</span></div>
   <div class="clause"><span class="clause-num">11.3</span><span><strong>Crockery Pass:</strong> any housemate using another's crockery must complete and obtain the owner's signature on a Temporary Crockery Pass. No limit on passes per week.</span></div>
   <div class="clause"><span class="clause-num">11.4</span><span><strong>Cutlery Pass:</strong> all visitors must obtain a Temporary Cutlery Pass (no counter-signature required), granting twenty (20) minutes of cutlery usage including wash-up. Exceeding the window results in forcible removal of cutlery. A visitor may obtain as many Temporary Cutlery Passes in a single visit as they like, provided no two passes are active at the same time.</span></div>
 
-  <div class="article-title">Article 12 — The Living Room</div>
+  <h3>Article 12 &mdash; The Living Room</h3>
   <div class="clause"><span class="clause-num">12.1</span><span>Disturbance to the status quo determined case by case, with reference to the understood status quo at the time of the offence and by decision of the prosecution.</span></div>
   <div class="clause"><span class="clause-num">12.2</span><span>A six (6) hour grace period commences, counted on time spent within the house. If the offending individual leaves, the timer stops and restarts on return.</span></div>
 
-  <div class="article-title">Article 13 — The Bathrooms</div>
+  <h3>Article 13 &mdash; The Bathrooms</h3>
   <div class="clause"><span class="clause-num">13.1</span><span>The two bathrooms are entirely independently governed by their respective owners and committees.</span></div>
   <div class="clause"><span class="clause-num">13.2</span><span><strong>1st floor bathroom:</strong> Alexander Pear, Freddie Austin Smith, Oliver Shawyer. <strong>2nd floor bathroom:</strong> George Cronin, George Bale.</span></div>
   <div class="clause"><span class="clause-num">13.3</span><span><strong>Bathroom Pass:</strong> cross-floor use requires a signed Temporary Bathroom Pass (countersigned by a floor owner). Maximum three (3) usages per week. Unauthorised or secret use is prosecutable. Forgetting a pass provides no legal defence.</span></div>
   <div class="clause"><span class="clause-num">13.4</span><span>A bathroom owner may refuse to sign a pass with a valid reason. Validity is determined by the reasonable person test; if disputed, by tribunal. The refused party may prosecute on the basis of damages caused by the refusal.</span></div>
 
-  <div class="article-title">Article 14 — The Bedrooms</div>
+  <h3>Article 14 &mdash; The Bedrooms</h3>
   <div class="clause"><span class="clause-num">14.1</span><span>All five bedrooms operate under identical legislation. Loud noise is prohibited between <strong>11:00 pm and 7:00 am.</strong> During curfew hours, noise must be kept to a minimum.</span></div>
   <div class="clause"><span class="clause-num">14.2</span><span>Whether a bedroom door is open or closed during curfew is entirely at the occupant's discretion; they accept full responsibility for any resulting noise.</span></div>
   <div class="clause"><span class="clause-num">14.3</span><span>Odours affecting the surrounding corridor are a cross-jurisdictional offence between the Bedroom Committee and the Corridor Committee, and trigger the Inter-Room Committee.</span></div>
   <div class="clause"><span class="clause-num">14.4</span><span>Bedroom items causing clutter in communal spaces constitute a low-level offence of common area spillover, attracting a correspondingly low sentencing tier.</span></div>
 
-  <div class="article-title">Article 15 — The Corridor &amp; Stairs</div>
+  <h3>Article 15 &mdash; The Corridor &amp; Stairs</h3>
   <div class="clause"><span class="clause-num">15.1</span><span>The Corridor Committee and Stairs Committee hold jurisdiction over their respective spaces. Offences spanning both spaces trigger the Inter-Room Committee.</span></div>
 
-  <div class="article-title">Article 16 — The Punishment Room</div>
+  <h3>Article 16 &mdash; The Punishment Room</h3>
   <div class="clause"><span class="clause-num">16.1</span><span>The Punishment Room is the formal sentencing facility of the house. Its sentencing tiers:</span></div>
-  <div class="tiers-wrap">
-    <div class="tiers-header"><span>Tier</span><span>Duration</span><span>Conditions</span></div>
-    <div class="punishment-tier"><span class="tier-badge">Tier 1</span><span class="tier-duration">5 minutes</span><span class="tier-conditions">Standard</span></div>
-    <div class="punishment-tier"><span class="tier-badge">Tier 2</span><span class="tier-duration">10 minutes</span><span class="tier-conditions">Standard</span></div>
-    <div class="punishment-tier"><span class="tier-badge">Tier 3</span><span class="tier-duration">5 minutes</span><span class="tier-conditions">No phone</span></div>
-    <div class="punishment-tier"><span class="tier-badge">Tier 4</span><span class="tier-duration">10 minutes</span><span class="tier-conditions">No phone</span></div>
-    <div class="punishment-tier"><span class="tier-badge">Tier 5</span><span class="tier-duration">20 minutes</span><span class="tier-conditions">No phone</span></div>
-    <div class="punishment-tier"><span class="tier-badge">Tier 6</span><span class="tier-duration">20 minutes</span><span class="tier-conditions">No phone, no light</span></div>
-    <div class="punishment-tier"><span class="tier-badge">Tier 7</span><span class="tier-duration">15 minutes</span><span class="tier-conditions">No phone, no light, controlled speaker</span></div>
-  </div>
+  <table class="govuk-table">
+    <thead><tr><th>Tier</th><th>Duration</th><th>Conditions</th></tr></thead>
+    <tbody>
+      <tr><td>Tier 1</td><td>5 minutes</td><td>Standard</td></tr>
+      <tr><td>Tier 2</td><td>10 minutes</td><td>Standard</td></tr>
+      <tr><td>Tier 3</td><td>5 minutes</td><td>No phone</td></tr>
+      <tr><td>Tier 4</td><td>10 minutes</td><td>No phone</td></tr>
+      <tr><td>Tier 5</td><td>20 minutes</td><td>No phone</td></tr>
+      <tr><td>Tier 6</td><td>20 minutes</td><td>No phone, no light</td></tr>
+      <tr><td>Tier 7</td><td>15 minutes</td><td>No phone, no light, controlled speaker</td></tr>
+    </tbody>
+  </table>
   <div class="clause"><span class="clause-num">16.2</span><span>The prosecution determines the tier applied. Additional punishments beyond the Punishment Room tiers may also be imposed. The jury may vote to reduce the proposed punishment; this process is iterative until the jury is satisfied.</span></div>
   <div class="clause"><span class="clause-num">16.3</span><span>Refusal to enter the Punishment Room without a valid reason or without invoking Article I of the Bill of Rights is an aggravating factor leading to sentence increase.</span></div>
 
-  <div class="article-title">Article 17 — Cleaning Punishments</div>
+  <h3>Article 17 &mdash; Cleaning Punishments</h3>
   <div class="clause"><span class="clause-num">17.1</span><span>The Cleaning Punishment is a formal sentencing mechanism, available as a standalone punishment or stacked on top of a Punishment Room tier:</span></div>
-  <table class="constitution-table">
+  <table class="govuk-table">
     <thead><tr><th>Tier</th><th>Room</th><th>Required tasks</th></tr></thead>
     <tbody>
       <tr><td>Cleaning Tier 1</td><td>Corridor</td><td>Hoover the corridor</td></tr>
       <tr><td>Cleaning Tier 2</td><td>Stairs</td><td>Hoover the stairs</td></tr>
       <tr><td>Cleaning Tier 3</td><td>Living Room</td><td>Hoover the living room; mop the floor</td></tr>
       <tr><td>Cleaning Tier 4</td><td>Kitchen</td><td>Hoover; mop floor; wipe all surfaces; clean hob; clean inside microwave</td></tr>
-      <tr><td>Cleaning Tier 5</td><td>Both Bathrooms</td><td>Clean toilet; clean sink; mop floor; wipe all surfaces — both bathrooms</td></tr>
+      <tr><td>Cleaning Tier 5</td><td>Both Bathrooms</td><td>Clean toilet; clean sink; mop floor; wipe all surfaces &mdash; both bathrooms</td></tr>
       <tr><td>Cleaning Tier 6</td><td>Full House</td><td>All of the above in full</td></tr>
     </tbody>
   </table>
@@ -455,82 +498,82 @@
   <div class="clause"><span class="clause-num">17.4</span><span>The jury retains the right to vote for reduction of any cleaning punishment.</span></div>
 
   <div id="p5" class="part-header">
-    <span class="part-number">Part V</span>
-    <h2 class="part-title">Prosecution &amp; Tribunal</h2>
+    <span class="govuk-caption-part">Part V</span>
+    <h2>Prosecution &amp; Tribunal</h2>
   </div>
 
-  <div class="article-title">Article 18 — Right to Prosecute</div>
+  <h3>Article 18 &mdash; Right to Prosecute</h3>
   <div class="clause"><span class="clause-num">18.1</span><span>The following may bring a prosecution: any housemate; any EVP holder.</span></div>
   <div class="clause"><span class="clause-num">18.2</span><span>The following may be prosecuted: any housemate; any EVP holder; any visitor.</span></div>
 
-  <div class="article-title">Article 19 — Service of Papers</div>
+  <h3>Article 19 &mdash; Service of Papers</h3>
   <div class="clause"><span class="clause-num">19.1</span><span>A prosecution is formally commenced by serving papers upon the defendant, which must display in large writing: <span class="served-badge">YOU'VE BEEN SERVED</span></span></div>
   <div class="clause"><span class="clause-num">19.2</span><span>Service formally opens the prosecution and triggers the right of both parties to begin preparing their case.</span></div>
-  <div class="clause"><span class="clause-num">19.3</span><span>Service must be completed within <strong>three (3) days</strong> of the offence. If the defendant cannot reasonably be located, a reasonable attempt to deliver the papers (e.g., leaving them at the defendant's known location) constitutes valid service. Whether an attempt was reasonable is determined by the Location Committee (Article 8), appealable to a jury trial under 20.1–20.3.</span></div>
+  <div class="clause"><span class="clause-num">19.3</span><span>Service must be completed within <strong>three (3) days</strong> of the offence. If the defendant cannot reasonably be located, a reasonable attempt to deliver the papers (e.g., leaving them at the defendant's known location) constitutes valid service. Whether an attempt was reasonable is determined by the Location Committee (Article 8), appealable to a jury trial under 20.1&ndash;20.3.</span></div>
 
-  <div class="article-title">Article 20 — The Tribunal</div>
+  <h3>Article 20 &mdash; The Tribunal</h3>
   <div class="clause"><span class="clause-num">20.1</span><span>All proceedings are entirely self-organised. The prosecution and defendant each present their own case to the jury. The defendant may represent themselves litigant in person.</span></div>
-  <div class="clause"><span class="clause-num">20.2</span><span>Jury consists of one (1) to five (5) persons, drawn only from housemates and EVP holders who are neither the prosecution nor the defendant in the matter. Simple majority verdict required. In the event of a tied vote, a sibling of a housemate — present and not connected to either party — casts the deciding vote, which is final.</span></div>
+  <div class="clause"><span class="clause-num">20.2</span><span>Jury consists of one (1) to five (5) persons, drawn only from housemates and EVP holders who are neither the prosecution nor the defendant in the matter. Simple majority verdict required. In the event of a tied vote, a sibling of a housemate &mdash; present and not connected to either party &mdash; casts the deciding vote, which is final.</span></div>
   <div class="clause"><span class="clause-num">20.3</span><span>Both parties have the right to call witnesses. Witnesses cannot be compelled to appear. A prosecution brought in bad faith is itself a prosecutable offence.</span></div>
-  <div class="clause"><span class="clause-num">20.4</span><span>Wherever this Constitution calls for a tribunal vote of the full house (including under Article 5, Part VII, and Article 22 appeals), every housemate and EVP holder who is not the defendant in the matter is entitled to vote, and a simple majority — over half of eligible voters — is required to pass, except where this Constitution specifies otherwise (e.g., the unanimous vote required to impeach a Rules Committee member under 6.2, and the housemates-only vote on EVP status under Article 3).</span></div>
+  <div class="clause"><span class="clause-num">20.4</span><span>Wherever this Constitution calls for a tribunal vote of the full house (including under Article 5, Part VII, and Article 22 appeals), every housemate and EVP holder who is not the defendant in the matter is entitled to vote, and a simple majority &mdash; over half of eligible voters &mdash; is required to pass, except where this Constitution specifies otherwise (e.g., the unanimous vote required to impeach a Rules Committee member under 6.2, and the housemates-only vote on EVP status under Article 3).</span></div>
 
-  <div class="article-title">Article 21 — Statute of Limitations</div>
+  <h3>Article 21 &mdash; Statute of Limitations</h3>
   <div class="clause"><span class="clause-num">21.1</span><span>Any offence for which service of papers (Article 19) is not completed within <strong>three (3) days</strong> of its commission is null and void.</span></div>
 
-  <div class="article-title">Article 22 — Appeals</div>
+  <h3>Article 22 &mdash; Appeals</h3>
   <div class="clause"><span class="clause-num">22.1</span><span>Any party to a non-unanimous tribunal verdict may appeal, within <strong>forty-eight (48) hours</strong> of the verdict, by demanding a new hearing, provided they present evidence not considered at the original tribunal. A unanimous verdict may not be appealed.</span></div>
   <div class="clause"><span class="clause-num">22.2</span><span>The appeal hearing follows the standard tribunal process of Article 20, convened with a newly assembled jury, and must take place within <strong>seventy-two (72) hours</strong> of the appeal being demanded.</span></div>
   <div class="clause"><span class="clause-num">22.3</span><span>Only one appeal is permitted per offence. The verdict of the appeal hearing is final, regardless of unanimity.</span></div>
 
   <div id="p6" class="part-header">
-    <span class="part-number">Part VI</span>
-    <h2 class="part-title">The Bill of Rights</h2>
+    <span class="govuk-caption-part">Part VI</span>
+    <h2>The Bill of Rights</h2>
   </div>
 
-  <div class="bor-article">
-    <div class="bor-article-title">Article I — The right of postponement</div>
+  <div class="govuk-inset-text">
+    <p class="bor-title">Article I &mdash; The right of postponement</p>
     <p>Any punishment may be postponed for up to one (1) week upon utterance of the command phrase: <span class="command-phrase">"Stop it, I do not like this anymore!"</span></p>
     <p>Invocable once per offence only, independently for each separate offence. The defendant remains fully convicted during the postponement week and may serve their sentence at any point during it. The right to appeal is preserved.</p>
   </div>
 
-  <div class="bor-article">
-    <div class="bor-article-title">Article II — The right to a timely tribunal</div>
+  <div class="govuk-inset-text">
+    <p class="bor-title">Article II &mdash; The right to a timely tribunal</p>
     <p>Every defendant has the right to a fair and timely tribunal. A prosecution may not be indefinitely delayed once formally filed. The statute of limitations in Article 21 governs timeliness.</p>
   </div>
 
-  <div class="bor-article">
-    <div class="bor-article-title">Article III — The right against double jeopardy</div>
+  <div class="govuk-inset-text">
+    <p class="bor-title">Article III &mdash; The right against double jeopardy</p>
     <p>No housemate, EVP holder, or visitor may be prosecuted twice for the same offence. Once a verdict is delivered, the matter is permanently closed, save for a single appeal under Article 22.</p>
   </div>
 
-  <div class="bor-article">
-    <div class="bor-article-title">Article IV — The right to call witnesses</div>
+  <div class="govuk-inset-text">
+    <p class="bor-title">Article IV &mdash; The right to call witnesses</p>
     <p>Both the prosecution and the defendant have the right to call witnesses during tribunal proceedings. Witnesses may not be compelled to appear and retain the right to refuse.</p>
   </div>
 
-  <div class="bor-article">
-    <div class="bor-article-title">Article V — The right to bedroom privacy</div>
+  <div class="govuk-inset-text">
+    <p class="bor-title">Article V &mdash; The right to bedroom privacy</p>
     <p>Every housemate has the right to privacy within their own bedroom. No housemate may enter another's bedroom without the explicit permission of the occupant.</p>
   </div>
 
-  <div class="bor-article">
-    <div class="bor-article-title">Article VI — The presumption of innocence</div>
+  <div class="govuk-inset-text">
+    <p class="bor-title">Article VI &mdash; The presumption of innocence</p>
     <p>Every defendant is presumed innocent until found guilty by tribunal vote. The burden of proof lies with the prosecution.</p>
   </div>
 
   <div id="p7" class="part-header">
-    <span class="part-number">Part VII</span>
-    <h2 class="part-title">Constitutional Amendments</h2>
+    <span class="govuk-caption-part">Part VII</span>
+    <h2>Constitutional Amendments</h2>
   </div>
   <div class="clause"><span class="clause-num">1</span><span>New rules and amendments may only be proposed by the Rules Committee.</span></div>
   <div class="clause"><span class="clause-num">2</span><span>All proposed amendments must be ratified by a tribunal vote of the house before taking effect.</span></div>
   <div class="clause"><span class="clause-num">3</span><span>No amendment may remove or diminish the rights enshrined in the Bill of Rights.</span></div>
 
   <div id="sched" class="part-header">
-    <span class="part-number">Schedule A</span>
-    <h2 class="part-title">Full Committee Directory</h2>
+    <span class="govuk-caption-part">Schedule A</span>
+    <h2>Full Committee Directory</h2>
   </div>
-  <table class="constitution-table">
+  <table class="govuk-table">
     <thead><tr><th>Committee</th><th>Size</th><th>Election cycle</th><th>Oversight</th></tr></thead>
     <tbody>
       <tr><td>Kitchen Committee</td><td>2</td><td>Monthly</td><td>Inter-Room if cross-jurisdictional</td></tr>
@@ -550,7 +593,7 @@
 
   <div class="ratification">
     <h2>Ratification</h2>
-    <p style="font-size:15px; color:#555;">We, the undersigned housemates of 19 Larkspur Terrace, do hereby adopt and ratify this Constitution as the supreme law of the house.</p>
+    <p>We, the undersigned housemates of 19 Larkspur Terrace, do hereby adopt and ratify this Constitution as the supreme law of the house.</p>
     <div class="sig-block">
       <div><div class="sig-line"></div><div class="sig-name">George Cronin</div></div>
       <div><div class="sig-line"></div><div class="sig-name">George Bale</div></div>
@@ -561,6 +604,23 @@
     </div>
   </div>
 
+</main>
 </div>
+
+<footer class="govuk-footer">
+  <div class="width-container">
+    <ul class="govuk-footer__links">
+      <li><a href="index.html">How the house works</a></li>
+      <li><a href="constitution.pdf" download>Download PDF</a></li>
+    </ul>
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__licence">
+        <p>All content is available under the Open Household Licence v1.0, except where otherwise stated.</p>
+      </div>
+      <div class="govuk-footer__copyright">&copy; House copyright</div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
