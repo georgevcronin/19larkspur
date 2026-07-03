@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Favour points ledger - 19 Larkspur Terrace</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-lang="en">
+
+<div id="cookie-banner" class="cookie-banner" hidden>
+  <div class="width-container">
+    <h2><span lang="en">Cookies on 19 Larkspur Terrace</span><span lang="tr">19 Larkspur Terrace'ta çerezler</span></h2>
+    <p><span lang="en">This house uses no cookies except those in the kitchen, which require a Temporary Crockery Pass.</span><span lang="tr">Bu ev, mutfaktakiler dışında çerez kullanmaz; onlar için de Geçici Tabak-Çanak Pasosu gerekir.</span></p>
+    <button class="govuk-button" onclick="return acceptCookies()"><span lang="en">Accept house cookies</span><span lang="tr">Ev çerezlerini kabul et</span></button>
+  </div>
+</div>
+
+<header class="govuk-header">
+  <div class="govuk-header__inner">
+    <a href="index.html" class="govuk-header__logo"><span class="govuk-header__crest">&#9878;</span> 19&nbsp;Larkspur&nbsp;Terrace</a>
+    <a href="constitution.html" class="govuk-header__service"><span lang="en">The Constitution</span><span lang="tr">Anayasa</span></a>
+  </div>
+</header>
+
+<div class="phase-banner">
+  <div class="width-container">
+    <span class="govuk-tag govuk-tag--grey"><span lang="en">Unofficial</span><span lang="tr">Gayriresmî</span></span>
+    <span><span lang="en">Favour points have no legal force under the constitution and cannot be exchanged for pass exemptions.</span><span lang="tr">İyilik puanlarının anayasa önünde hukuki gücü yoktur ve paso muafiyetiyle takas edilemez.</span></span>
+    <span class="phase-banner__spacer"></span>
+    <span class="lang-toggle"><a href="#" onclick="return setLang('en')">English</a> | <a href="#" onclick="return setLang('tr')">Türkçe</a></span>
+  </div>
+</div>
+
+<div class="width-container">
+<ol class="govuk-breadcrumbs">
+  <li><a href="index.html"><span lang="en">Home</span><span lang="tr">Ana sayfa</span></a></li>
+  <li><span lang="en">Favour points ledger</span><span lang="tr">İyilik puanı defteri</span></li>
+</ol>
+
+<main>
+  <h1><span lang="en">Favour points ledger</span><span lang="tr">İyilik puanı defteri</span></h1>
+  <p class="govuk-body-l"><span lang="en">Log favours done between housemates and keep score. Doing a favour earns you the points; receiving one costs you them.</span><span lang="tr">Ev arkadaşları arasında yapılan iyilikleri kaydedin ve skoru tutun. İyilik yapmak puan kazandırır; iyilik almak puan kaybettirir.</span></p>
+
+  <div class="govuk-inset-text">
+    <p><span lang="en">Entries are saved in this browser only. Use <strong>Export CSV</strong> to share or back up the ledger &mdash; the exported file is the official record in any dispute.</span><span lang="tr">Kayıtlar yalnızca bu tarayıcıda saklanır. Defteri paylaşmak veya yedeklemek için <strong>CSV dışa aktar</strong>ı kullanın &mdash; ihtilaf hâlinde resmî kayıt, dışa aktarılan dosyadır.</span></p>
+  </div>
+
+  <h2><span lang="en">Scoreboard</span><span lang="tr">Puan tablosu</span></h2>
+  <table class="govuk-table">
+    <thead><tr>
+      <th><span lang="en">Housemate</span><span lang="tr">Ev arkadaşı</span></th>
+      <th><span lang="en">Favours done</span><span lang="tr">Yapılan iyilikler</span></th>
+      <th><span lang="en">Favours received</span><span lang="tr">Alınan iyilikler</span></th>
+      <th><span lang="en">Net balance</span><span lang="tr">Net bakiye</span></th>
+    </tr></thead>
+    <tbody id="scoreboard"></tbody>
+  </table>
+
+  <h2><span lang="en">Log a favour</span><span lang="tr">İyilik kaydet</span></h2>
+  <form onsubmit="return addFavour()">
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="doer"><span lang="en">Who did the favour?</span><span lang="tr">İyiliği kim yaptı?</span></label>
+      <select class="govuk-select" id="doer" required></select>
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="beneficiary"><span lang="en">Who was it for?</span><span lang="tr">Kimin için yapıldı?</span></label>
+      <select class="govuk-select" id="beneficiary" required></select>
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="desc"><span lang="en">What was the favour?</span><span lang="tr">İyilik neydi?</span></label>
+      <input class="govuk-input" id="desc" required
+        placeholder="">
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="points"><span lang="en">Points (1&ndash;5)</span><span lang="tr">Puan (1&ndash;5)</span></label>
+      <p class="govuk-hint"><span lang="en">1 = passing the remote &middot; 3 = a lift to the station &middot; 5 = covering your cleaning tier</span><span lang="tr">1 = kumandayı uzatmak &middot; 3 = istasyona bırakmak &middot; 5 = temizlik kademeni üstlenmek</span></p>
+      <select class="govuk-select govuk-input--width-10" id="points" required>
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+        <option value="4">4</option><option value="5">5</option>
+      </select>
+    </div>
+    <button type="submit" class="govuk-button"><span lang="en">Log favour</span><span lang="tr">İyiliği kaydet</span></button>
+  </form>
+  <p class="govuk-hint" id="form-error" style="color:#d4351c; font-weight:700;" hidden></p>
+
+  <h2><span lang="en">Ledger</span><span lang="tr">Defter</span></h2>
+  <table class="govuk-table">
+    <thead><tr>
+      <th><span lang="en">Date</span><span lang="tr">Tarih</span></th>
+      <th><span lang="en">Favour</span><span lang="tr">İyilik</span></th>
+      <th><span lang="en">Points</span><span lang="tr">Puan</span></th>
+      <th></th>
+    </tr></thead>
+    <tbody id="ledger"></tbody>
+  </table>
+
+  <button class="govuk-button govuk-button--secondary" onclick="exportCsv()"><span lang="en">Export CSV</span><span lang="tr">CSV dışa aktar</span></button>
+  <button class="govuk-button govuk-button--warning" onclick="clearLedger()"><span lang="en">Clear all entries</span><span lang="tr">Tüm kayıtları sil</span></button>
+</main>
+</div>
+
+<footer class="govuk-footer">
+  <div class="width-container">
+    <ul class="govuk-footer__links">
+      <li><a href="index.html"><span lang="en">How the house works</span><span lang="tr">Ev nasıl işler</span></a></li>
+      <li><a href="constitution.html"><span lang="en">The full constitution</span><span lang="tr">Anayasanın tamamı</span></a></li>
+      <li><a href="case-law.html"><span lang="en">Case law</span><span lang="tr">İçtihat</span></a></li>
+    </ul>
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__licence"><p><span lang="en">All content is available under the Open Household Licence v1.0.</span><span lang="tr">Tüm içerik Açık Hane Lisansı v1.0 kapsamında sunulur.</span></p></div>
+      <div class="govuk-footer__copyright"><span lang="en">&copy; House copyright</span><span lang="tr">&copy; Hane telif hakkı</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script src="committees.js"></script>
+<script>
+var STORE_KEY = "larkspur-favours";
+
+function loadEntries() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
+  catch (e) { return []; }
+}
+function saveEntries(entries) {
+  localStorage.setItem(STORE_KEY, JSON.stringify(entries));
+}
+
+function renderPeopleOptions() {
+  var lang = document.body.getAttribute("data-lang");
+  ["doer", "beneficiary"].forEach(function (id) {
+    var select = document.getElementById(id);
+    var current = select.value;
+    select.innerHTML = "";
+    var placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = "—";
+    select.appendChild(placeholder);
+    Object.keys(HOUSEMATES).forEach(function (key) {
+      var opt = document.createElement("option");
+      opt.value = key;
+      opt.textContent = HOUSEMATES[key].name;
+      select.appendChild(opt);
+    });
+    if (current) select.value = current;
+  });
+}
+
+function render() {
+  var lang = document.body.getAttribute("data-lang");
+  var entries = loadEntries();
+
+  // Scoreboard
+  var stats = {};
+  Object.keys(HOUSEMATES).forEach(function (k) { stats[k] = { done: 0, received: 0 }; });
+  entries.forEach(function (e) {
+    if (stats[e.doer]) stats[e.doer].done += e.points;
+    if (stats[e.beneficiary]) stats[e.beneficiary].received += e.points;
+  });
+  var sb = document.getElementById("scoreboard");
+  sb.innerHTML = "";
+  Object.keys(HOUSEMATES)
+    .sort(function (a, b) { return (stats[b].done - stats[b].received) - (stats[a].done - stats[a].received); })
+    .forEach(function (k) {
+      var net = stats[k].done - stats[k].received;
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + HOUSEMATES[k].name + "</td><td>" + stats[k].done + "</td><td>" +
+        stats[k].received + "</td><td><strong>" + (net > 0 ? "+" : "") + net + "</strong></td>";
+      sb.appendChild(tr);
+    });
+
+  // Ledger
+  var lg = document.getElementById("ledger");
+  lg.innerHTML = "";
+  if (!entries.length) {
+    lg.innerHTML = '<tr><td colspan="4">' + (lang === "tr"
+      ? "Henüz iyilik kaydedilmedi."
+      : "No favours logged yet.") + "</td></tr>";
+    return;
+  }
+  entries.slice().reverse().forEach(function (e) {
+    var d = new Date(e.date);
+    var when = d.toLocaleDateString(lang === "tr" ? "tr-TR" : "en-GB",
+      { day: "numeric", month: "short", year: "numeric" });
+    var who = (lang === "tr")
+      ? HOUSEMATES[e.doer].name + ", " + HOUSEMATES[e.beneficiary].name + " için: " + e.desc
+      : HOUSEMATES[e.doer].name + " for " + HOUSEMATES[e.beneficiary].name + ": " + e.desc;
+    var tr = document.createElement("tr");
+    var td = function (html) { var c = document.createElement("td"); c.innerHTML = html; return c; };
+    tr.appendChild(td(when));
+    var whoCell = document.createElement("td");
+    whoCell.textContent = who;
+    tr.appendChild(whoCell);
+    tr.appendChild(td(String(e.points)));
+    var delCell = document.createElement("td");
+    var del = document.createElement("a");
+    del.href = "#";
+    del.textContent = (lang === "tr") ? "Sil" : "Remove";
+    del.onclick = function () { removeEntry(e.id); return false; };
+    delCell.appendChild(del);
+    tr.appendChild(delCell);
+    lg.appendChild(tr);
+  });
+}
+
+function addFavour() {
+  var lang = document.body.getAttribute("data-lang");
+  var doer = document.getElementById("doer").value;
+  var beneficiary = document.getElementById("beneficiary").value;
+  var err = document.getElementById("form-error");
+  if (doer === beneficiary) {
+    err.textContent = (lang === "tr")
+      ? "Kendinize iyilik puanı veremezsiniz. İyi deneme."
+      : "You cannot award yourself favour points. Nice try.";
+    err.hidden = false;
+    return false;
+  }
+  err.hidden = true;
+  var entries = loadEntries();
+  entries.push({
+    id: Date.now() + "-" + Math.random().toString(36).slice(2, 7),
+    doer: doer,
+    beneficiary: beneficiary,
+    desc: document.getElementById("desc").value,
+    points: parseInt(document.getElementById("points").value, 10),
+    date: new Date().toISOString()
+  });
+  saveEntries(entries);
+  document.getElementById("desc").value = "";
+  render();
+  return false;
+}
+
+function removeEntry(id) {
+  saveEntries(loadEntries().filter(function (e) { return e.id !== id; }));
+  render();
+}
+
+function clearLedger() {
+  var lang = document.body.getAttribute("data-lang");
+  if (confirm(lang === "tr"
+    ? "Tüm iyilik kayıtları silinsin mi? Bu geri alınamaz."
+    : "Delete every favour entry? This cannot be undone.")) {
+    saveEntries([]);
+    render();
+  }
+}
+
+function exportCsv() {
+  var rows = [["date", "doer", "beneficiary", "favour", "points"]];
+  loadEntries().forEach(function (e) {
+    rows.push([e.date, HOUSEMATES[e.doer].name, HOUSEMATES[e.beneficiary].name, e.desc, e.points]);
+  });
+  var csv = rows.map(function (r) {
+    return r.map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(",");
+  }).join("\n");
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+  a.download = "larkspur-favour-points.csv";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+renderPeopleOptions();
+render();
+document.addEventListener("larkspur-langchange", function () {
+  renderPeopleOptions();
+  render();
+});
+</script>
+</body>
+</html>
