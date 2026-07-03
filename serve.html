@@ -53,18 +53,7 @@
     </div>
     <div class="govuk-form-group">
       <label class="govuk-label" for="article"><span lang="en">Article allegedly breached</span><span lang="tr">İhlal edildiği iddia edilen madde</span></label>
-      <select class="govuk-select" id="article" required>
-        <option value="Article 11 — The Kitchen">Article 11 — The Kitchen / Mutfak</option>
-        <option value="Article 12 — The Living Room">Article 12 — The Living Room / Oturma Odası</option>
-        <option value="Article 13 — The Bathrooms">Article 13 — The Bathrooms / Banyolar</option>
-        <option value="Article 14 — The Bedrooms">Article 14 — The Bedrooms / Yatak Odaları</option>
-        <option value="Article 15 — The Corridor &amp; Stairs">Article 15 — The Corridor &amp; Stairs / Koridor ve Merdiven</option>
-        <option value="Article 2 — Visitors">Article 2 — Visitors / Ziyaretçiler</option>
-        <option value="Article 20.3 — Bad-faith prosecution">Article 20.3 — Bad-faith prosecution / Kötü niyetli kovuşturma</option>
-        <option value="Article 24.4 — Bad-faith emergency declaration">Article 24.4 — Bad-faith emergency / Kötü niyetli OHAL ilanı</option>
-        <option value="Bill of Rights, Article V — Bedroom privacy">Bill of Rights V — Bedroom privacy / Yatak odası mahremiyeti</option>
-        <option value="Other (see description)">Other / Diğer</option>
-      </select>
+      <select class="govuk-select" id="article" required></select>
     </div>
     <div class="govuk-form-group">
       <label class="govuk-label" for="offence"><span lang="en">Description of the alleged offence</span><span lang="tr">İddia edilen suçun açıklaması</span></label>
@@ -117,6 +106,37 @@
 
 <script src="site.js"></script>
 <script>
+var ARTICLES = [
+  { value: "art-11",  en: "Article 11 — The Kitchen",                        tr: "Madde 11 — Mutfak" },
+  { value: "art-12",  en: "Article 12 — The Living Room",                    tr: "Madde 12 — Oturma Odası" },
+  { value: "art-13",  en: "Article 13 — The Bathrooms",                      tr: "Madde 13 — Banyolar" },
+  { value: "art-14",  en: "Article 14 — The Bedrooms",                       tr: "Madde 14 — Yatak Odaları" },
+  { value: "art-15",  en: "Article 15 — The Corridor & Stairs",              tr: "Madde 15 — Koridor ve Merdiven" },
+  { value: "art-2",   en: "Article 2 — Visitors",                            tr: "Madde 2 — Ziyaretçiler" },
+  { value: "art-203", en: "Article 20.3 — Bad-faith prosecution",            tr: "Madde 20.3 — Kötü niyetli kovuşturma" },
+  { value: "art-244", en: "Article 24.4 — Bad-faith emergency declaration",  tr: "Madde 24.4 — Kötü niyetli olağanüstü hâl ilanı" },
+  { value: "bor-5",   en: "Bill of Rights, Article V — Bedroom privacy",     tr: "Haklar Bildirgesi, Madde V — Yatak odası mahremiyeti" },
+  { value: "other",   en: "Other (see description)",                         tr: "Diğer (açıklamaya bakınız)" }
+];
+function renderArticleOptions() {
+  var lang = document.body.getAttribute("data-lang");
+  var select = document.getElementById("article");
+  var current = select.value;
+  select.innerHTML = "";
+  ARTICLES.forEach(function (a) {
+    var opt = document.createElement("option");
+    opt.value = a.value;
+    opt.textContent = (lang === "tr") ? a.tr : a.en;
+    select.appendChild(opt);
+  });
+  if (current) select.value = current;
+}
+renderArticleOptions();
+document.addEventListener("larkspur-langchange", renderArticleOptions);
+function articleLabel(value, lang) {
+  var a = ARTICLES.find(function (x) { return x.value === value; });
+  return a ? ((lang === "tr") ? a.tr : a.en) : value;
+}
 function fmt(dt, lang) {
   return dt.toLocaleString(lang === "tr" ? "tr-TR" : "en-GB", {
     weekday: "long", day: "numeric", month: "long", year: "numeric",
@@ -137,7 +157,7 @@ function generatePapers() {
   var deadline = new Date(when.getTime() + 3 * 24 * 60 * 60 * 1000);
   document.getElementById("p-defendant").textContent = document.getElementById("defendant").value;
   document.getElementById("p-prosecutor").textContent = document.getElementById("prosecutor").value;
-  document.getElementById("p-article").textContent = document.getElementById("article").value;
+  document.getElementById("p-article").textContent = articleLabel(document.getElementById("article").value, lang);
   document.getElementById("p-offence").textContent = document.getElementById("offence").value;
   document.getElementById("p-when").textContent = fmt(when, lang);
   document.getElementById("p-deadline").textContent = fmt(deadline, lang);

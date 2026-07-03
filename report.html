@@ -49,16 +49,7 @@
   <form onsubmit="return sendReport()">
     <div class="govuk-form-group">
       <label class="govuk-label" for="room"><span lang="en">Where is the disturbance?</span><span lang="tr">Müdahale nerede?</span></label>
-      <select class="govuk-select" id="room" onchange="updateRecipients()" required>
-        <option value="" disabled selected>&mdash;</option>
-        <option value="kitchen">Kitchen / Mutfak</option>
-        <option value="living-room">Living Room / Oturma Odası</option>
-        <option value="corridor">Corridor / Koridor</option>
-        <option value="stairs">Stairs / Merdiven</option>
-        <option value="bathroom-1">Bathroom, 1st floor / Banyo, 1. kat</option>
-        <option value="bathroom-2">Bathroom, 2nd floor / Banyo, 2. kat</option>
-        <option value="bedroom">A bedroom / Yatak odası</option>
-      </select>
+      <select class="govuk-select" id="room" onchange="updateRecipients()" required></select>
       <p class="govuk-hint" id="recipients-hint"></p>
     </div>
     <div class="govuk-form-group">
@@ -91,6 +82,39 @@
 <script src="site.js"></script>
 <script src="committees.js"></script>
 <script>
+var ROOMS = [
+  { value: "kitchen",     en: "Kitchen",             tr: "Mutfak" },
+  { value: "living-room", en: "Living Room",         tr: "Oturma Odası" },
+  { value: "corridor",    en: "Corridor",            tr: "Koridor" },
+  { value: "stairs",      en: "Stairs",              tr: "Merdiven" },
+  { value: "bathroom-1",  en: "Bathroom, 1st floor", tr: "Banyo, 1. kat" },
+  { value: "bathroom-2",  en: "Bathroom, 2nd floor", tr: "Banyo, 2. kat" },
+  { value: "bedroom",     en: "A bedroom",           tr: "Yatak odası" }
+];
+function renderRoomOptions() {
+  var lang = document.body.getAttribute("data-lang");
+  var select = document.getElementById("room");
+  var current = select.value;
+  select.innerHTML = "";
+  var placeholder = document.createElement("option");
+  placeholder.value = "";
+  placeholder.disabled = true;
+  placeholder.selected = true;
+  placeholder.textContent = "—";
+  select.appendChild(placeholder);
+  ROOMS.forEach(function (r) {
+    var opt = document.createElement("option");
+    opt.value = r.value;
+    opt.textContent = (lang === "tr") ? r.tr : r.en;
+    select.appendChild(opt);
+  });
+  if (current) select.value = current;
+}
+renderRoomOptions();
+document.addEventListener("larkspur-langchange", function () {
+  renderRoomOptions();
+  if (document.getElementById("room").value) updateRecipients();
+});
 function updateRecipients() {
   var room = document.getElementById("room").value;
   var lang = document.body.getAttribute("data-lang");

@@ -13,6 +13,7 @@
     localStorage.setItem("larkspur-lang", l);
     document.body.setAttribute("data-lang", l);
     document.documentElement.setAttribute("lang", l);
+    document.dispatchEvent(new CustomEvent("larkspur-langchange", { detail: l }));
     return false;
   };
 
