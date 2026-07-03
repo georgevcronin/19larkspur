@@ -12,13 +12,13 @@
 //        support email, Save.
 //   That's it — no other configuration needed. The page already calls
 //   signInWithPopup(GoogleAuthProvider), and Firestore's rules already
-//   restrict access to the five housemates' emails (see firestore.rules).
+//   restrict access to the five housemates by name (see firestore.rules).
 //
 // Security model:
 //   - Firestore rules only allow reads and writes from a signed-in user
-//     whose Google account email is one of the five housemates'
-//     addresses. Everyone else is refused by the database itself,
-//     regardless of what the page does.
+//     whose Google account display name matches one of the five
+//     housemates' names. Everyone else is refused by the database
+//     itself, regardless of what the page does.
 //   - The apiKey below is not a secret — it only identifies the project;
 //     access is controlled entirely by the rules above. Safe to commit.
 

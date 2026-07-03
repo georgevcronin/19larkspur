@@ -2,16 +2,24 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /favours/{entry} {
-      // Only the five housemates, signed in with their Google account,
-      // may read or write the ledger. Keep this list in sync with the
-      // HOUSEMATES emails in committees.js.
+      // Only the five housemates, signed in with their Google account, may
+      // read or write the ledger. Matched by the account's Google display
+      // name rather than email, so this list stays correct even if
+      // someone's sign-in address changes. Comparison is case-insensitive
+      // and whitespace-trimmed to tolerate minor formatting differences.
+      // Keep this in sync with the HOUSEMATES names in committees.js.
+      //
+      // Note: a Google account's display name is user-editable, unlike its
+      // email — someone who renamed their Google account to match could in
+      // principle pass this check. Acceptable for a house scoreboard; not
+      // a strong identity guarantee.
       allow read, write: if request.auth != null &&
-        request.auth.token.email in [
-          "georgevcronin@gmail.com",
-          "bale.george22@gmail.com",
-          "alexpear18@outlook.com",
-          "freddieasmith291@gmail.com",
-          "Oli24sha07@gmail.com"
+        request.auth.token.name.lower().trim() in [
+          "george cronin",
+          "george bale",
+          "alexander pear",
+          "freddie austin smith",
+          "oliver shawyer"
         ];
     }
   }
