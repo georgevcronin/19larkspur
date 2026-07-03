@@ -46,13 +46,13 @@
     <p><span lang="en">Entries are saved in this browser only. Use <strong>Export CSV</strong> to share or back up the ledger &mdash; the exported file is the official record in any dispute.</span><span lang="tr">Kayıtlar yalnızca bu tarayıcıda saklanır. Defteri paylaşmak veya yedeklemek için <strong>CSV dışa aktar</strong>ı kullanın &mdash; ihtilaf hâlinde resmî kayıt, dışa aktarılan dosyadır.</span></p>
   </div>
 
-  <h2><span lang="en">Scoreboard</span><span lang="tr">Puan tablosu</span></h2>
+  <h2><span lang="en">Balances between housemates</span><span lang="tr">Ev arkadaşları arası bakiyeler</span></h2>
+  <p><span lang="en">Every pair keeps its own independent score &mdash; points earned from one housemate cannot be spent on another.</span><span lang="tr">Her ikili kendi bağımsız skorunu tutar &mdash; bir ev arkadaşından kazanılan puan bir başkasına harcanamaz.</span></p>
   <table class="govuk-table">
     <thead><tr>
-      <th><span lang="en">Housemate</span><span lang="tr">Ev arkadaşı</span></th>
-      <th><span lang="en">Favours done</span><span lang="tr">Yapılan iyilikler</span></th>
-      <th><span lang="en">Favours received</span><span lang="tr">Alınan iyilikler</span></th>
-      <th><span lang="en">Net balance</span><span lang="tr">Net bakiye</span></th>
+      <th><span lang="en">Between</span><span lang="tr">Kimler arasında</span></th>
+      <th><span lang="en">Balance</span><span lang="tr">Bakiye</span></th>
+      <th><span lang="en">Standing</span><span lang="tr">Durum</span></th>
     </tr></thead>
     <tbody id="scoreboard"></tbody>
   </table>
@@ -153,24 +153,50 @@ function render() {
   var lang = document.body.getAttribute("data-lang");
   var entries = loadEntries();
 
-  // Scoreboard
-  var stats = {};
-  Object.keys(HOUSEMATES).forEach(function (k) { stats[k] = { done: 0, received: 0 }; });
+  // Pairwise balances: each pair of housemates keeps an independent score.
+  // pair[a][b] = points a has earned from favours done for b.
+  var keys = Object.keys(HOUSEMATES);
+  var pair = {};
+  keys.forEach(function (a) { pair[a] = {}; keys.forEach(function (b) { pair[a][b] = 0; }); });
   entries.forEach(function (e) {
-    if (stats[e.doer]) stats[e.doer].done += e.points;
-    if (stats[e.beneficiary]) stats[e.beneficiary].received += e.points;
+    if (pair[e.doer] && pair[e.doer][e.beneficiary] !== undefined) {
+      pair[e.doer][e.beneficiary] += e.points;
+    }
   });
   var sb = document.getElementById("scoreboard");
   sb.innerHTML = "";
-  Object.keys(HOUSEMATES)
-    .sort(function (a, b) { return (stats[b].done - stats[b].received) - (stats[a].done - stats[a].received); })
-    .forEach(function (k) {
-      var net = stats[k].done - stats[k].received;
-      var tr = document.createElement("tr");
-      tr.innerHTML = "<td>" + HOUSEMATES[k].name + "</td><td>" + stats[k].done + "</td><td>" +
-        stats[k].received + "</td><td><strong>" + (net > 0 ? "+" : "") + net + "</strong></td>";
-      sb.appendChild(tr);
-    });
+  var pairs = [];
+  for (var i = 0; i < keys.length; i++) {
+    for (var j = i + 1; j < keys.length; j++) {
+      var a = keys[i], b = keys[j];
+      var net = pair[a][b] - pair[b][a];
+      if (net !== 0) pairs.push({ a: a, b: b, net: net });
+    }
+  }
+  pairs.sort(function (x, y) { return Math.abs(y.net) - Math.abs(x.net); });
+  if (!pairs.length) {
+    sb.innerHTML = '<tr><td colspan="3">' + (lang === "tr"
+      ? "Tüm hesaplar eşit — kimse kimseye borçlu değil."
+      : "All square — nobody owes anybody anything.") + "</td></tr>";
+  }
+  pairs.forEach(function (p) {
+    // Positive net: a is in credit, so b owes a.
+    var creditor = p.net > 0 ? p.a : p.b;
+    var debtor = p.net > 0 ? p.b : p.a;
+    var n = Math.abs(p.net);
+    var standing = (lang === "tr")
+      ? HOUSEMATES[debtor].name + ", " + HOUSEMATES[creditor].name + "'a " + n +
+        (n === 1 ? " puan" : " puan") + " borçlu"
+      : HOUSEMATES[debtor].name + " owes " + HOUSEMATES[creditor].name + " " + n +
+        (n === 1 ? " point" : " points");
+    var balance = (lang === "tr")
+      ? "+" + n + " (" + HOUSEMATES[creditor].name + " lehine)"
+      : "+" + n + " to " + HOUSEMATES[creditor].name;
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<td>" + HOUSEMATES[p.a].name + " &harr; " + HOUSEMATES[p.b].name + "</td>" +
+      "<td><strong>" + balance + "</strong></td><td>" + standing + "</td>";
+    sb.appendChild(tr);
+  });
 
   // Ledger
   var lg = document.getElementById("ledger");
