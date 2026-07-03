@@ -42,8 +42,23 @@
   <h1><span lang="en">Favour points ledger</span><span lang="tr">İyilik puanı defteri</span></h1>
   <p class="govuk-body-l"><span lang="en">Log favours done between housemates and keep score. Doing a favour earns you the points; receiving one costs you them.</span><span lang="tr">Ev arkadaşları arasında yapılan iyilikleri kaydedin ve skoru tutun. İyilik yapmak puan kazandırır; iyilik almak puan kaybettirir.</span></p>
 
-  <div class="govuk-inset-text">
-    <p><span lang="en">Entries are saved in this browser only. Use <strong>Export CSV</strong> to share or back up the ledger &mdash; the exported file is the official record in any dispute.</span><span lang="tr">Kayıtlar yalnızca bu tarayıcıda saklanır. Defteri paylaşmak veya yedeklemek için <strong>CSV dışa aktar</strong>ı kullanın &mdash; ihtilaf hâlinde resmî kayıt, dışa aktarılan dosyadır.</span></p>
+  <div class="govuk-inset-text" id="sync-cloud" hidden>
+    <p><span lang="en"><strong>Cloud sync is on.</strong> Entries save to Firestore and update live on every housemate's device. Use <strong>Export CSV</strong> for backups.</span><span lang="tr"><strong>Bulut eşitleme açık.</strong> Kayıtlar Firestore'a kaydedilir ve her ev arkadaşının cihazında anında güncellenir. Yedek için <strong>CSV dışa aktar</strong>ı kullanın.</span></p>
+  </div>
+  <div class="govuk-inset-text" id="sync-local">
+    <p><span lang="en"><strong>Cloud sync is not set up yet</strong>, so entries currently save in this browser only. Use <strong>Export CSV</strong> to share or back up the ledger.</span><span lang="tr"><strong>Bulut eşitleme henüz kurulmadı</strong>; kayıtlar şimdilik yalnızca bu tarayıcıda saklanıyor. Defteri paylaşmak veya yedeklemek için <strong>CSV dışa aktar</strong>ı kullanın.</span></p>
+    <details>
+      <summary><span lang="en">How to turn on cloud sync (Firestore)</span><span lang="tr">Bulut eşitleme nasıl açılır (Firestore)</span></summary>
+      <div class="details-text">
+        <p><span lang="en">One housemate does this once:</span><span lang="tr">Bir ev arkadaşı bunu bir kez yapar:</span></p>
+        <ol>
+          <li><span lang="en">Create a project at <a href="https://console.firebase.google.com" rel="noopener">console.firebase.google.com</a>.</span><span lang="tr"><a href="https://console.firebase.google.com" rel="noopener">console.firebase.google.com</a> adresinde bir proje oluşturun.</span></li>
+          <li><span lang="en">Add a Firestore database and publish the access rules shown in <code>firebase-config.js</code>.</span><span lang="tr">Bir Firestore veritabanı ekleyin ve <code>firebase-config.js</code> içinde gösterilen erişim kurallarını yayımlayın.</span></li>
+          <li><span lang="en">Register a Web app, copy its config values into <code>firebase-config.js</code>, and push.</span><span lang="tr">Bir Web uygulaması kaydedin, yapılandırma değerlerini <code>firebase-config.js</code> dosyasına kopyalayın ve gönderin.</span></li>
+        </ol>
+        <p><span lang="en">The page detects the config automatically &mdash; no other changes needed.</span><span lang="tr">Sayfa yapılandırmayı otomatik algılar &mdash; başka değişiklik gerekmez.</span></p>
+      </div>
+    </details>
   </div>
 
   <h2><span lang="en">Balances between housemates</span><span lang="tr">Ev arkadaşları arası bakiyeler</span></h2>
@@ -116,15 +131,14 @@
 
 <script src="site.js"></script>
 <script src="committees.js"></script>
+<script src="firebase-config.js"></script>
+<script src="favours-store.js"></script>
 <script>
-var STORE_KEY = "larkspur-favours";
+var currentEntries = [];
 
-function loadEntries() {
-  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
-  catch (e) { return []; }
-}
-function saveEntries(entries) {
-  localStorage.setItem(STORE_KEY, JSON.stringify(entries));
+function updateSyncStatus(mode) {
+  document.getElementById("sync-cloud").hidden = (mode !== "firestore");
+  document.getElementById("sync-local").hidden = (mode === "firestore");
 }
 
 function renderPeopleOptions() {
@@ -149,9 +163,12 @@ function renderPeopleOptions() {
   });
 }
 
-function render() {
+function render(entries) {
+  if (entries) currentEntries = entries;
+  entries = currentEntries.slice().sort(function (a, b) {
+    return new Date(b.date) - new Date(a.date);
+  });
   var lang = document.body.getAttribute("data-lang");
-  var entries = loadEntries();
 
   // Pairwise balances: each pair of housemates keeps an independent score.
   // pair[a][b] = points a has earned from favours done for b.
@@ -207,7 +224,7 @@ function render() {
       : "No favours logged yet.") + "</td></tr>";
     return;
   }
-  entries.slice().reverse().forEach(function (e) {
+  entries.forEach(function (e) {
     var d = new Date(e.date);
     var when = d.toLocaleDateString(lang === "tr" ? "tr-TR" : "en-GB",
       { day: "numeric", month: "short", year: "numeric" });
@@ -245,24 +262,19 @@ function addFavour() {
     return false;
   }
   err.hidden = true;
-  var entries = loadEntries();
-  entries.push({
-    id: Date.now() + "-" + Math.random().toString(36).slice(2, 7),
+  FavourStore.add({
     doer: doer,
     beneficiary: beneficiary,
     desc: document.getElementById("desc").value,
     points: parseInt(document.getElementById("points").value, 10),
     date: new Date().toISOString()
   });
-  saveEntries(entries);
   document.getElementById("desc").value = "";
-  render();
   return false;
 }
 
 function removeEntry(id) {
-  saveEntries(loadEntries().filter(function (e) { return e.id !== id; }));
-  render();
+  FavourStore.remove(id);
 }
 
 function clearLedger() {
@@ -270,14 +282,13 @@ function clearLedger() {
   if (confirm(lang === "tr"
     ? "Tüm iyilik kayıtları silinsin mi? Bu geri alınamaz."
     : "Delete every favour entry? This cannot be undone.")) {
-    saveEntries([]);
-    render();
+    FavourStore.clear();
   }
 }
 
 function exportCsv() {
   var rows = [["date", "doer", "beneficiary", "favour", "points"]];
-  loadEntries().forEach(function (e) {
+  FavourStore.entries().forEach(function (e) {
     rows.push([e.date, HOUSEMATES[e.doer].name, HOUSEMATES[e.beneficiary].name, e.desc, e.points]);
   });
   var csv = rows.map(function (r) {
@@ -291,7 +302,7 @@ function exportCsv() {
 }
 
 renderPeopleOptions();
-render();
+FavourStore.init(render, updateSyncStatus);
 document.addEventListener("larkspur-langchange", function () {
   renderPeopleOptions();
   render();
