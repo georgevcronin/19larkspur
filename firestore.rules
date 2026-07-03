@@ -1,26 +1,31 @@
 rules_version = '2';
 service cloud.firestore {
+  // True typo-tolerant (edit-distance) fuzzy matching isn't possible here —
+  // Firestore Rules has no loops/recursion, so there's no way to compute a
+  // Levenshtein distance or similar. Instead this does a partial/reordered
+  // match: as long as the housemate's first name and surname both appear
+  // somewhere in the signed-in Google account's display name, it counts.
+  // That tolerates a differently-ordered name, a middle name or initial,
+  // and extra whitespace or capitalisation — but not misspellings.
+  function normalizedName() {
+    return request.auth.token.name.lower().trim();
+  }
+  function hasBoth(name, first, last) {
+    return name.matches('.*' + first + '.*') && name.matches('.*' + last + '.*');
+  }
+  function isHousemate(name) {
+    return hasBoth(name, 'george', 'cronin') ||
+           hasBoth(name, 'george', 'bale') ||
+           hasBoth(name, 'alexander', 'pear') ||
+           hasBoth(name, 'freddie', 'smith') ||
+           hasBoth(name, 'oliver', 'shawyer');
+  }
+
   match /databases/{database}/documents {
     match /favours/{entry} {
-      // Only the five housemates, signed in with their Google account, may
-      // read or write the ledger. Matched by the account's Google display
-      // name rather than email, so this list stays correct even if
-      // someone's sign-in address changes. Comparison is case-insensitive
-      // and whitespace-trimmed to tolerate minor formatting differences.
-      // Keep this in sync with the HOUSEMATES names in committees.js.
-      //
-      // Note: a Google account's display name is user-editable, unlike its
-      // email — someone who renamed their Google account to match could in
-      // principle pass this check. Acceptable for a house scoreboard; not
-      // a strong identity guarantee.
-      allow read, write: if request.auth != null &&
-        request.auth.token.name.lower().trim() in [
-          "george cronin",
-          "george bale",
-          "alexander pear",
-          "freddie austin smith",
-          "oliver shawyer"
-        ];
+      // Keep the first-name/surname pairs above in sync with the
+      // HOUSEMATES names in committees.js.
+      allow read, write: if request.auth != null && isHousemate(normalizedName());
     }
   }
 }
