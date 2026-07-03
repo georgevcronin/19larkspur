@@ -1,40 +1,32 @@
 // Firebase configuration for the favour points ledger.
 //
-// HOW TO ENABLE CLOUD SYNC (one-off setup, ~5 minutes):
+// Project: larkspur-terrace-favours (created via `firebase projects:create`)
+// Firestore database: eur3, Native mode, free tier.
 //
-//  1. Go to https://console.firebase.google.com and "Add project"
-//     (call it e.g. "larkspur-terrace"; Google Analytics not needed).
-//  2. In the project, open Build > Firestore Database > "Create database"
-//     and choose a location (europe-west2 is London).
-//  3. Under the database's "Rules" tab, paste and publish:
+// ONE REMAINING MANUAL STEP — enabling Google Sign-In:
+//   Google Sign-In is turned on from the Firebase console (this specific
+//   toggle isn't exposed to non-interactive tooling, and is the kind of
+//   identity-provider change worth a human's eyes anyway):
+//     1. Open https://console.firebase.google.com/project/larkspur-terrace-favours/authentication/providers
+//     2. Click "Google" in the provider list, toggle Enable, pick a
+//        support email, Save.
+//   That's it — no other configuration needed. The page already calls
+//   signInWithPopup(GoogleAuthProvider), and Firestore's rules already
+//   restrict access to the five housemates' emails (see firestore.rules).
 //
-//       rules_version = '2';
-//       service cloud.firestore {
-//         match /databases/{database}/documents {
-//           match /favours/{entry} {
-//             allow read, write: if true;
-//           }
-//         }
-//       }
-//
-//     NOTE: this lets anyone who has the site URL read and edit the
-//     ledger. Fine for a house scoreboard; do not reuse for anything
-//     sensitive.
-//  4. Project settings (gear icon) > "Your apps" > add a Web app (</>).
-//     Firebase shows a config object - copy its values over the
-//     placeholders below and push this file.
-//
-// The apiKey is not a secret (it only identifies the project; access is
-// controlled by the rules above), so committing it here is fine.
-//
-// While the placeholders below are unchanged, the ledger automatically
-// falls back to saving in each browser's localStorage.
+// Security model:
+//   - Firestore rules only allow reads and writes from a signed-in user
+//     whose Google account email is one of the five housemates'
+//     addresses. Everyone else is refused by the database itself,
+//     regardless of what the page does.
+//   - The apiKey below is not a secret — it only identifies the project;
+//     access is controlled entirely by the rules above. Safe to commit.
 
 const FIREBASE_CONFIG = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
-  projectId: "PASTE_PROJECT_ID",
-  storageBucket: "PASTE_PROJECT_ID.appspot.com",
-  messagingSenderId: "PASTE_SENDER_ID",
-  appId: "PASTE_APP_ID"
+  apiKey: "AIzaSyDu2Sj7pBalrfg6gyXbL4nYeNW6cutSNhE",
+  authDomain: "larkspur-terrace-favours.firebaseapp.com",
+  projectId: "larkspur-terrace-favours",
+  storageBucket: "larkspur-terrace-favours.firebasestorage.app",
+  messagingSenderId: "632602985094",
+  appId: "1:632602985094:web:f5967c2f375f07aeff8707"
 };

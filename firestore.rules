@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /favours/{entry} {
+      // Only the five housemates, signed in with their Google account,
+      // may read or write the ledger. Keep this list in sync with the
+      // HOUSEMATES emails in committees.js.
+      allow read, write: if request.auth != null &&
+        request.auth.token.email in [
+          "georgevcronin@gmail.com",
+          "bale.george22@gmail.com",
+          "alexpear18@outlook.com",
+          "freddieasmith291@gmail.com",
+          "Oli24sha07@gmail.com"
+        ];
+    }
+  }
+}

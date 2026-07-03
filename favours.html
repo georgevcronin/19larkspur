@@ -44,8 +44,9 @@
 
   <div class="govuk-inset-text" id="sync-cloud" hidden>
     <p><span lang="en"><strong>Cloud sync is on.</strong> Entries save to Firestore and update live on every housemate's device. Use <strong>Export CSV</strong> for backups.</span><span lang="tr"><strong>Bulut eşitleme açık.</strong> Kayıtlar Firestore'a kaydedilir ve her ev arkadaşının cihazında anında güncellenir. Yedek için <strong>CSV dışa aktar</strong>ı kullanın.</span></p>
+    <p id="account-chip"></p>
   </div>
-  <div class="govuk-inset-text" id="sync-local">
+  <div class="govuk-inset-text" id="sync-local" hidden>
     <p><span lang="en"><strong>Cloud sync is not set up yet</strong>, so entries currently save in this browser only. Use <strong>Export CSV</strong> to share or back up the ledger.</span><span lang="tr"><strong>Bulut eşitleme henüz kurulmadı</strong>; kayıtlar şimdilik yalnızca bu tarayıcıda saklanıyor. Defteri paylaşmak veya yedeklemek için <strong>CSV dışa aktar</strong>ı kullanın.</span></p>
     <details>
       <summary><span lang="en">How to turn on cloud sync (Firestore)</span><span lang="tr">Bulut eşitleme nasıl açılır (Firestore)</span></summary>
@@ -61,6 +62,19 @@
     </details>
   </div>
 
+  <p id="loading-notice"><span lang="en">Loading&hellip;</span><span lang="tr">Yükleniyor&hellip;</span></p>
+
+  <div id="auth-gate" hidden>
+    <div class="govuk-panel govuk-panel--grey">
+      <h2 class="govuk-panel__title" id="auth-gate-title"></h2>
+      <div class="govuk-panel__body">
+        <p id="auth-gate-body"></p>
+        <button class="govuk-button" id="auth-gate-btn" onclick="return handleAuthGateClick()"></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="app-content" hidden>
   <h2><span lang="en">Balances between housemates</span><span lang="tr">Ev arkadaşları arası bakiyeler</span></h2>
   <p><span lang="en">Every pair keeps its own independent score &mdash; points earned from one housemate cannot be spent on another.</span><span lang="tr">Her ikili kendi bağımsız skorunu tutar &mdash; bir ev arkadaşından kazanılan puan bir başkasına harcanamaz.</span></p>
   <table class="govuk-table">
@@ -112,6 +126,7 @@
 
   <button class="govuk-button govuk-button--secondary" onclick="exportCsv()"><span lang="en">Export CSV</span><span lang="tr">CSV dışa aktar</span></button>
   <button class="govuk-button govuk-button--warning" onclick="clearLedger()"><span lang="en">Clear all entries</span><span lang="tr">Tüm kayıtları sil</span></button>
+  </div>
 </main>
 </div>
 
@@ -135,10 +150,66 @@
 <script src="favours-store.js"></script>
 <script>
 var currentEntries = [];
+var currentUser = null;
+
+var GATE_COPY = {
+  "signed-out": {
+    en: { title: "Sign in to view the ledger", body: "Only the five housemates can read or write it, so sign in with the Google account you use at 19 Larkspur Terrace.", btn: "Sign in with Google" },
+    tr: { title: "Defteri görmek için giriş yapın", body: "Yalnızca beş ev arkadaşı okuyabilir veya yazabilir; 19 Larkspur Terrace'ta kullandığınız Google hesabıyla giriş yapın.", btn: "Google ile giriş yap" }
+  },
+  "forbidden": {
+    en: { title: "This account isn't recognised", body: "Signed in, but this Google account isn't one of the five housemates on file. Try a different account, or ask a housemate to add your email to the ledger's access list.", btn: "Sign out and try another account" },
+    tr: { title: "Bu hesap tanınmıyor", body: "Giriş yapıldı, ancak bu Google hesabı kayıtlı beş ev arkadaşından biri değil. Farklı bir hesap deneyin veya bir ev arkadaşından e-postanızı defterin erişim listesine eklemesini isteyin.", btn: "Çıkış yap ve başka hesap dene" }
+  },
+  "error": {
+    en: { title: "Couldn't connect", body: "Something went wrong reaching the ledger. Check your connection and reload the page.", btn: "Reload" },
+    tr: { title: "Bağlanılamadı", body: "Deftere ulaşırken bir sorun oluştu. Bağlantınızı kontrol edip sayfayı yeniden yükleyin.", btn: "Yeniden yükle" }
+  }
+};
+
+function handleAuthGateClick() {
+  var mode = document.getElementById("auth-gate").getAttribute("data-mode");
+  if (mode === "signed-out") FavourStore.signIn();
+  else if (mode === "forbidden") FavourStore.signOut();
+  else location.reload();
+  return false;
+}
+
+function renderAuthGate(mode) {
+  var lang = document.body.getAttribute("data-lang");
+  var copy = GATE_COPY[mode] && GATE_COPY[mode][lang];
+  if (!copy) return;
+  document.getElementById("auth-gate").setAttribute("data-mode", mode);
+  document.getElementById("auth-gate-title").textContent = copy.title;
+  document.getElementById("auth-gate-body").textContent = copy.body;
+  document.getElementById("auth-gate-btn").textContent = copy.btn;
+}
 
 function updateSyncStatus(mode) {
+  document.getElementById("loading-notice").hidden = true;
+  var gated = (mode === "signed-out" || mode === "forbidden" || mode === "error");
   document.getElementById("sync-cloud").hidden = (mode !== "firestore");
-  document.getElementById("sync-local").hidden = (mode === "firestore");
+  document.getElementById("sync-local").hidden = (mode !== "local");
+  document.getElementById("auth-gate").hidden = !gated;
+  document.getElementById("app-content").hidden = gated;
+  if (gated) renderAuthGate(mode);
+  renderAccountChip();
+}
+
+function renderAccountChip() {
+  var chip = document.getElementById("account-chip");
+  if (!currentUser) { chip.innerHTML = ""; return; }
+  var lang = document.body.getAttribute("data-lang");
+  var signedInAs = (lang === "tr") ? "Giriş yapan: " : "Signed in as ";
+  var signOutLabel = (lang === "tr") ? "Çıkış yap" : "Sign out";
+  chip.innerHTML = signedInAs + "<strong>" + currentUser.name + "</strong> (" + currentUser.email + ") &middot; " +
+    '<a href="#" id="sign-out-link">' + signOutLabel + "</a>";
+  document.getElementById("sign-out-link").onclick = function () { FavourStore.signOut(); return false; };
+}
+
+function updateAuthState(user) {
+  currentUser = user;
+  renderAccountChip();
 }
 
 function renderPeopleOptions() {
@@ -301,11 +372,13 @@ function exportCsv() {
   URL.revokeObjectURL(a.href);
 }
 
+var lastMode = "local";
 renderPeopleOptions();
-FavourStore.init(render, updateSyncStatus);
+FavourStore.init(render, function (mode) { lastMode = mode; updateSyncStatus(mode); }, updateAuthState);
 document.addEventListener("larkspur-langchange", function () {
   renderPeopleOptions();
   render();
+  updateSyncStatus(lastMode);
 });
 </script>
 </body>

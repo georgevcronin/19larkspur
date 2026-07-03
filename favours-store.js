@@ -1,14 +1,18 @@
 // Storage engine for the favour points ledger.
-// Uses Firestore (live-synced across devices) when firebase-config.js
-// has real values; otherwise falls back to this browser's localStorage.
+// Uses Firestore + Google Sign-In (live-synced across devices, restricted
+// to the five housemates by Firestore security rules) when
+// firebase-config.js has real values; otherwise falls back to this
+// browser's localStorage with no sign-in required.
 
 var FavourStore = (function () {
   var LOCAL_KEY = "larkspur-favours";
   var FIREBASE_CDN = "https://www.gstatic.com/firebasejs/10.12.0/";
   var backend = null;
+  var authApi = null; // { auth, GoogleAuthProvider, signInWithPopup, signOut }
   var cache = [];
   var changeCb = function () {};
   var modeCb = function () {};
+  var authCb = function () {};
 
   function isConfigured() {
     return typeof FIREBASE_CONFIG === "object" &&
@@ -18,7 +22,7 @@ var FavourStore = (function () {
 
   function emit() { changeCb(cache.slice()); }
 
-  // --- localStorage backend -------------------------------------------
+  // --- localStorage backend (no sign-in needed) ------------------------
   function startLocal() {
     function load() {
       try { return JSON.parse(localStorage.getItem(LOCAL_KEY)) || []; }
@@ -47,42 +51,78 @@ var FavourStore = (function () {
     emit();
   }
 
-  // --- Firestore backend ----------------------------------------------
+  // --- Firestore backend, gated on Google Sign-In ----------------------
+  var firestoreMods = null; // { app, fs, db, col }
+
+  function stopFirestoreSubscription() {
+    if (backend && backend.unsubscribe) backend.unsubscribe();
+    backend = null;
+    cache = [];
+  }
+
+  function subscribeAsUser(fs, db, col) {
+    var unsubscribe = fs.onSnapshot(fs.query(col, fs.orderBy("date", "desc")),
+      function (snap) {
+        cache = snap.docs.map(function (d) {
+          var e = d.data(); e.id = d.id; return e;
+        });
+        modeCb("firestore");
+        emit();
+      },
+      function (err) {
+        console.error("Firestore subscription failed.", err);
+        cache = [];
+        modeCb(err.code === "permission-denied" ? "forbidden" : "error");
+        emit();
+      });
+    backend = {
+      mode: "firestore",
+      unsubscribe: unsubscribe,
+      add: function (e) {
+        fs.addDoc(col, e).catch(function (err) { console.error("add failed", err); });
+      },
+      remove: function (id) {
+        fs.deleteDoc(fs.doc(db, "favours", id)).catch(function (err) { console.error("delete failed", err); });
+      },
+      clear: function () {
+        cache.forEach(function (e) {
+          fs.deleteDoc(fs.doc(db, "favours", e.id)).catch(function (err) { console.error("delete failed", err); });
+        });
+      }
+    };
+  }
+
   function startFirestore() {
     Promise.all([
       import(FIREBASE_CDN + "firebase-app.js"),
-      import(FIREBASE_CDN + "firebase-firestore.js")
+      import(FIREBASE_CDN + "firebase-firestore.js"),
+      import(FIREBASE_CDN + "firebase-auth.js")
     ]).then(function (mods) {
-      var appMod = mods[0], fs = mods[1];
+      var appMod = mods[0], fs = mods[1], authMod = mods[2];
       var app = appMod.initializeApp(FIREBASE_CONFIG);
       var db = fs.getFirestore(app);
       var col = fs.collection(db, "favours");
-      fs.onSnapshot(fs.query(col, fs.orderBy("date", "desc")),
-        function (snap) {
-          cache = snap.docs.map(function (d) {
-            var e = d.data(); e.id = d.id; return e;
-          });
-          modeCb("firestore");
-          emit();
+      var auth = authMod.getAuth(app);
+
+      authApi = {
+        signIn: function () {
+          return authMod.signInWithPopup(auth, new authMod.GoogleAuthProvider())
+            .catch(function (err) { console.error("Sign-in failed", err); });
         },
-        function (err) {
-          console.error("Firestore subscription failed; using local storage.", err);
-          startLocal();
-        });
-      backend = {
-        mode: "firestore",
-        add: function (e) {
-          fs.addDoc(col, e).catch(function (err) { console.error("add failed", err); });
-        },
-        remove: function (id) {
-          fs.deleteDoc(fs.doc(db, "favours", id)).catch(function (err) { console.error("delete failed", err); });
-        },
-        clear: function () {
-          cache.forEach(function (e) {
-            fs.deleteDoc(fs.doc(db, "favours", e.id)).catch(function (err) { console.error("delete failed", err); });
-          });
-        }
+        signOut: function () { return authMod.signOut(auth); }
       };
+
+      authMod.onAuthStateChanged(auth, function (user) {
+        stopFirestoreSubscription();
+        if (user) {
+          authCb({ name: user.displayName, email: user.email, photo: user.photoURL });
+          subscribeAsUser(fs, db, col);
+        } else {
+          authCb(null);
+          modeCb("signed-out");
+          emit();
+        }
+      });
     }).catch(function (err) {
       console.error("Firebase SDK failed to load; using local storage.", err);
       startLocal();
@@ -90,15 +130,18 @@ var FavourStore = (function () {
   }
 
   return {
-    init: function (onChange, onMode) {
+    init: function (onChange, onMode, onAuth) {
       changeCb = onChange || changeCb;
       modeCb = onMode || modeCb;
+      authCb = onAuth || authCb;
       if (isConfigured()) startFirestore(); else startLocal();
     },
     entries: function () { return cache.slice(); },
     add: function (e) { backend && backend.add(e); },
     remove: function (id) { backend && backend.remove(id); },
     clear: function () { backend && backend.clear(); },
+    signIn: function () { return authApi && authApi.signIn(); },
+    signOut: function () { return authApi && authApi.signOut(); },
     configured: isConfigured
   };
 })();
