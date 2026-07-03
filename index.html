@@ -4,405 +4,201 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How the house works - 19 Larkspur Terrace</title>
-<style>
-  *, *::before, *::after { box-sizing: border-box; }
-  body {
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    color: #0b0c0c;
-    background: #ffffff;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: #1d70b8; }
-  a:visited { color: #4c2c92; }
-  a:hover { color: #003078; }
-  a:focus {
-    outline: 3px solid transparent;
-    color: #0b0c0c;
-    background-color: #ffdd00;
-    box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
-    text-decoration: none;
-  }
-  .width-container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-  @media (min-width: 40.0625em) {
-    .width-container { padding: 0 30px; }
-  }
-  /* Header */
-  .govuk-header {
-    background: #0b0c0c;
-    border-bottom: 10px solid #1d70b8;
-  }
-  .govuk-header__inner {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 8px 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 6px 20px;
-  }
-  @media (min-width: 40.0625em) {
-    .govuk-header__inner { padding: 8px 30px; }
-  }
-  .govuk-header__logo {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .govuk-header__logo:visited { color: #ffffff; }
-  .govuk-header__logo:hover { color: #ffffff; border-bottom: 3px solid #ffffff; margin-bottom: -3px; }
-  .govuk-header__logo:focus { color: #0b0c0c; background: #ffdd00; box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c; }
-  .govuk-header__crest { font-size: 26px; }
-  .govuk-header__service {
-    color: #ffffff;
-    font-size: 19px;
-    font-weight: 700;
-    text-decoration: none;
-  }
-  .govuk-header__service:visited { color: #ffffff; }
-  /* Phase banner */
-  .phase-banner {
-    border-bottom: 1px solid #b1b4b6;
-    padding: 10px 0;
-    font-size: 16px;
-  }
-  .phase-banner .width-container { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .govuk-tag {
-    display: inline-block;
-    background: #1d70b8;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 5px 8px 4px;
-  }
-  /* Typography */
-  main { padding: 30px 0 50px; display: block; }
-  .govuk-caption-xl {
-    font-size: 27px;
-    line-height: 1.11;
-    color: #505a5f;
-    display: block;
-    margin: 0 0 5px;
-  }
-  h1 {
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 1.04;
-    margin: 0 0 30px;
-  }
-  h2 {
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 1.11;
-    margin: 45px 0 20px;
-  }
-  h3 {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.25;
-    margin: 30px 0 15px;
-  }
-  p, li {
-    font-size: 19px;
-    line-height: 1.3157;
-    margin: 0 0 20px;
-  }
-  li { margin-bottom: 5px; }
-  .govuk-body-l { font-size: 24px; line-height: 1.25; }
-  .clause-ref { color: #505a5f; font-size: 16px; }
-  @media (max-width: 40.0525em) {
-    h1 { font-size: 32px; }
-    h2 { font-size: 27px; }
-    h3 { font-size: 21px; }
-    p, li { font-size: 16px; }
-    .govuk-body-l { font-size: 19px; }
-    .govuk-caption-xl { font-size: 21px; }
-  }
-  /* Contents list */
-  .contents-label {
-    font-size: 19px;
-    font-weight: 700;
-    margin: 0 0 10px;
-  }
-  .contents-list {
-    list-style: none;
-    margin: 0 0 40px;
-    padding: 0;
-  }
-  .contents-list li {
-    font-size: 16px;
-    margin-bottom: 8px;
-    padding-left: 25px;
-    position: relative;
-  }
-  .contents-list li::before {
-    content: "\2014";
-    position: absolute;
-    left: 0;
-    color: #0b0c0c;
-  }
-  /* Section break */
-  .section-break {
-    border: 0;
-    border-bottom: 1px solid #b1b4b6;
-    margin: 40px 0;
-  }
-  /* Tables */
-  .govuk-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 0 30px;
-  }
-  .govuk-table th, .govuk-table td {
-    font-size: 19px;
-    line-height: 1.3157;
-    text-align: left;
-    vertical-align: top;
-    padding: 10px 20px 10px 0;
-    border-bottom: 1px solid #b1b4b6;
-  }
-  .govuk-table th { font-weight: 700; }
-  @media (max-width: 40.0525em) {
-    .govuk-table th, .govuk-table td { font-size: 16px; }
-  }
-  /* Inset text */
-  .govuk-inset-text {
-    border-left: 10px solid #b1b4b6;
-    padding: 15px;
-    margin: 30px 0;
-  }
-  .govuk-inset-text p:last-child { margin-bottom: 0; }
-  /* Warning text */
-  .govuk-warning-text {
-    display: flex;
-    gap: 15px;
-    margin: 30px 0;
-    align-items: flex-start;
-  }
-  .govuk-warning-text__icon {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background: #0b0c0c;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 1;
-  }
-  .govuk-warning-text__text { font-weight: 700; padding-top: 5px; }
-  /* Buttons */
-  .govuk-button {
-    display: inline-block;
-    background: #00703c;
-    color: #ffffff;
-    font-size: 19px;
-    font-weight: 400;
-    line-height: 1;
-    text-decoration: none;
-    padding: 10px 15px;
-    border: 2px solid transparent;
-    box-shadow: 0 2px 0 #002d18;
-    margin: 0 15px 20px 0;
-    cursor: pointer;
-  }
-  .govuk-button:visited { color: #ffffff; }
-  .govuk-button:hover { background: #005a30; color: #ffffff; }
-  .govuk-button:focus { background: #ffdd00; color: #0b0c0c; box-shadow: 0 2px 0 #0b0c0c; }
-  .govuk-button--secondary {
-    background: #f3f2f1;
-    color: #0b0c0c;
-    box-shadow: 0 2px 0 #929191;
-  }
-  .govuk-button--secondary:visited { color: #0b0c0c; }
-  .govuk-button--secondary:hover { background: #dbdad9; color: #0b0c0c; }
-  .govuk-button--start {
-    font-size: 24px;
-    font-weight: 700;
-    padding: 8px 10px 7px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .govuk-button--start svg { flex-shrink: 0; }
-  /* Rights numbered list */
-  .rights-list { padding-left: 20px; margin: 0 0 20px; }
-  .rights-list li { margin-bottom: 10px; }
-  /* Footer */
-  .govuk-footer {
-    background: #f3f2f1;
-    border-top: 1px solid #b1b4b6;
-    padding: 40px 0 25px;
-    font-size: 16px;
-    color: #0b0c0c;
-  }
-  .govuk-footer__meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-  .govuk-footer a { color: #0b0c0c; }
-  .govuk-footer__licence { max-width: 500px; }
-  .govuk-footer__licence p { font-size: 16px; margin-bottom: 10px; }
-  .govuk-footer__copyright {
-    text-align: right;
-    font-weight: 700;
-    white-space: nowrap;
-  }
-  .govuk-footer__links { list-style: none; padding: 0; margin: 0 0 30px; display: flex; flex-wrap: wrap; gap: 15px 30px; }
-  .govuk-footer__links li { font-size: 16px; margin: 0; }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-lang="en">
+
+<div id="cookie-banner" class="cookie-banner" hidden>
+  <div class="width-container">
+    <h2><span lang="en">Cookies on 19 Larkspur Terrace</span><span lang="tr">19 Larkspur Terrace'ta çerezler</span></h2>
+    <p><span lang="en">This house uses no cookies except those in the kitchen, which require a Temporary Crockery Pass.</span><span lang="tr">Bu ev, mutfaktakiler dışında çerez kullanmaz; onlar için de Geçici Tabak-Çanak Pasosu gerekir.</span></p>
+    <button class="govuk-button" onclick="return acceptCookies()"><span lang="en">Accept house cookies</span><span lang="tr">Ev çerezlerini kabul et</span></button>
+  </div>
+</div>
 
 <header class="govuk-header">
   <div class="govuk-header__inner">
     <a href="index.html" class="govuk-header__logo"><span class="govuk-header__crest">&#9878;</span> 19&nbsp;Larkspur&nbsp;Terrace</a>
-    <a href="constitution.html" class="govuk-header__service">The Constitution</a>
+    <a href="constitution.html" class="govuk-header__service"><span lang="en">The Constitution</span><span lang="tr">Anayasa</span></a>
   </div>
 </header>
 
 <div class="phase-banner">
   <div class="width-container">
-    <span class="govuk-tag">Official</span>
-    <span>This guidance reflects the current law of the house. Complaints go to the Rules Committee.</span>
+    <span class="govuk-tag"><span lang="en">Official</span><span lang="tr">Resmî</span></span>
+    <span><span lang="en">This guidance reflects the current law of the house. Complaints go to the Rules Committee.</span><span lang="tr">Bu rehber, evin yürürlükteki hukukunu yansıtır. Şikâyetler Kurallar Komitesine yapılır.</span></span>
+    <span class="phase-banner__spacer"></span>
+    <span class="lang-toggle"><a href="#" onclick="return setLang('en')">English</a> | <a href="#" onclick="return setLang('tr')">Türkçe</a></span>
   </div>
 </div>
 
 <div class="width-container">
 <main>
 
-  <span class="govuk-caption-xl">House guidance</span>
-  <h1>How the house works</h1>
+  <span class="govuk-caption-xl"><span lang="en">House guidance</span><span lang="tr">Ev rehberi</span></span>
+  <h1><span lang="en">How the house works</span><span lang="tr">Ev nasıl işler</span></h1>
 
-  <p class="govuk-body-l">A plain-English guide to living at 19 Larkspur Terrace: your rights, the committees, the passes, and what happens when something goes wrong.</p>
+  <p class="govuk-body-l"><span lang="en">A plain-English guide to living at 19 Larkspur Terrace: your rights, the committees, the passes, and what happens when something goes wrong.</span><span lang="tr">19 Larkspur Terrace'ta yaşamaya dair sade bir rehber: haklarınız, komiteler, pasolar ve bir şeyler ters gittiğinde ne olacağı.</span></p>
 
-  <a href="constitution.html" class="govuk-button govuk-button--start">Read the full constitution
+  <a href="constitution.html" class="govuk-button govuk-button--start"><span lang="en">Read the full constitution</span><span lang="tr">Anayasanın tamamını oku</span>
     <svg width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path></svg>
   </a>
-  <a href="constitution.pdf" download class="govuk-button govuk-button--secondary">Download the constitution (PDF)</a>
+  <a href="constitution.pdf" download class="govuk-button govuk-button--secondary"><span lang="en">Download the constitution (PDF)</span><span lang="tr">Anayasayı indir (PDF)</span></a>
 
-  <p class="contents-label">Contents</p>
+  <h2 id="services"><span lang="en">Services and information</span><span lang="tr">Hizmetler ve bilgiler</span></h2>
+  <ul class="services-grid">
+    <li>
+      <a href="check-pass.html"><span lang="en">Check if you need a pass</span><span lang="tr">Paso gerekip gerekmediğini kontrol et</span></a>
+      <p><span lang="en">Answer a few questions to find out which pass you need, if any</span><span lang="tr">Birkaç soruyu yanıtlayarak hangi pasoya ihtiyacınız olduğunu öğrenin</span></p>
+    </li>
+    <li>
+      <a href="serve.html"><span lang="en">Serve prosecution papers</span><span lang="tr">Kovuşturma tebligatı düzenle</span></a>
+      <p><span lang="en">Generate and print formal "YOU'VE BEEN SERVED" papers</span><span lang="tr">Resmî "TEBLİĞ EDİLDİNİZ" evrakını oluşturup yazdırın</span></p>
+    </li>
+    <li>
+      <a href="report.html"><span lang="en">Report a disturbance</span><span lang="tr">Bir müdahaleyi bildir</span></a>
+      <p><span lang="en">Notify the committee responsible for the affected room</span><span lang="tr">İlgili odadan sorumlu komiteye bildirim gönderin</span></p>
+    </li>
+    <li>
+      <a href="sentencing.html"><span lang="en">Sentencing guidelines</span><span lang="tr">Ceza rehberi</span></a>
+      <p><span lang="en">Which punishment band fits which offence</span><span lang="tr">Hangi suça hangi ceza bandının uygulanacağı</span></p>
+    </li>
+    <li>
+      <a href="case-law.html"><span lang="en">Case law register</span><span lang="tr">İçtihat kaydı</span></a>
+      <p><span lang="en">Past tribunal verdicts and the precedents they set</span><span lang="tr">Geçmiş divan kararları ve oluşturdukları emsaller</span></p>
+    </li>
+    <li>
+      <a href="committees.html"><span lang="en">Committee register</span><span lang="tr">Komite kaydı</span></a>
+      <p><span lang="en">Who currently sits on each committee, and election dates</span><span lang="tr">Her komitede şu an kimin görev yaptığı ve seçim tarihleri</span></p>
+    </li>
+    <li>
+      <a href="passes.html"><span lang="en">Printable pass templates</span><span lang="tr">Yazdırılabilir paso şablonları</span></a>
+      <p><span lang="en">Print and cut official passes to restock their stations</span><span lang="tr">Resmî pasoları yazdırıp keserek istasyonları yeniden doldurun</span></p>
+    </li>
+    <li>
+      <a href="amendments.html"><span lang="en">Amendment history</span><span lang="tr">Değişiklik geçmişi</span></a>
+      <p><span lang="en">Every constitutional amendment since ratification</span><span lang="tr">Onaydan bu yana yapılan tüm anayasa değişiklikleri</span></p>
+    </li>
+  </ul>
+
+  <p class="contents-label"><span lang="en">Contents</span><span lang="tr">İçindekiler</span></p>
   <ul class="contents-list">
-    <li><a href="#who">Who this covers</a></li>
-    <li><a href="#committees">The committees, at a glance</a></li>
-    <li><a href="#passes">Passes</a></li>
-    <li><a href="#situations">Common situations</a></li>
-    <li><a href="#punishments">Punishments, briefly</a></li>
-    <li><a href="#rights">Your rights</a></li>
-    <li><a href="#changing">Changing a rule</a></li>
+    <li><a href="#who"><span lang="en">Who this covers</span><span lang="tr">Kimleri kapsar</span></a></li>
+    <li><a href="#committees"><span lang="en">The committees, at a glance</span><span lang="tr">Bir bakışta komiteler</span></a></li>
+    <li><a href="#passes"><span lang="en">Passes</span><span lang="tr">Pasolar</span></a></li>
+    <li><a href="#situations"><span lang="en">Common situations</span><span lang="tr">Sık karşılaşılan durumlar</span></a></li>
+    <li><a href="#punishments"><span lang="en">Punishments, briefly</span><span lang="tr">Kısaca cezalar</span></a></li>
+    <li><a href="#rights"><span lang="en">Your rights</span><span lang="tr">Haklarınız</span></a></li>
+    <li><a href="#changing"><span lang="en">Changing a rule</span><span lang="tr">Bir kuralı değiştirmek</span></a></li>
   </ul>
 
   <hr class="section-break">
 
-  <h2 id="who">Who this covers</h2>
-  <p>The five permanent housemates &mdash; George Cronin, George Bale, Alexander Pear, Freddie Austin Smith, and Oliver Shawyer &mdash; are bound by every rule here, all the time, while in the house. Visitors are signed in with a Visitor Pass and are subject to the same rules while on the premises.</p>
-  <p>An <strong>EVP (Executive Visitor Pass)</strong> is an upgrade for regulars: it lets a visitor vote in committee elections, but they have to earn it first (see <a href="#situations">common situations</a>).</p>
+  <h2 id="who"><span lang="en">Who this covers</span><span lang="tr">Kimleri kapsar</span></h2>
+  <p><span lang="en">The five permanent housemates &mdash; George Cronin, George Bale, Alexander Pear, Freddie Austin Smith, and Oliver Shawyer &mdash; are bound by every rule here, all the time, while in the house. Visitors are signed in with a Visitor Pass and are subject to the same rules while on the premises.</span><span lang="tr">Beş daimî ev arkadaşı &mdash; George Cronin, George Bale, Alexander Pear, Freddie Austin Smith ve Oliver Shawyer &mdash; evdeyken her zaman buradaki tüm kurallara bağlıdır. Ziyaretçiler bir Ziyaretçi Pasosu ile kaydedilir ve evde bulundukları sürece aynı kurallara tabidir.</span></p>
+  <p><span lang="en">An <strong>EVP (Executive Visitor Pass)</strong> is an upgrade for regulars: it lets a visitor vote in committee elections, but they have to earn it first (see <a href="#situations">common situations</a>).</span><span lang="tr"><strong>EVP (Yönetici Ziyaretçi Pasosu)</strong>, müdavimler için bir yükseltmedir: ziyaretçiye komite seçimlerinde oy hakkı verir, ancak önce hak edilmesi gerekir (bkz. <a href="#situations">sık karşılaşılan durumlar</a>).</span></p>
+  <p><span lang="en"><strong>Heads up if you sign someone in:</strong> you're their sponsor. If they're convicted and don't come back to serve their sentence within a week, you serve it for them.</span><span lang="tr"><strong>Birini kaydederken dikkat:</strong> onun kefili olursunuz. Mahkûm edilir ve bir hafta içinde cezasını çekmeye dönmezse, cezayı onun yerine siz çekersiniz.</span></p>
 
-  <h2 id="committees">The committees, at a glance</h2>
-  <p>Every committee has 2 members by default, elected monthly, with at least 1 member kept in post at all times.</p>
+  <h2 id="committees"><span lang="en">The committees, at a glance</span><span lang="tr">Bir bakışta komiteler</span></h2>
+  <p><span lang="en">Every committee has 2 members by default, elected monthly, with at least 1 member kept in post at all times. See the <a href="committees.html">committee register</a> for who currently holds each seat.</span><span lang="tr">Her komitenin varsayılan olarak 2 üyesi vardır, aylık seçilir ve her zaman en az 1 üye görevde tutulur. Koltukları şu an kimin doldurduğu için <a href="committees.html">komite kaydına</a> bakın.</span></p>
   <table class="govuk-table">
-    <thead><tr><th style="width:35%">Committee</th><th>What they actually do</th></tr></thead>
+    <thead><tr><th style="width:35%"><span lang="en">Committee</span><span lang="tr">Komite</span></th><th><span lang="en">What they actually do</span><span lang="tr">Fiilen ne yaparlar</span></th></tr></thead>
     <tbody>
-      <tr><td>Kitchen / Living Room / Corridor / Stairs / Bedroom</td><td>Handle offences in their own room</td></tr>
-      <tr><td>Bathroom (1st floor / 2nd floor)</td><td>Each floor is independently governed by its own owners</td></tr>
-      <tr><td>Committee Committee</td><td>Runs everyone else's elections; also verifies EVP applications</td></tr>
-      <tr><td>Rules Committee</td><td>The only body that can propose changes to the constitution; runs the Committee Committee's elections</td></tr>
-      <tr><td>Pass Committee</td><td>Keeps the passes stocked in their proper spots</td></tr>
-      <tr><td>Location Committee</td><td>Settles "where were you" disputes &mdash; for example whether someone was properly served papers, or whether a grace-period timer was correctly paused</td></tr>
-      <tr><td>Inter-Room Committee</td><td>Forms on the spot when an offence crosses into more than one room's territory</td></tr>
+      <tr><td><span lang="en">Kitchen / Living Room / Corridor / Stairs / Bedroom</span><span lang="tr">Mutfak / Oturma Odası / Koridor / Merdiven / Yatak Odası</span></td><td><span lang="en">Handle offences in their own room</span><span lang="tr">Kendi odalarındaki suçlarla ilgilenirler</span></td></tr>
+      <tr><td><span lang="en">Bathroom (1st floor / 2nd floor)</span><span lang="tr">Banyo (1. kat / 2. kat)</span></td><td><span lang="en">Each floor is independently governed by its own owners</span><span lang="tr">Her kat, kendi sahipleri tarafından bağımsız olarak yönetilir</span></td></tr>
+      <tr><td><span lang="en">Committee Committee</span><span lang="tr">Komite Komitesi</span></td><td><span lang="en">Runs everyone else's elections; also verifies EVP applications</span><span lang="tr">Herkesin seçimlerini yürütür; EVP başvurularını da doğrular</span></td></tr>
+      <tr><td><span lang="en">Rules Committee</span><span lang="tr">Kurallar Komitesi</span></td><td><span lang="en">The only body that can propose changes to the constitution; runs the Committee Committee's elections</span><span lang="tr">Anayasada değişiklik önerebilen tek organ; Komite Komitesinin seçimlerini yürütür</span></td></tr>
+      <tr><td><span lang="en">Pass Committee</span><span lang="tr">Pasolar Komitesi</span></td><td><span lang="en">Keeps the passes stocked in their proper spots</span><span lang="tr">Pasoların yerlerinde stoklu kalmasını sağlar</span></td></tr>
+      <tr><td><span lang="en">Location Committee</span><span lang="tr">Konum Komitesi</span></td><td><span lang="en">Settles "where were you" disputes &mdash; for example whether someone was properly served papers, or whether a grace-period timer was correctly paused</span><span lang="tr">"Neredeydin" anlaşmazlıklarını çözer &mdash; örneğin bir tebligatın usulüne uygun yapılıp yapılmadığı veya hoşgörü süresi sayacının doğru durdurulup durdurulmadığı</span></td></tr>
+      <tr><td><span lang="en">Foreign Affairs Committee</span><span lang="tr">Dışişleri Komitesi</span></td><td><span lang="en">Negotiates treaties with neighbouring houses &mdash; noise pacts, item lending, reciprocal EVP recognition</span><span lang="tr">Komşu evlerle antlaşmalar müzakere eder &mdash; gürültü paktları, eşya ödünç verme, karşılıklı EVP tanınması</span></td></tr>
+      <tr><td><span lang="en">Inter-Room Committee</span><span lang="tr">Odalar Arası Komite</span></td><td><span lang="en">Forms on the spot when an offence crosses into more than one room's territory</span><span lang="tr">Bir suç birden fazla odanın alanına taştığında anında kurulur</span></td></tr>
     </tbody>
   </table>
 
-  <h2 id="passes">Passes</h2>
+  <h2 id="passes"><span lang="en">Passes</span><span lang="tr">Pasolar</span></h2>
+  <p><span lang="en">Not sure which one you need? <a href="check-pass.html">Use the pass checker</a>. Need blank ones? <a href="passes.html">Print official templates</a>.</span><span lang="tr">Hangisine ihtiyacınız olduğundan emin değil misiniz? <a href="check-pass.html">Paso denetleyicisini kullanın</a>. Boş paso mu lazım? <a href="passes.html">Resmî şablonları yazdırın</a>.</span></p>
   <table class="govuk-table">
-    <thead><tr><th>Pass</th><th>What it's for</th><th>Kept where</th></tr></thead>
+    <thead><tr><th><span lang="en">Pass</span><span lang="tr">Paso</span></th><th><span lang="en">What it's for</span><span lang="tr">Ne için</span></th><th><span lang="en">Kept where</span><span lang="tr">Nerede durur</span></th></tr></thead>
     <tbody>
-      <tr><td>Temporary Cutlery Pass</td><td>Visitors get 20 minutes of cutlery use; renewable back-to-back as many times as they like, just not overlapping</td><td>Near the cutlery drawer</td></tr>
-      <tr><td>Temporary Crockery Pass</td><td>Borrowing someone's crockery &mdash; needs their signature, no weekly limit</td><td>Kitchen cupboard or near the fridge</td></tr>
-      <tr><td>Temporary Bathroom Pass</td><td>Using the other floor's bathroom &mdash; needs a floor owner's countersignature, maximum 3 times a week</td><td>Back of the relevant bathroom door</td></tr>
+      <tr><td><span lang="en">Temporary Cutlery Pass</span><span lang="tr">Geçici Çatal-Bıçak Pasosu</span></td><td><span lang="en">Visitors get 20 minutes of cutlery use; renewable back-to-back as many times as they like, just not overlapping</span><span lang="tr">Ziyaretçilere 20 dakikalık çatal-bıçak kullanımı; çakışmamak şartıyla art arda dilediği kadar yenilenebilir</span></td><td><span lang="en">Near the cutlery drawer</span><span lang="tr">Çatal-bıçak çekmecesinin yanı</span></td></tr>
+      <tr><td><span lang="en">Temporary Crockery Pass</span><span lang="tr">Geçici Tabak-Çanak Pasosu</span></td><td><span lang="en">Borrowing someone's crockery &mdash; needs their signature, no weekly limit</span><span lang="tr">Başkasının tabak-çanağını ödünç almak &mdash; imzası gerekir, haftalık sınır yok</span></td><td><span lang="en">Kitchen cupboard or near the fridge</span><span lang="tr">Mutfak dolabı veya buzdolabının yanı</span></td></tr>
+      <tr><td><span lang="en">Temporary Bathroom Pass</span><span lang="tr">Geçici Banyo Pasosu</span></td><td><span lang="en">Using the other floor's bathroom &mdash; needs a floor owner's countersignature, maximum 3 times a week</span><span lang="tr">Diğer katın banyosunu kullanmak &mdash; kat sahibinin karşı imzası gerekir, haftada en fazla 3 kez</span></td><td><span lang="en">Back of the relevant bathroom door</span><span lang="tr">İlgili banyo kapısının arkası</span></td></tr>
     </tbody>
   </table>
 
-  <h2 id="situations">Common situations</h2>
+  <h2 id="situations"><span lang="en">Common situations</span><span lang="tr">Sık karşılaşılan durumlar</span></h2>
 
-  <h3>The kitchen's a mess and it's not mine</h3>
-  <p>If a reasonable person would say it's been left in an unacceptable state, a 12-hour grace period starts. Still bad after that? A Kitchen Committee member &mdash; or any housemate &mdash; can start a prosecution. <span class="clause-ref">(Article 11)</span></p>
+  <h3><span lang="en">The kitchen's a mess and it's not mine</span><span lang="tr">Mutfak dağınık ve benim değil</span></h3>
+  <p><span lang="en">If a reasonable person would say it's been left in an unacceptable state, a 12-hour grace period starts. Still bad after that? A Kitchen Committee member &mdash; or any housemate &mdash; can start a prosecution. <span class="clause-ref">(Article 11)</span></span><span lang="tr">Makul bir kişi kabul edilemez hâlde bırakıldığını söylerse, 12 saatlik hoşgörü süresi başlar. Süre dolduğunda hâlâ kötüyse Mutfak Komitesi üyesi &mdash; veya herhangi bir ev arkadaşı &mdash; kovuşturma başlatabilir. <span class="clause-ref">(Madde 11)</span></span></p>
 
-  <h3>Someone's being too loud in the living room</h3>
-  <p>Judged case by case against the usual standard for that time and situation. A 6-hour grace period runs on time actually spent in the house &mdash; it pauses when they leave and resumes when they're back. <span class="clause-ref">(Article 12)</span></p>
+  <h3><span lang="en">Someone's being too loud in the living room</span><span lang="tr">Oturma odasında biri fazla gürültü yapıyor</span></h3>
+  <p><span lang="en">Judged case by case against the usual standard for that time and situation. A 6-hour grace period runs on time actually spent in the house &mdash; it pauses when they leave and resumes when they're back. <span class="clause-ref">(Article 12)</span></span><span lang="tr">O an ve duruma göre olağan ölçüte kıyasla vaka bazında değerlendirilir. 6 saatlik hoşgörü süresi, evde fiilen geçirilen zaman üzerinden işler &mdash; kişi çıkınca durur, dönünce devam eder. <span class="clause-ref">(Madde 12)</span></span></p>
 
-  <h3>I need to use the other floor's bathroom</h3>
-  <p>Get a Temporary Bathroom Pass countersigned by an owner of that floor &mdash; maximum 3 times a week. An owner can refuse with a valid reason (reasonable-person test; disputed refusals go to tribunal). "I forgot the pass" does not work as a defence. <span class="clause-ref">(Article 13)</span></p>
+  <h3><span lang="en">I need to use the other floor's bathroom</span><span lang="tr">Diğer katın banyosunu kullanmam gerekiyor</span></h3>
+  <p><span lang="en">Get a Temporary Bathroom Pass countersigned by an owner of that floor &mdash; maximum 3 times a week. An owner can refuse with a valid reason (reasonable-person test; disputed refusals go to tribunal). "I forgot the pass" does not work as a defence. <span class="clause-ref">(Article 13)</span></span><span lang="tr">O katın sahiplerinden birinin karşı imzasıyla bir Geçici Banyo Pasosu alın &mdash; haftada en fazla 3 kez. Sahip, geçerli bir sebeple reddedebilir (makul kişi testi; ihtilaflı retler divana gider). "Pasoyu unuttum" savunma sayılmaz. <span class="clause-ref">(Madde 13)</span></span></p>
 
-  <h3>Someone's bedroom smells and it's leaking into the corridor</h3>
-  <p>That's a cross-jurisdiction offence between the Bedroom and Corridor Committees &mdash; it automatically triggers the Inter-Room Committee. <span class="clause-ref">(Articles 14 and 10)</span></p>
+  <h3><span lang="en">Someone's bedroom smells and it's leaking into the corridor</span><span lang="tr">Birinin odası kokuyor ve koku koridora sızıyor</span></h3>
+  <p><span lang="en">That's a cross-jurisdiction offence between the Bedroom and Corridor Committees &mdash; it automatically triggers the Inter-Room Committee. <span class="clause-ref">(Articles 14 and 10)</span></span><span lang="tr">Bu, Yatak Odası ve Koridor Komiteleri arasında yetki alanları kesişen bir suçtur &mdash; Odalar Arası Komiteyi otomatik olarak devreye sokar. <span class="clause-ref">(Madde 14 ve 10)</span></span></p>
 
-  <h3>It's after 11pm and someone won't keep it down</h3>
-  <p>Curfew runs 11pm to 7am. Whether a bedroom door is open or closed is entirely the occupant's call &mdash; but they own responsibility for any noise either way. <span class="clause-ref">(Article 14)</span></p>
+  <h3><span lang="en">It's after 11pm and someone won't keep it down</span><span lang="tr">Saat 23.00'ü geçti ve biri sesini kısmıyor</span></h3>
+  <p><span lang="en">Curfew runs 11pm to 7am. Whether a bedroom door is open or closed is entirely the occupant's call &mdash; but they own responsibility for any noise either way. <span class="clause-ref">(Article 14)</span></span><span lang="tr">Yasak saatler 23.00&ndash;07.00 arasıdır. Yatak odası kapısının açık mı kapalı mı olacağı tamamen oda sakinine kalmıştır &mdash; ama her hâlükârda gürültünün sorumluluğu ona aittir. <span class="clause-ref">(Madde 14)</span></span></p>
 
-  <h3>A friend is coming round and wants to eat with us</h3>
-  <p>Sign them in with a Visitor Pass. They get a 20-minute Temporary Cutlery Pass, and can take out a fresh one back-to-back for as long as they're here, as long as passes never overlap. <span class="clause-ref">(Articles 2 and 11)</span></p>
+  <h3><span lang="en">A friend is coming round and wants to eat with us</span><span lang="tr">Bir arkadaş geliyor ve bizimle yemek istiyor</span></h3>
+  <p><span lang="en">Sign them in with a Visitor Pass (remember: you become their sponsor). They get a 20-minute Temporary Cutlery Pass, renewable back-to-back for as long as they're here, as long as passes never overlap. <span class="clause-ref">(Articles 2 and 11)</span></span><span lang="tr">Onu bir Ziyaretçi Pasosuyla kaydedin (unutmayın: kefili olursunuz). 20 dakikalık, çakışmamak şartıyla art arda yenilenebilen bir Geçici Çatal-Bıçak Pasosu alır. <span class="clause-ref">(Madde 2 ve 11)</span></span></p>
 
-  <h3>I want to get my partner or a regular friend an EVP</h3>
-  <p>They need to: visit at least twice a week, join a house social outing weekly, and be known and accepted by every housemate for a month. The Committee Committee checks eligibility, then the housemates (not existing EVP holders) vote to ratify. Maximum 5 EVP holders at any time. <span class="clause-ref">(Article 3)</span></p>
+  <h3><span lang="en">I want to get my partner or a regular friend an EVP</span><span lang="tr">Sevgilime veya müdavim bir arkadaşıma EVP almak istiyorum</span></h3>
+  <p><span lang="en">They need to: visit at least twice a week, join a house social outing weekly, and be known and accepted by every housemate for a month. The Committee Committee checks eligibility, then the housemates (not existing EVP holders) vote to ratify. Maximum 5 EVP holders at any time. <span class="clause-ref">(Article 3)</span></span><span lang="tr">Kişinin: haftada en az iki kez gelmesi, haftada bir ev etkinliğine katılması ve bir ay boyunca her ev arkadaşınca tanınıp kabul edilmesi gerekir. Komite Komitesi uygunluğu kontrol eder; sonra (mevcut EVP sahipleri değil) ev arkadaşları onay oylaması yapar. Aynı anda en fazla 5 EVP sahibi olabilir. <span class="clause-ref">(Madde 3)</span></span></p>
 
-  <h3>I think someone's committed an offence</h3>
-  <p>Any housemate or EVP holder can bring a prosecution. Serve the defendant papers displaying "YOU'VE BEEN SERVED" in large writing. Cannot find them? A reasonable attempt to deliver the papers still counts &mdash; the Location Committee rules if that's disputed. A jury of 1 to 5 people who aren't either of you decides guilt by majority vote; a tied jury is broken by a housemate's sibling with no connection to either side. <span class="clause-ref">(Articles 18 to 20)</span></p>
+  <h3><span lang="en">I think someone's committed an offence</span><span lang="tr">Sanırım biri bir suç işledi</span></h3>
+  <p><span lang="en">Any housemate or EVP holder can bring a prosecution. <a href="serve.html">Generate the papers</a> &mdash; they must display "YOU'VE BEEN SERVED" in large writing. Cannot find them? A reasonable attempt to deliver still counts &mdash; the Location Committee rules if that's disputed. A jury of 1 to 5 people who aren't either of you decides guilt by majority vote; a tied jury is broken by a housemate's sibling with no connection to either side. <span class="clause-ref">(Articles 18 to 20)</span></span><span lang="tr">Herhangi bir ev arkadaşı veya EVP sahibi kovuşturma açabilir. <a href="serve.html">Evrakı oluşturun</a> &mdash; üzerinde büyük harflerle "TEBLİĞ EDİLDİNİZ" yazmalıdır. Kişiyi bulamıyor musunuz? Ulaştırmaya yönelik makul bir girişim yine de geçerlidir &mdash; ihtilaf hâlinde Konum Komitesi karar verir. Taraf olmayan 1-5 kişilik bir jüri salt çoğunlukla karar verir; eşitlik hâlinde taraflarla bağı olmayan bir ev arkadaşının kardeşi belirleyici oyu kullanır. <span class="clause-ref">(Madde 18-20)</span></span></p>
 
   <div class="govuk-warning-text">
     <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-    <span class="govuk-warning-text__text">You must serve papers within 3 days of the offence, or the case is void.</span>
+    <span class="govuk-warning-text__text"><span lang="en">You must serve papers within 3 days of the offence, or the case is void.</span><span lang="tr">Tebligatı suçtan itibaren 3 gün içinde yapmalısınız, yoksa dava düşer.</span></span>
   </div>
 
-  <h3>The offence spans more than one room</h3>
-  <p>The Inter-Room Committee handles it: the person prosecuting nominates which committees are involved, those committees vote on who else needs a seat, and each confirmed committee sends its own representative. <span class="clause-ref">(Article 10)</span></p>
+  <h3><span lang="en">The offence spans more than one room</span><span lang="tr">Suç birden fazla odayı kapsıyor</span></h3>
+  <p><span lang="en">The Inter-Room Committee handles it: the person prosecuting nominates which committees are involved, those committees vote on who else needs a seat, and each confirmed committee sends its own representative. <span class="clause-ref">(Article 10)</span></span><span lang="tr">Odalar Arası Komite ilgilenir: kovuşturan kişi hangi komitelerin dâhil olduğunu önerir, bu komiteler başka kimin katılacağını oylar ve kesinleşen her komite kendi temsilcisini gönderir. <span class="clause-ref">(Madde 10)</span></span></p>
 
-  <h3>I've been found guilty and think it's unfair</h3>
-  <p>Say the phrase &mdash; <em>"Stop it, I do not like this anymore!"</em> &mdash; and your punishment is postponed up to a week (once per offence). If the verdict wasn't unanimous, you can also demand an appeal within 48 hours if you have evidence the original tribunal never saw; the new hearing happens within 72 hours, with a fresh jury. Unanimous verdicts cannot be appealed, and you only get one appeal per offence. <span class="clause-ref">(Bill of Rights Article I; Article 22)</span></p>
+  <h3><span lang="en">The landlord's coming round / my parents are visiting</span><span lang="tr">Ev sahibi geliyor / ailem ziyarete geliyor</span></h3>
+  <p><span lang="en">Any housemate can declare a State of Emergency the moment an external authority arrives or is confirmed on the way. All pass requirements and prosecutions pause until they leave &mdash; then everything resumes. Declaring one when nobody's actually coming is a Band 3 offence. <span class="clause-ref">(Article 24)</span></span><span lang="tr">Harici bir otorite geldiğinde veya geleceği kesinleştiğinde, herhangi bir ev arkadaşı Olağanüstü Hâl ilan edebilir. Tüm paso zorunlulukları ve kovuşturmalar, kişi gidene kadar askıya alınır &mdash; sonra her şey kaldığı yerden devam eder. Kimse gelmiyorken ilan etmek Bant 3 suçudur. <span class="clause-ref">(Madde 24)</span></span></p>
 
-  <h3>What actually happens to me if I'm found guilty?</h3>
-  <p>The Punishment Room has 7 tiers, from 5 to 20 minutes, sometimes with no phone, no light, or a controlled speaker &mdash; the jury can vote down whatever's proposed, as many times as it takes. Cleaning Punishments (6 tiers, one room up to the whole house) can stack on top of a Punishment Room tier or stand alone; the jury can vote those down too. <span class="clause-ref">(Articles 16 and 17)</span></p>
+  <h3><span lang="en">Next door wants to agree something with us</span><span lang="tr">Yan komşu bizimle bir anlaşma yapmak istiyor</span></h3>
+  <p><span lang="en">Treaties with other households &mdash; noise pacts, item lending, reciprocal EVP recognition &mdash; are negotiated by the Foreign Affairs Committee and only bind the house once ratified by a majority vote. No treaty can override the constitution or the Bill of Rights. <span class="clause-ref">(Article 23)</span></span><span lang="tr">Diğer hanelerle antlaşmalar &mdash; gürültü paktları, eşya ödünç verme, karşılıklı EVP tanınması &mdash; Dışişleri Komitesince müzakere edilir ve ancak çoğunluk oylamasıyla onaylandığında evi bağlar. Hiçbir antlaşma anayasayı veya Haklar Bildirgesi'ni geçersiz kılamaz. <span class="clause-ref">(Madde 23)</span></span></p>
 
-  <h3>I don't think the Rules Committee is doing its job</h3>
-  <p>Anyone outside the Rules Committee can vote to impeach a member &mdash; but it has to be unanimous among everyone else, and it only removes one member at a time. A replacement is elected immediately. <span class="clause-ref">(Article 6)</span></p>
+  <h3><span lang="en">I've been found guilty and think it's unfair</span><span lang="tr">Suçlu bulundum ve bunun haksız olduğunu düşünüyorum</span></h3>
+  <p><span lang="en">Say the phrase &mdash; <em>"Stop it, I do not like this anymore!"</em> &mdash; and your punishment is postponed up to a week (once per offence). If the verdict wasn't unanimous, you can also demand an appeal within 48 hours if you have evidence the original tribunal never saw; the new hearing happens within 72 hours, with a fresh jury. Unanimous verdicts cannot be appealed, and you only get one appeal per offence. <span class="clause-ref">(Bill of Rights Article I; Article 22)</span></span><span lang="tr">Komut cümlesini söyleyin &mdash; <em>"Stop it, I do not like this anymore!"</em> &mdash; cezanız bir haftaya kadar ertelenir (suç başına bir kez). Karar oybirliğiyle alınmadıysa ve ilk divanın görmediği bir deliliniz varsa, 48 saat içinde temyiz talep edebilirsiniz; yeni duruşma 72 saat içinde, yeni bir jüriyle yapılır. Oybirliğiyle alınan kararlar temyiz edilemez ve suç başına yalnızca bir temyiz hakkınız vardır. <span class="clause-ref">(Haklar Bildirgesi Madde I; Madde 22)</span></span></p>
 
-  <h2 id="punishments">Punishments, briefly</h2>
-  <p>Two systems, which can stack:</p>
+  <h3><span lang="en">What actually happens to me if I'm found guilty?</span><span lang="tr">Suçlu bulunursam bana gerçekte ne olur?</span></h3>
+  <p><span lang="en">The Punishment Room has 7 tiers, from 5 to 20 minutes, sometimes with no phone, no light, or a controlled speaker. Cleaning Punishments (6 tiers, one room up to the whole house) can stack on top or stand alone. Which band applies is set by the <a href="sentencing.html">sentencing guidelines</a>, and the jury can always vote a proposed punishment down. <span class="clause-ref">(Articles 16 and 17; Schedule B)</span></span><span lang="tr">Ceza Odasının 5 ilâ 20 dakika arasında değişen 7 kademesi vardır; bazen telefonsuz, ışıksız veya kontrollü hoparlörlü. Temizlik Cezaları (6 kademe, tek odadan tüm eve) üstüne eklenebilir veya tek başına verilebilir. Hangi bandın uygulanacağını <a href="sentencing.html">ceza rehberi</a> belirler ve jüri önerilen cezayı her zaman reddedebilir. <span class="clause-ref">(Madde 16 ve 17; Ek B)</span></span></p>
+
+  <h3><span lang="en">I don't think the Rules Committee is doing its job</span><span lang="tr">Kurallar Komitesinin işini yaptığını düşünmüyorum</span></h3>
+  <p><span lang="en">Anyone outside the Rules Committee can vote to impeach a member &mdash; but it has to be unanimous among everyone else, and it only removes one member at a time. A replacement is elected immediately. <span class="clause-ref">(Article 6)</span></span><span lang="tr">Kurallar Komitesi dışındaki herkes bir üyeyi azletmek için oy kullanabilir &mdash; ancak diğer herkesin oybirliği gerekir ve tek seferde yalnızca bir üye görevden alınır. Yerine derhâl seçim yapılır. <span class="clause-ref">(Madde 6)</span></span></p>
+
+  <h2 id="punishments"><span lang="en">Punishments, briefly</span><span lang="tr">Kısaca cezalar</span></h2>
+  <p><span lang="en">Two systems, which can stack:</span><span lang="tr">Üst üste eklenebilen iki sistem:</span></p>
   <ul>
-    <li>the <strong>Punishment Room</strong> &mdash; timed sit-downs, 5 to 20 minutes, with escalating restrictions</li>
-    <li><strong>Cleaning Punishments</strong> &mdash; an actual chore, scaled from one room to the whole house</li>
+    <li><span lang="en">the <strong>Punishment Room</strong> &mdash; timed sit-downs, 5 to 20 minutes, with escalating restrictions</span><span lang="tr"><strong>Ceza Odası</strong> &mdash; 5-20 dakikalık süreli oturmalar, gittikçe ağırlaşan kısıtlamalarla</span></li>
+    <li><span lang="en"><strong>Cleaning Punishments</strong> &mdash; an actual chore, scaled from one room to the whole house</span><span lang="tr"><strong>Temizlik Cezaları</strong> &mdash; tek odadan tüm eve ölçeklenen gerçek bir ev işi</span></li>
   </ul>
-  <p>The jury always has the final say on whether a proposed punishment is too harsh. See the <a href="constitution.html">full constitution</a> for the exact tier tables.</p>
+  <p><span lang="en">Sentences must follow the <a href="sentencing.html">sentencing guidelines</a>, and the jury always has the final say on whether a proposed punishment is too harsh. See the <a href="constitution.html">full constitution</a> for the exact tier tables.</span><span lang="tr">Cezalar <a href="sentencing.html">ceza rehberine</a> uymak zorundadır ve önerilen bir cezanın fazla ağır olup olmadığı konusunda son söz her zaman jürinindir. Tam kademe tabloları için <a href="constitution.html">anayasanın tamamına</a> bakın.</span></p>
 
-  <h2 id="rights">Your rights</h2>
-  <p>Nothing in the constitution can ever water these down &mdash; not even a future amendment.</p>
+  <h2 id="rights"><span lang="en">Your rights</span><span lang="tr">Haklarınız</span></h2>
+  <p><span lang="en">Nothing in the constitution can ever water these down &mdash; not even a future amendment.</span><span lang="tr">Anayasadaki hiçbir şey bunları zayıflatamaz &mdash; gelecekteki bir değişiklik bile.</span></p>
   <ol class="rights-list">
-    <li>You can postpone any punishment up to a week by saying the phrase, once per offence.</li>
-    <li>You're entitled to a timely tribunal &mdash; a prosecution cannot be dragged out indefinitely.</li>
-    <li>You cannot be tried twice for the same offence, aside from the one allowed appeal.</li>
-    <li>Both sides can call witnesses &mdash; though nobody can be forced to show up.</li>
-    <li>Your bedroom is yours. No one enters without your explicit permission.</li>
-    <li>You're presumed innocent until a jury says otherwise.</li>
+    <li><span lang="en">You can postpone any punishment up to a week by saying the phrase, once per offence.</span><span lang="tr">Komut cümlesini söyleyerek her cezayı bir haftaya kadar erteleyebilirsiniz; suç başına bir kez.</span></li>
+    <li><span lang="en">You're entitled to a timely tribunal &mdash; a prosecution cannot be dragged out indefinitely.</span><span lang="tr">Zamanında bir divan hakkınız vardır &mdash; kovuşturma süresiz uzatılamaz.</span></li>
+    <li><span lang="en">You cannot be tried twice for the same offence, aside from the one allowed appeal.</span><span lang="tr">İzin verilen tek temyiz dışında, aynı suçtan iki kez yargılanamazsınız.</span></li>
+    <li><span lang="en">Both sides can call witnesses &mdash; though nobody can be forced to show up.</span><span lang="tr">Her iki taraf da tanık çağırabilir &mdash; ama kimse gelmeye zorlanamaz.</span></li>
+    <li><span lang="en">Your bedroom is yours. No one enters without your explicit permission.</span><span lang="tr">Yatak odanız sizindir. Açık izniniz olmadan kimse giremez.</span></li>
+    <li><span lang="en">You're presumed innocent until a jury says otherwise.</span><span lang="tr">Jüri aksini söyleyene kadar masum sayılırsınız.</span></li>
   </ol>
 
-  <h2 id="changing">Changing a rule</h2>
-  <p>Only the Rules Committee can propose an amendment, and it only takes effect once the full house ratifies it by majority vote. The Bill of Rights above is permanently off-limits to amendment.</p>
+  <h2 id="changing"><span lang="en">Changing a rule</span><span lang="tr">Bir kuralı değiştirmek</span></h2>
+  <p><span lang="en">Only the Rules Committee can propose an amendment, and it only takes effect once the full house ratifies it by majority vote. The Bill of Rights above is permanently off-limits to amendment. Every change so far is on the <a href="amendments.html">amendment history</a> page.</span><span lang="tr">Yalnızca Kurallar Komitesi değişiklik önerebilir ve değişiklik ancak tüm evin çoğunluk oylamasıyla yürürlüğe girer. Yukarıdaki Haklar Bildirgesi kalıcı olarak değişikliğe kapalıdır. Bugüne kadarki tüm değişiklikler <a href="amendments.html">değişiklik geçmişi</a> sayfasındadır.</span></p>
 
   <div class="govuk-inset-text">
-    <p>This page is a plain-English summary. Where anything here and the formal document disagree, the <a href="constitution.html">formal constitution</a> governs.</p>
+    <p><span lang="en">This page is a plain-English summary. Where anything here and the formal document disagree, the <a href="constitution.html">formal constitution</a> governs.</span><span lang="tr">Bu sayfa sade bir özettir. Buradaki herhangi bir ifade ile resmî belge çelişirse, <a href="constitution.html">resmî anayasa</a> geçerlidir.</span></p>
   </div>
 
 </main>
@@ -411,17 +207,25 @@
 <footer class="govuk-footer">
   <div class="width-container">
     <ul class="govuk-footer__links">
-      <li><a href="constitution.html">The full constitution</a></li>
-      <li><a href="constitution.pdf" download>Download PDF</a></li>
+      <li><a href="constitution.html"><span lang="en">The full constitution</span><span lang="tr">Anayasanın tamamı</span></a></li>
+      <li><a href="check-pass.html"><span lang="en">Pass checker</span><span lang="tr">Paso denetleyicisi</span></a></li>
+      <li><a href="serve.html"><span lang="en">Serve papers</span><span lang="tr">Tebligat düzenle</span></a></li>
+      <li><a href="report.html"><span lang="en">Report a disturbance</span><span lang="tr">Müdahale bildir</span></a></li>
+      <li><a href="sentencing.html"><span lang="en">Sentencing guidelines</span><span lang="tr">Ceza rehberi</span></a></li>
+      <li><a href="case-law.html"><span lang="en">Case law</span><span lang="tr">İçtihat</span></a></li>
+      <li><a href="committees.html"><span lang="en">Committee register</span><span lang="tr">Komite kaydı</span></a></li>
+      <li><a href="passes.html"><span lang="en">Pass templates</span><span lang="tr">Paso şablonları</span></a></li>
+      <li><a href="amendments.html"><span lang="en">Amendment history</span><span lang="tr">Değişiklik geçmişi</span></a></li>
     </ul>
     <div class="govuk-footer__meta">
       <div class="govuk-footer__licence">
-        <p>All content is available under the Open Household Licence v1.0, except where otherwise stated.</p>
+        <p><span lang="en">All content is available under the Open Household Licence v1.0, except where otherwise stated.</span><span lang="tr">Aksi belirtilmedikçe tüm içerik Açık Hane Lisansı v1.0 kapsamında sunulur.</span></p>
       </div>
-      <div class="govuk-footer__copyright">&copy; House copyright</div>
+      <div class="govuk-footer__copyright"><span lang="en">&copy; House copyright</span><span lang="tr">&copy; Hane telif hakkı</span></div>
     </div>
   </div>
 </footer>
 
+<script src="site.js"></script>
 </body>
 </html>

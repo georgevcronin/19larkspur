@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check if you need a pass - 19 Larkspur Terrace</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-lang="en">
+
+<div id="cookie-banner" class="cookie-banner" hidden>
+  <div class="width-container">
+    <h2><span lang="en">Cookies on 19 Larkspur Terrace</span><span lang="tr">19 Larkspur Terrace'ta çerezler</span></h2>
+    <p><span lang="en">This house uses no cookies except those in the kitchen, which require a Temporary Crockery Pass.</span><span lang="tr">Bu ev, mutfaktakiler dışında çerez kullanmaz; onlar için de Geçici Tabak-Çanak Pasosu gerekir.</span></p>
+    <button class="govuk-button" onclick="return acceptCookies()"><span lang="en">Accept house cookies</span><span lang="tr">Ev çerezlerini kabul et</span></button>
+  </div>
+</div>
+
+<header class="govuk-header">
+  <div class="govuk-header__inner">
+    <a href="index.html" class="govuk-header__logo"><span class="govuk-header__crest">&#9878;</span> 19&nbsp;Larkspur&nbsp;Terrace</a>
+    <a href="constitution.html" class="govuk-header__service"><span lang="en">The Constitution</span><span lang="tr">Anayasa</span></a>
+  </div>
+</header>
+
+<div class="phase-banner">
+  <div class="width-container">
+    <span class="govuk-tag"><span lang="en">Official</span><span lang="tr">Resmî</span></span>
+    <span><span lang="en">Answers are based on Articles 2, 3, 11 and 13 of the constitution.</span><span lang="tr">Yanıtlar anayasanın 2, 3, 11 ve 13. maddelerine dayanır.</span></span>
+    <span class="phase-banner__spacer"></span>
+    <span class="lang-toggle"><a href="#" onclick="return setLang('en')">English</a> | <a href="#" onclick="return setLang('tr')">Türkçe</a></span>
+  </div>
+</div>
+
+<div class="width-container">
+<ol class="govuk-breadcrumbs">
+  <li><a href="index.html"><span lang="en">Home</span><span lang="tr">Ana sayfa</span></a></li>
+  <li><span lang="en">Check if you need a pass</span><span lang="tr">Paso kontrolü</span></li>
+</ol>
+
+<main>
+  <h1><span lang="en">Check if you need a pass</span><span lang="tr">Paso gerekip gerekmediğini kontrol edin</span></h1>
+
+  <form id="checker" onsubmit="return showResult()">
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend"><span lang="en">1. Who are you?</span><span lang="tr">1. Kimsiniz?</span></legend>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" type="radio" name="who" id="who-housemate" value="housemate" required>
+          <label class="govuk-radios__label" for="who-housemate"><span lang="en">One of the five housemates</span><span lang="tr">Beş ev arkadaşından biri</span></label>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" type="radio" name="who" id="who-visitor" value="visitor">
+          <label class="govuk-radios__label" for="who-visitor"><span lang="en">A visitor (including EVP holders)</span><span lang="tr">Bir ziyaretçi (EVP sahipleri dâhil)</span></label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend"><span lang="en">2. What do you want to do?</span><span lang="tr">2. Ne yapmak istiyorsunuz?</span></legend>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" type="radio" name="what" id="what-enter" value="enter" required>
+          <label class="govuk-radios__label" for="what-enter"><span lang="en">Just be in the house</span><span lang="tr">Sadece evde bulunmak</span></label>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" type="radio" name="what" id="what-cutlery" value="cutlery">
+          <label class="govuk-radios__label" for="what-cutlery"><span lang="en">Use cutlery</span><span lang="tr">Çatal-bıçak kullanmak</span></label>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" type="radio" name="what" id="what-crockery" value="crockery">
+          <label class="govuk-radios__label" for="what-crockery"><span lang="en">Use someone else's crockery</span><span lang="tr">Başkasının tabak-çanağını kullanmak</span></label>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" type="radio" name="what" id="what-bath-other" value="bath-other">
+          <label class="govuk-radios__label" for="what-bath-other"><span lang="en">Use the other floor's bathroom</span><span lang="tr">Diğer katın banyosunu kullanmak</span></label>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" type="radio" name="what" id="what-bath-own" value="bath-own">
+          <label class="govuk-radios__label" for="what-bath-own"><span lang="en">Use my own floor's bathroom</span><span lang="tr">Kendi katımın banyosunu kullanmak</span></label>
+        </div>
+      </fieldset>
+    </div>
+
+    <button type="submit" class="govuk-button"><span lang="en">Get answer</span><span lang="tr">Yanıtı al</span></button>
+  </form>
+
+  <div id="results">
+    <div class="govuk-panel result" id="r-none" hidden>
+      <h2 class="govuk-panel__title"><span lang="en">No pass needed</span><span lang="tr">Paso gerekmez</span></h2>
+      <div class="govuk-panel__body"><span lang="en">Nothing in the constitution restricts this. Carry on.</span><span lang="tr">Anayasada bunu kısıtlayan bir hüküm yok. Devam edin.</span></div>
+    </div>
+    <div class="govuk-panel result" id="r-visitor-pass" hidden>
+      <h2 class="govuk-panel__title"><span lang="en">Visitor Pass required</span><span lang="tr">Ziyaretçi Pasosu gerekir</span></h2>
+      <div class="govuk-panel__body"><span lang="en">You must be signed in by a housemate on entry (Article 2.1). Remember: whoever signs you in becomes your sponsor and is liable if you skip a sentence (2.4).</span><span lang="tr">Girişte bir ev arkadaşı tarafından kaydedilmelisiniz (Madde 2.1). Unutmayın: sizi kaydeden kişi kefiliniz olur ve cezanızı çekmezseniz sorumluluk ona geçer (2.4).</span></div>
+    </div>
+    <div class="govuk-panel result" id="r-cutlery" hidden>
+      <h2 class="govuk-panel__title"><span lang="en">Temporary Cutlery Pass required</span><span lang="tr">Geçici Çatal-Bıçak Pasosu gerekir</span></h2>
+      <div class="govuk-panel__body"><span lang="en">Take one from beside the cutlery drawer &mdash; no countersignature needed. You get 20 minutes including wash-up, renewable back-to-back as long as passes never overlap (Article 11.4).</span><span lang="tr">Çatal-bıçak çekmecesinin yanından bir tane alın &mdash; karşı imza gerekmez. Bulaşık dâhil 20 dakikanız var; pasolar çakışmadıkça art arda yenilenebilir (Madde 11.4).</span></div>
+    </div>
+    <div class="govuk-panel result" id="r-crockery" hidden>
+      <h2 class="govuk-panel__title"><span lang="en">Temporary Crockery Pass required</span><span lang="tr">Geçici Tabak-Çanak Pasosu gerekir</span></h2>
+      <div class="govuk-panel__body"><span lang="en">Complete a pass and get the owner's signature before using their crockery. No weekly limit (Article 11.3).</span><span lang="tr">Bir paso doldurun ve tabak-çanağı kullanmadan önce sahibinin imzasını alın. Haftalık sınır yoktur (Madde 11.3).</span></div>
+    </div>
+    <div class="govuk-panel govuk-panel--grey result" id="r-crockery-visitor" hidden>
+      <h2 class="govuk-panel__title"><span lang="en">Not provided for</span><span lang="tr">Düzenlenmemiş</span></h2>
+      <div class="govuk-panel__body"><span lang="en">Crockery Passes only exist for housemates (Article 11.3). As a visitor, ask the owner's permission directly &mdash; and remember your sponsor answers for you.</span><span lang="tr">Tabak-Çanak Pasoları yalnızca ev arkadaşları içindir (Madde 11.3). Ziyaretçi olarak doğrudan sahibinden izin isteyin &mdash; ve kefilinizin sizin adınıza sorumlu olduğunu unutmayın.</span></div>
+    </div>
+    <div class="govuk-panel result" id="r-bathroom" hidden>
+      <h2 class="govuk-panel__title"><span lang="en">Temporary Bathroom Pass required</span><span lang="tr">Geçici Banyo Pasosu gerekir</span></h2>
+      <div class="govuk-panel__body"><span lang="en">Get it countersigned by an owner of that floor. Maximum 3 uses a week; secret use is prosecutable, and forgetting the pass is no defence (Article 13.3).</span><span lang="tr">O katın sahiplerinden birine karşı imzalatın. Haftada en fazla 3 kullanım; gizli kullanım kovuşturulur ve pasoyu unutmak savunma değildir (Madde 13.3).</span></div>
+    </div>
+    <div class="govuk-panel govuk-panel--grey result" id="r-bathroom-visitor" hidden>
+      <h2 class="govuk-panel__title"><span lang="en">Ask the floor's owners</span><span lang="tr">Kat sahiplerine sorun</span></h2>
+      <div class="govuk-panel__body"><span lang="en">The constitution only regulates cross-floor bathroom use between housemates (Article 13.3). Visitors should get a floor owner's permission directly.</span><span lang="tr">Anayasa yalnızca ev arkadaşları arasındaki katlar arası banyo kullanımını düzenler (Madde 13.3). Ziyaretçiler doğrudan kat sahibinden izin almalıdır.</span></div>
+    </div>
+  </div>
+
+  <p><a href="passes.html"><span lang="en">Print blank pass templates</span><span lang="tr">Boş paso şablonlarını yazdır</span></a></p>
+</main>
+</div>
+
+<footer class="govuk-footer">
+  <div class="width-container">
+    <ul class="govuk-footer__links">
+      <li><a href="index.html"><span lang="en">How the house works</span><span lang="tr">Ev nasıl işler</span></a></li>
+      <li><a href="constitution.html"><span lang="en">The full constitution</span><span lang="tr">Anayasanın tamamı</span></a></li>
+      <li><a href="passes.html"><span lang="en">Pass templates</span><span lang="tr">Paso şablonları</span></a></li>
+    </ul>
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__licence"><p><span lang="en">All content is available under the Open Household Licence v1.0.</span><span lang="tr">Tüm içerik Açık Hane Lisansı v1.0 kapsamında sunulur.</span></p></div>
+      <div class="govuk-footer__copyright"><span lang="en">&copy; House copyright</span><span lang="tr">&copy; Hane telif hakkı</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+function showResult() {
+  var who = document.querySelector('input[name="who"]:checked').value;
+  var what = document.querySelector('input[name="what"]:checked').value;
+  var id;
+  if (what === "enter")        id = (who === "visitor") ? "r-visitor-pass" : "r-none";
+  else if (what === "cutlery") id = (who === "visitor") ? "r-cutlery" : "r-none";
+  else if (what === "crockery")id = (who === "visitor") ? "r-crockery-visitor" : "r-crockery";
+  else if (what === "bath-other") id = (who === "visitor") ? "r-bathroom-visitor" : "r-bathroom";
+  else id = "r-none";
+  document.querySelectorAll("#results .result").forEach(function (el) { el.hidden = true; });
+  var panel = document.getElementById(id);
+  panel.hidden = false;
+  panel.scrollIntoView({ behavior: "smooth", block: "center" });
+  return false;
+}
+</script>
+</body>
+</html>

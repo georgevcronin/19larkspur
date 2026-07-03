@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report a disturbance - 19 Larkspur Terrace</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-lang="en">
+
+<div id="cookie-banner" class="cookie-banner" hidden>
+  <div class="width-container">
+    <h2><span lang="en">Cookies on 19 Larkspur Terrace</span><span lang="tr">19 Larkspur Terrace'ta çerezler</span></h2>
+    <p><span lang="en">This house uses no cookies except those in the kitchen, which require a Temporary Crockery Pass.</span><span lang="tr">Bu ev, mutfaktakiler dışında çerez kullanmaz; onlar için de Geçici Tabak-Çanak Pasosu gerekir.</span></p>
+    <button class="govuk-button" onclick="return acceptCookies()"><span lang="en">Accept house cookies</span><span lang="tr">Ev çerezlerini kabul et</span></button>
+  </div>
+</div>
+
+<header class="govuk-header">
+  <div class="govuk-header__inner">
+    <a href="index.html" class="govuk-header__logo"><span class="govuk-header__crest">&#9878;</span> 19&nbsp;Larkspur&nbsp;Terrace</a>
+    <a href="constitution.html" class="govuk-header__service"><span lang="en">The Constitution</span><span lang="tr">Anayasa</span></a>
+  </div>
+</header>
+
+<div class="phase-banner">
+  <div class="width-container">
+    <span class="govuk-tag"><span lang="en">Official</span><span lang="tr">Resmî</span></span>
+    <span><span lang="en">Reports go by email to the committee responsible for the affected room.</span><span lang="tr">Bildirimler, ilgili odadan sorumlu komiteye e-posta ile gider.</span></span>
+    <span class="phase-banner__spacer"></span>
+    <span class="lang-toggle"><a href="#" onclick="return setLang('en')">English</a> | <a href="#" onclick="return setLang('tr')">Türkçe</a></span>
+  </div>
+</div>
+
+<div class="width-container">
+<ol class="govuk-breadcrumbs">
+  <li><a href="index.html"><span lang="en">Home</span><span lang="tr">Ana sayfa</span></a></li>
+  <li><span lang="en">Report a disturbance</span><span lang="tr">Müdahale bildir</span></li>
+</ol>
+
+<main>
+  <h1><span lang="en">Report a disturbance</span><span lang="tr">Bir müdahaleyi bildirin</span></h1>
+  <p><span lang="en">This notifies the committee with jurisdiction over the affected room. It does not start a prosecution &mdash; for that you must <a href="serve.html">serve papers</a> within 3 days.</span><span lang="tr">Bu, ilgili oda üzerinde yetkili komiteyi bilgilendirir. Kovuşturma başlatmaz &mdash; bunun için 3 gün içinde <a href="serve.html">tebligat yapmalısınız</a>.</span></p>
+
+  <div class="govuk-inset-text">
+    <p><span lang="en">Remember the grace periods: the kitchen gets 12 hours to be put right, the living room 6 hours of in-house time, before prosecution becomes available.</span><span lang="tr">Hoşgörü sürelerini unutmayın: kovuşturma mümkün olmadan önce mutfak için 12 saat, oturma odası için evde geçirilen 6 saat tanınır.</span></p>
+  </div>
+
+  <form onsubmit="return sendReport()">
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="room"><span lang="en">Where is the disturbance?</span><span lang="tr">Müdahale nerede?</span></label>
+      <select class="govuk-select" id="room" onchange="updateRecipients()" required>
+        <option value="" disabled selected>&mdash;</option>
+        <option value="kitchen">Kitchen / Mutfak</option>
+        <option value="living-room">Living Room / Oturma Odası</option>
+        <option value="corridor">Corridor / Koridor</option>
+        <option value="stairs">Stairs / Merdiven</option>
+        <option value="bathroom-1">Bathroom, 1st floor / Banyo, 1. kat</option>
+        <option value="bathroom-2">Bathroom, 2nd floor / Banyo, 2. kat</option>
+        <option value="bedroom">A bedroom / Yatak odası</option>
+      </select>
+      <p class="govuk-hint" id="recipients-hint"></p>
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="reporter"><span lang="en">Your name</span><span lang="tr">Adınız</span></label>
+      <input class="govuk-input" id="reporter" required>
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="details"><span lang="en">What happened?</span><span lang="tr">Ne oldu?</span></label>
+      <textarea class="govuk-textarea" id="details" required></textarea>
+    </div>
+    <button type="submit" class="govuk-button"><span lang="en">Send report by email</span><span lang="tr">Bildirimi e-posta ile gönder</span></button>
+  </form>
+</main>
+</div>
+
+<footer class="govuk-footer">
+  <div class="width-container">
+    <ul class="govuk-footer__links">
+      <li><a href="index.html"><span lang="en">How the house works</span><span lang="tr">Ev nasıl işler</span></a></li>
+      <li><a href="serve.html"><span lang="en">Serve papers</span><span lang="tr">Tebligat düzenle</span></a></li>
+      <li><a href="committees.html"><span lang="en">Committee register</span><span lang="tr">Komite kaydı</span></a></li>
+    </ul>
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__licence"><p><span lang="en">All content is available under the Open Household Licence v1.0.</span><span lang="tr">Tüm içerik Açık Hane Lisansı v1.0 kapsamında sunulur.</span></p></div>
+      <div class="govuk-footer__copyright"><span lang="en">&copy; House copyright</span><span lang="tr">&copy; Hane telif hakkı</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script src="committees.js"></script>
+<script>
+function updateRecipients() {
+  var room = document.getElementById("room").value;
+  var lang = document.body.getAttribute("data-lang");
+  var c = committeeById(ROOM_TO_COMMITTEE[room]);
+  var vacant = !c.members.length;
+  var names = vacant
+    ? Object.values(HOUSEMATES).map(function (h) { return h.name; })
+    : c.members.map(function (m) { return HOUSEMATES[m].name; });
+  var committeeName = (lang === "tr") ? c.nameTr : c.nameEn;
+  var note = vacant
+    ? (lang === "tr"
+        ? committeeName + " şu an boş — bildirim beş ev arkadaşının tümüne gider: "
+        : committeeName + " is currently vacant — the report goes to all five housemates: ")
+    : (lang === "tr" ? "Alıcı — " + committeeName + ": " : "Goes to — " + committeeName + ": ");
+  document.getElementById("recipients-hint").textContent = note + names.join(", ");
+}
+function sendReport() {
+  var room = document.getElementById("room");
+  var roomLabel = room.options[room.selectedIndex].text;
+  var emails = committeeEmails(ROOM_TO_COMMITTEE[room.value]);
+  var subject = "DISTURBANCE REPORT — " + roomLabel;
+  var body =
+    "DISTURBANCE REPORT under the 19 Larkspur Terrace Constitution\n\n" +
+    "Location: " + roomLabel + "\n" +
+    "Reported by: " + document.getElementById("reporter").value + "\n" +
+    "Reported at: " + new Date().toLocaleString("en-GB") + "\n\n" +
+    "Details:\n" + document.getElementById("details").value + "\n\n" +
+    "Reminder: the applicable grace period runs from identification of the disturbance. " +
+    "If unresolved, papers must be served within 3 days of the offence (Article 21.1).";
+  window.location.href = "mailto:" + emails.join(",") +
+    "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(body);
+  return false;
+}
+</script>
+</body>
+</html>

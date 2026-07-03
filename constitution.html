@@ -4,603 +4,386 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Constitution - 19 Larkspur Terrace</title>
-<style>
-  *, *::before, *::after { box-sizing: border-box; }
-  body {
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    color: #0b0c0c;
-    background: #ffffff;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: #1d70b8; }
-  a:visited { color: #4c2c92; }
-  a:hover { color: #003078; }
-  a:focus {
-    outline: 3px solid transparent;
-    color: #0b0c0c;
-    background-color: #ffdd00;
-    box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
-    text-decoration: none;
-  }
-  .width-container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-  @media (min-width: 40.0625em) {
-    .width-container { padding: 0 30px; }
-  }
-  /* Header */
-  .govuk-header {
-    background: #0b0c0c;
-    border-bottom: 10px solid #1d70b8;
-  }
-  .govuk-header__inner {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 8px 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 6px 20px;
-  }
-  @media (min-width: 40.0625em) {
-    .govuk-header__inner { padding: 8px 30px; }
-  }
-  .govuk-header__logo {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .govuk-header__logo:visited { color: #ffffff; }
-  .govuk-header__logo:hover { color: #ffffff; border-bottom: 3px solid #ffffff; margin-bottom: -3px; }
-  .govuk-header__logo:focus { color: #0b0c0c; background: #ffdd00; box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c; }
-  .govuk-header__crest { font-size: 26px; }
-  .govuk-header__service {
-    color: #ffffff;
-    font-size: 19px;
-    font-weight: 700;
-    text-decoration: none;
-  }
-  .govuk-header__service:visited { color: #ffffff; }
-  /* Phase banner */
-  .phase-banner {
-    border-bottom: 1px solid #b1b4b6;
-    padding: 10px 0;
-    font-size: 16px;
-  }
-  .phase-banner .width-container { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .govuk-tag {
-    display: inline-block;
-    background: #1d70b8;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 5px 8px 4px;
-  }
-  /* Breadcrumbs */
-  .govuk-breadcrumbs {
-    font-size: 16px;
-    margin: 15px 0 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .govuk-breadcrumbs li { margin: 0; }
-  .govuk-breadcrumbs li:not(:last-child)::after {
-    content: "";
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    border-top: 1px solid #505a5f;
-    border-right: 1px solid #505a5f;
-    transform: rotate(45deg);
-    margin: 0 10px 1px;
-  }
-  .govuk-breadcrumbs a { color: #0b0c0c; }
-  /* Typography */
-  main { padding: 30px 0 50px; display: block; }
-  .govuk-caption-xl {
-    font-size: 27px;
-    line-height: 1.11;
-    color: #505a5f;
-    display: block;
-    margin: 0 0 5px;
-  }
-  .govuk-caption-part {
-    font-size: 19px;
-    color: #505a5f;
-    display: block;
-    margin: 0 0 5px;
-    font-weight: 400;
-  }
-  h1 {
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 1.04;
-    margin: 0 0 20px;
-  }
-  h2 {
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 1.11;
-    margin: 0 0 20px;
-  }
-  .part-header {
-    margin: 50px 0 20px;
-    padding-top: 30px;
-    border-top: 1px solid #b1b4b6;
-  }
-  h3 {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.25;
-    margin: 35px 0 15px;
-  }
-  p, li {
-    font-size: 19px;
-    line-height: 1.3157;
-    margin: 0 0 20px;
-  }
-  .govuk-body-l { font-size: 24px; line-height: 1.25; }
-  @media (max-width: 40.0525em) {
-    h1 { font-size: 32px; }
-    h2 { font-size: 27px; }
-    h3 { font-size: 21px; }
-    p, li { font-size: 16px; }
-    .govuk-body-l { font-size: 19px; }
-    .govuk-caption-xl { font-size: 21px; }
-  }
-  /* Clauses */
-  .clause {
-    display: flex;
-    gap: 15px;
-    margin: 0 0 15px;
-    font-size: 19px;
-    line-height: 1.3157;
-  }
-  .clause-num {
-    font-weight: 700;
-    min-width: 42px;
-    flex-shrink: 0;
-  }
-  .subclause {
-    display: flex;
-    gap: 12px;
-    margin: 0 0 10px 57px;
-    font-size: 19px;
-    line-height: 1.3157;
-  }
-  .subclause-letter { min-width: 30px; flex-shrink: 0; color: #505a5f; }
-  @media (max-width: 40.0525em) {
-    .clause, .subclause { font-size: 16px; }
-    .subclause { margin-left: 40px; }
-  }
-  /* Contents list */
-  .contents-label {
-    font-size: 19px;
-    font-weight: 700;
-    margin: 0 0 10px;
-  }
-  .contents-list {
-    list-style: none;
-    margin: 0 0 20px;
-    padding: 0;
-  }
-  .contents-list li {
-    font-size: 16px;
-    margin-bottom: 8px;
-    padding-left: 25px;
-    position: relative;
-  }
-  .contents-list li::before {
-    content: "\2014";
-    position: absolute;
-    left: 0;
-    color: #0b0c0c;
-  }
-  /* Tables */
-  .govuk-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 0 30px;
-  }
-  .govuk-table th, .govuk-table td {
-    font-size: 19px;
-    line-height: 1.3157;
-    text-align: left;
-    vertical-align: top;
-    padding: 10px 20px 10px 0;
-    border-bottom: 1px solid #b1b4b6;
-  }
-  .govuk-table th { font-weight: 700; }
-  @media (max-width: 40.0525em) {
-    .govuk-table th, .govuk-table td { font-size: 16px; }
-  }
-  /* Inset text (Bill of Rights) */
-  .govuk-inset-text {
-    border-left: 10px solid #b1b4b6;
-    padding: 15px;
-    margin: 30px 0;
-  }
-  .govuk-inset-text p:last-child { margin-bottom: 0; }
-  .bor-title { font-weight: 700; font-size: 19px; margin-bottom: 10px; }
-  .command-phrase { font-style: italic; font-weight: 700; }
-  .served-badge {
-    display: inline-block;
-    border: 2px solid #0b0c0c;
-    padding: 2px 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
-  /* Buttons */
-  .govuk-button {
-    display: inline-block;
-    background: #00703c;
-    color: #ffffff;
-    font-size: 19px;
-    font-weight: 400;
-    line-height: 1;
-    text-decoration: none;
-    padding: 10px 15px;
-    border: 2px solid transparent;
-    box-shadow: 0 2px 0 #002d18;
-    margin: 0 15px 20px 0;
-    cursor: pointer;
-  }
-  .govuk-button:visited { color: #ffffff; }
-  .govuk-button:hover { background: #005a30; color: #ffffff; }
-  .govuk-button:focus { background: #ffdd00; color: #0b0c0c; box-shadow: 0 2px 0 #0b0c0c; }
-  /* Ratification */
-  .ratification {
-    margin-top: 50px;
-    padding-top: 30px;
-    border-top: 5px solid #0b0c0c;
-  }
-  .sig-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px 40px;
-    margin-top: 30px;
-  }
-  .sig-line {
-    border-bottom: 1px solid #0b0c0c;
-    padding-bottom: 4px;
-    margin-bottom: 6px;
-    min-height: 40px;
-  }
-  .sig-name { font-size: 16px; color: #505a5f; }
-  /* Footer */
-  .govuk-footer {
-    background: #f3f2f1;
-    border-top: 1px solid #b1b4b6;
-    padding: 40px 0 25px;
-    font-size: 16px;
-    color: #0b0c0c;
-  }
-  .govuk-footer__meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-  .govuk-footer a { color: #0b0c0c; }
-  .govuk-footer__licence { max-width: 500px; }
-  .govuk-footer__licence p { font-size: 16px; margin-bottom: 10px; }
-  .govuk-footer__copyright { text-align: right; font-weight: 700; white-space: nowrap; }
-  .govuk-footer__links { list-style: none; padding: 0; margin: 0 0 30px; display: flex; flex-wrap: wrap; gap: 15px 30px; }
-  .govuk-footer__links li { font-size: 16px; margin: 0; }
-  @media print {
-    .govuk-header, .phase-banner, .govuk-breadcrumbs, .page-actions, .govuk-footer { display: none; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-lang="en">
+
+<div id="cookie-banner" class="cookie-banner" hidden>
+  <div class="width-container">
+    <h2><span lang="en">Cookies on 19 Larkspur Terrace</span><span lang="tr">19 Larkspur Terrace'ta çerezler</span></h2>
+    <p><span lang="en">This house uses no cookies except those in the kitchen, which require a Temporary Crockery Pass.</span><span lang="tr">Bu ev, mutfaktakiler dışında çerez kullanmaz; onlar için de Geçici Tabak-Çanak Pasosu gerekir.</span></p>
+    <button class="govuk-button" onclick="return acceptCookies()"><span lang="en">Accept house cookies</span><span lang="tr">Ev çerezlerini kabul et</span></button>
+  </div>
+</div>
 
 <header class="govuk-header">
   <div class="govuk-header__inner">
     <a href="index.html" class="govuk-header__logo"><span class="govuk-header__crest">&#9878;</span> 19&nbsp;Larkspur&nbsp;Terrace</a>
-    <a href="constitution.html" class="govuk-header__service">The Constitution</a>
+    <a href="constitution.html" class="govuk-header__service"><span lang="en">The Constitution</span><span lang="tr">Anayasa</span></a>
   </div>
 </header>
 
 <div class="phase-banner">
   <div class="width-container">
-    <span class="govuk-tag">Official</span>
-    <span>This is the supreme law of the house, as ratified by the five housemates.</span>
+    <span class="govuk-tag"><span lang="en">Official</span><span lang="tr">Resmî</span></span>
+    <span><span lang="en">This is the supreme law of the house, as ratified by the five housemates.</span><span lang="tr">Bu, beş ev arkadaşı tarafından onaylanmış evin en üstün yasasıdır.</span></span>
+    <span class="phase-banner__spacer"></span>
+    <span class="lang-toggle"><a href="#" onclick="return setLang('en')">English</a> | <a href="#" onclick="return setLang('tr')">Türkçe</a></span>
   </div>
 </div>
 
 <div class="width-container">
 
 <ol class="govuk-breadcrumbs">
-  <li><a href="index.html">Home</a></li>
-  <li>The Constitution</li>
+  <li><a href="index.html"><span lang="en">Home</span><span lang="tr">Ana sayfa</span></a></li>
+  <li><span lang="en">The Constitution</span><span lang="tr">Anayasa</span></li>
 </ol>
 
 <main>
 
-  <span class="govuk-caption-xl">The supreme law of the house</span>
-  <h1>19 Larkspur Terrace Declaration of Independence Constitution</h1>
+  <span class="govuk-caption-xl"><span lang="en">The supreme law of the house</span><span lang="tr">Evin en üstün yasası</span></span>
+  <h1><span lang="en">19 Larkspur Terrace Declaration of Independence Constitution</span><span lang="tr">19 Larkspur Terrace Bağımsızlık Bildirgesi Anayasası</span></h1>
 
   <div class="page-actions">
-    <a href="constitution.pdf" download class="govuk-button">Download this constitution (PDF)</a>
+    <a href="constitution.pdf" download class="govuk-button"><span lang="en">Download (English PDF)</span><span lang="tr">İndir (İngilizce PDF)</span></a>
+    <a href="constitution-tr.pdf" download class="govuk-button govuk-button--secondary"><span lang="en">Download (Turkish PDF)</span><span lang="tr">İndir (Türkçe PDF)</span></a>
   </div>
 
-  <p class="contents-label">Contents</p>
+  <p class="contents-label"><span lang="en">Contents</span><span lang="tr">İçindekiler</span></p>
   <ul class="contents-list">
-    <li><a href="#p1">Part I &mdash; Preamble</a></li>
-    <li><a href="#p2">Part II &mdash; Membership and Visitors</a></li>
-    <li><a href="#p3">Part III &mdash; The Committee System</a></li>
-    <li><a href="#p4">Part IV &mdash; Room Legislation</a></li>
-    <li><a href="#p5">Part V &mdash; Prosecution and Tribunal</a></li>
-    <li><a href="#p6">Part VI &mdash; Bill of Rights</a></li>
-    <li><a href="#p7">Part VII &mdash; Constitutional Amendments</a></li>
-    <li><a href="#sched">Schedule A &mdash; Committee Directory</a></li>
+    <li><a href="#p1"><span lang="en">Part I &mdash; Preamble</span><span lang="tr">Bölüm I &mdash; Başlangıç</span></a></li>
+    <li><a href="#p2"><span lang="en">Part II &mdash; Membership and Visitors</span><span lang="tr">Bölüm II &mdash; Üyelik ve Ziyaretçiler</span></a></li>
+    <li><a href="#p3"><span lang="en">Part III &mdash; The Committee System</span><span lang="tr">Bölüm III &mdash; Komite Sistemi</span></a></li>
+    <li><a href="#p4"><span lang="en">Part IV &mdash; Room Legislation</span><span lang="tr">Bölüm IV &mdash; Oda Mevzuatı</span></a></li>
+    <li><a href="#p5"><span lang="en">Part V &mdash; Prosecution and Tribunal</span><span lang="tr">Bölüm V &mdash; Kovuşturma ve Divan</span></a></li>
+    <li><a href="#p6"><span lang="en">Part VI &mdash; Bill of Rights</span><span lang="tr">Bölüm VI &mdash; Haklar Bildirgesi</span></a></li>
+    <li><a href="#p7"><span lang="en">Part VII &mdash; Constitutional Amendments</span><span lang="tr">Bölüm VII &mdash; Anayasa Değişiklikleri</span></a></li>
+    <li><a href="#p8"><span lang="en">Part VIII &mdash; External Relations and Emergencies</span><span lang="tr">Bölüm VIII &mdash; Dış İlişkiler ve Olağanüstü Hâller</span></a></li>
+    <li><a href="#sched"><span lang="en">Schedule A &mdash; Committee Directory</span><span lang="tr">Ek A &mdash; Komite Rehberi</span></a></li>
+    <li><a href="#schedb"><span lang="en">Schedule B &mdash; Sentencing Guidelines</span><span lang="tr">Ek B &mdash; Ceza Rehberi</span></a></li>
   </ul>
 
   <div id="p1" class="part-header">
-    <span class="govuk-caption-part">Part I</span>
-    <h2>Preamble</h2>
+    <span class="govuk-caption-part"><span lang="en">Part I</span><span lang="tr">Bölüm I</span></span>
+    <h2><span lang="en">Preamble</span><span lang="tr">Başlangıç</span></h2>
   </div>
-  <p>We, the housemates of 19 Larkspur Terrace, in order to form a more perfect household, establish justice, ensure domestic tranquillity, and promote the general welfare of all who dwell within, do hereby ordain and establish this Constitution as the supreme law of the house. All persons residing within, visiting, or otherwise subject to the jurisdiction of 19 Larkspur Terrace shall be bound by its provisions.</p>
+  <p><span lang="en">We, the housemates of 19 Larkspur Terrace, in order to form a more perfect household, establish justice, ensure domestic tranquillity, and promote the general welfare of all who dwell within, do hereby ordain and establish this Constitution as the supreme law of the house. All persons residing within, visiting, or otherwise subject to the jurisdiction of 19 Larkspur Terrace shall be bound by its provisions.</span><span lang="tr">Biz, 19 Larkspur Terrace'ın ev arkadaşları; daha mükemmel bir hane kurmak, adaleti tesis etmek, ev içi huzuru sağlamak ve içinde yaşayan herkesin genel refahını geliştirmek amacıyla, bu Anayasayı evin en üstün yasası olarak ilan ve tesis ederiz. 19 Larkspur Terrace'ta ikamet eden, ziyarette bulunan veya başka bir şekilde evin yargı yetkisine tabi olan tüm kişiler bu hükümlerle bağlıdır.</span></p>
 
   <div id="p2" class="part-header">
-    <span class="govuk-caption-part">Part II</span>
-    <h2>Membership &amp; Visitors</h2>
+    <span class="govuk-caption-part"><span lang="en">Part II</span><span lang="tr">Bölüm II</span></span>
+    <h2><span lang="en">Membership &amp; Visitors</span><span lang="tr">Üyelik ve Ziyaretçiler</span></h2>
   </div>
 
-  <h3>Article 1 &mdash; Housemates</h3>
-  <div class="clause"><span class="clause-num">1.1</span><span>The five permanent housemates of 19 Larkspur Terrace are: George Cronin, George Bale, Alexander Pear, Freddie Austin Smith, and Oliver Shawyer.</span></div>
-  <div class="clause"><span class="clause-num">1.2</span><span>Membership is fixed for the duration of this Constitution. There shall be no new housemates and no departing housemates during the constitutional period.</span></div>
-  <div class="clause"><span class="clause-num">1.3</span><span>All housemates are subject to the full provisions of this Constitution at all times whilst within the house and its jurisdictional spaces.</span></div>
+  <h3><span lang="en">Article 1 &mdash; Housemates</span><span lang="tr">Madde 1 &mdash; Ev Arkadaşları</span></h3>
+  <div class="clause"><span class="clause-num">1.1</span><span><span lang="en">The five permanent housemates of 19 Larkspur Terrace are: George Cronin, George Bale, Alexander Pear, Freddie Austin Smith, and Oliver Shawyer.</span><span lang="tr">19 Larkspur Terrace'ın beş daimî ev arkadaşı şunlardır: George Cronin, George Bale, Alexander Pear, Freddie Austin Smith ve Oliver Shawyer.</span></span></div>
+  <div class="clause"><span class="clause-num">1.2</span><span><span lang="en">Membership is fixed for the duration of this Constitution. There shall be no new housemates and no departing housemates during the constitutional period.</span><span lang="tr">Üyelik, bu Anayasanın yürürlük süresi boyunca sabittir. Anayasal dönem boyunca yeni ev arkadaşı alınamaz ve mevcut ev arkadaşları ayrılamaz.</span></span></div>
+  <div class="clause"><span class="clause-num">1.3</span><span><span lang="en">All housemates are subject to the full provisions of this Constitution at all times whilst within the house and its jurisdictional spaces.</span><span lang="tr">Tüm ev arkadaşları, ev ve evin yargı alanları içinde bulundukları her an bu Anayasanın tüm hükümlerine tabidir.</span></span></div>
 
-  <h3>Article 2 &mdash; Visitors</h3>
-  <div class="clause"><span class="clause-num">2.1</span><span>Any non-member wishing to enter 19 Larkspur Terrace must be signed in by means of a standard Visitor Pass upon entry.</span></div>
-  <div class="clause"><span class="clause-num">2.2</span><span>Visitors are fully subject to the law of this Constitution whilst on the premises and may be prosecuted for offences committed therein.</span></div>
-  <div class="clause"><span class="clause-num">2.3</span><span>Visitors are entitled to a Temporary Cutlery Pass upon entry, granting twenty (20) minutes of cutlery usage.</span></div>
+  <h3><span lang="en">Article 2 &mdash; Visitors</span><span lang="tr">Madde 2 &mdash; Ziyaretçiler</span></h3>
+  <div class="clause"><span class="clause-num">2.1</span><span><span lang="en">Any non-member wishing to enter 19 Larkspur Terrace must be signed in by means of a standard Visitor Pass upon entry.</span><span lang="tr">19 Larkspur Terrace'a girmek isteyen üye olmayan herkes, girişte standart bir Ziyaretçi Pasosu ile kaydedilmelidir.</span></span></div>
+  <div class="clause"><span class="clause-num">2.2</span><span><span lang="en">Visitors are fully subject to the law of this Constitution whilst on the premises and may be prosecuted for offences committed therein.</span><span lang="tr">Ziyaretçiler, evde bulundukları sürece bu Anayasanın hukukuna tamamen tabidir ve evde işledikleri suçlardan dolayı kovuşturulabilirler.</span></span></div>
+  <div class="clause"><span class="clause-num">2.3</span><span><span lang="en">Visitors are entitled to a Temporary Cutlery Pass upon entry, granting twenty (20) minutes of cutlery usage.</span><span lang="tr">Ziyaretçiler girişte, yirmi (20) dakikalık çatal-bıçak kullanımı sağlayan bir Geçici Çatal-Bıçak Pasosuna hak kazanır.</span></span></div>
+  <div class="clause"><span class="clause-num">2.4</span><span><span lang="en"><strong>Sponsor liability:</strong> the housemate who signs in a visitor stands surety for them. If a visitor is convicted and does not return to serve their sentence within one (1) week of the verdict, the sponsoring housemate serves the full punishment in their place.</span><span lang="tr"><strong>Kefil sorumluluğu:</strong> bir ziyaretçiyi kaydeden ev arkadaşı, onun kefilidir. Mahkûm edilen bir ziyaretçi, karardan itibaren bir (1) hafta içinde cezasını çekmek üzere dönmezse, kefil olan ev arkadaşı cezanın tamamını onun yerine çeker.</span></span></div>
 
-  <h3>Article 3 &mdash; Executive Visitor Pass (EVP)</h3>
-  <div class="clause"><span class="clause-num">3.1</span><span>The EVP is an elevated visitor status granting additional rights within the house, including participation in committee member elections.</span></div>
-  <div class="clause"><span class="clause-num">3.2</span><span>To qualify, a visitor must satisfy all of the following:</span></div>
-  <div class="subclause"><span class="subclause-letter">(a)</span><span>Visit the house consistently at a minimum of twice per week;</span></div>
-  <div class="subclause"><span class="subclause-letter">(b)</span><span>Attend at least one social outing with the house per week; and</span></div>
-  <div class="subclause"><span class="subclause-letter">(c)</span><span>Be known and accepted by every housemate for a minimum of one month.</span></div>
-  <div class="clause"><span class="clause-num">3.3</span><span>Qualification is verified by the Committee Committee, then ratified by tribunal vote of the housemates only.</span></div>
-  <div class="clause"><span class="clause-num">3.4</span><span>Maximum five (5) EVP holders at any one time. EVP may be revoked by prosecution and tribunal vote of housemates only &mdash; no external jury members permitted for revocation proceedings.</span></div>
+  <h3><span lang="en">Article 3 &mdash; Executive Visitor Pass (EVP)</span><span lang="tr">Madde 3 &mdash; Yönetici Ziyaretçi Pasosu (EVP)</span></h3>
+  <div class="clause"><span class="clause-num">3.1</span><span><span lang="en">The EVP is an elevated visitor status granting additional rights within the house, including participation in committee member elections.</span><span lang="tr">EVP, komite üyeliği seçimlerine katılım dâhil olmak üzere ev içinde ek haklar tanıyan yükseltilmiş bir ziyaretçi statüsüdür.</span></span></div>
+  <div class="clause"><span class="clause-num">3.2</span><span><span lang="en">To qualify, a visitor must satisfy all of the following:</span><span lang="tr">Hak kazanmak için bir ziyaretçi aşağıdakilerin tümünü karşılamalıdır:</span></span></div>
+  <div class="subclause"><span class="subclause-letter">(a)</span><span><span lang="en">Visit the house consistently at a minimum of twice per week;</span><span lang="tr">Evi düzenli olarak haftada en az iki kez ziyaret etmek;</span></span></div>
+  <div class="subclause"><span class="subclause-letter">(b)</span><span><span lang="en">Attend at least one social outing with the house per week; and</span><span lang="tr">Haftada en az bir kez evle birlikte sosyal bir etkinliğe katılmak; ve</span></span></div>
+  <div class="subclause"><span class="subclause-letter">(c)</span><span><span lang="en">Be known and accepted by every housemate for a minimum of one month.</span><span lang="tr">En az bir ay boyunca her ev arkadaşı tarafından tanınmak ve kabul edilmek.</span></span></div>
+  <div class="clause"><span class="clause-num">3.3</span><span><span lang="en">Qualification is verified by the Committee Committee, then ratified by tribunal vote of the housemates only.</span><span lang="tr">Uygunluk, Komite Komitesi tarafından doğrulanır; ardından yalnızca ev arkadaşlarının divan oylamasıyla onaylanır.</span></span></div>
+  <div class="clause"><span class="clause-num">3.4</span><span><span lang="en">Maximum five (5) EVP holders at any one time. EVP may be revoked by prosecution and tribunal vote of housemates only &mdash; no external jury members permitted for revocation proceedings.</span><span lang="tr">Aynı anda en fazla beş (5) EVP sahibi olabilir. EVP, yalnızca ev arkadaşlarının kovuşturması ve divan oylamasıyla iptal edilebilir &mdash; iptal işlemlerinde dışarıdan jüri üyesine izin verilmez.</span></span></div>
 
   <div id="p3" class="part-header">
-    <span class="govuk-caption-part">Part III</span>
-    <h2>The Committee System</h2>
+    <span class="govuk-caption-part"><span lang="en">Part III</span><span lang="tr">Bölüm III</span></span>
+    <h2><span lang="en">The Committee System</span><span lang="tr">Komite Sistemi</span></h2>
   </div>
 
-  <h3>Article 4 &mdash; General Committee Provisions</h3>
-  <div class="clause"><span class="clause-num">4.1</span><span>All committees, unless otherwise specified, shall consist of two (2) members.</span></div>
-  <div class="clause"><span class="clause-num">4.2</span><span>All housemates are default candidates for every committee, elected by ranked choice voting of the full house, including a candidate voting on their own race. EVP holders may also vote in committee elections.</span></div>
-  <div class="clause"><span class="clause-num">4.3</span><span>A housemate may sit on as many committees as they are elected to, without restriction. Each housemate may abstain from candidacy for one (1) committee of their choosing.</span></div>
-  <div class="clause"><span class="clause-num">4.4</span><span>Every committee holds elections once per month, except the Committee Committee, which follows its own staggered cycle under 5.2, and the Inter-Room Committee (Article 10), which is ad-hoc and holds none.</span></div>
-  <div class="clause"><span class="clause-num">4.5</span><span>Every committee must maintain a minimum of one (1) member at all times. If membership would otherwise fall to zero, an election to fill the vacancy is held immediately.</span></div>
+  <h3><span lang="en">Article 4 &mdash; General Committee Provisions</span><span lang="tr">Madde 4 &mdash; Genel Komite Hükümleri</span></h3>
+  <div class="clause"><span class="clause-num">4.1</span><span><span lang="en">All committees, unless otherwise specified, shall consist of two (2) members.</span><span lang="tr">Aksi belirtilmedikçe tüm komiteler iki (2) üyeden oluşur.</span></span></div>
+  <div class="clause"><span class="clause-num">4.2</span><span><span lang="en">All housemates are default candidates for every committee, elected by ranked choice voting of the full house, including a candidate voting on their own race. EVP holders may also vote in committee elections.</span><span lang="tr">Tüm ev arkadaşları her komite için varsayılan adaydır; seçimler, adayın kendi yarışında oy kullanması dâhil, tüm evin sıralamalı oy sistemiyle yapılır. EVP sahipleri de komite seçimlerinde oy kullanabilir.</span></span></div>
+  <div class="clause"><span class="clause-num">4.3</span><span><span lang="en">A housemate may sit on as many committees as they are elected to, without restriction. Each housemate may abstain from candidacy for one (1) committee of their choosing.</span><span lang="tr">Bir ev arkadaşı, seçildiği tüm komitelerde kısıtlama olmaksızın görev alabilir. Her ev arkadaşı, seçeceği bir (1) komite için adaylıktan çekilebilir.</span></span></div>
+  <div class="clause"><span class="clause-num">4.4</span><span><span lang="en">Every committee holds elections once per month, except the Committee Committee, which follows its own staggered cycle under 5.2, and the Inter-Room Committee (Article 10), which is ad-hoc and holds none.</span><span lang="tr">5.2 uyarınca kendi kademeli döngüsünü izleyen Komite Komitesi ve geçici nitelikte olup seçim yapmayan Odalar Arası Komite (Madde 10) hariç, her komite ayda bir seçim yapar.</span></span></div>
+  <div class="clause"><span class="clause-num">4.5</span><span><span lang="en">Every committee must maintain a minimum of one (1) member at all times. If membership would otherwise fall to zero, an election to fill the vacancy is held immediately.</span><span lang="tr">Her komite her zaman en az bir (1) üye bulundurmalıdır. Üyelik sıfıra düşecek olursa, boşluğu doldurmak için derhâl seçim yapılır.</span></span></div>
 
-  <h3>Article 5 &mdash; The Committee Committee</h3>
-  <div class="clause"><span class="clause-num">5.1</span><span>Manages the voting process of all other committees and oversees all committee elections.</span></div>
-  <div class="clause"><span class="clause-num">5.2</span><span>Operates on a staggered election cycle of once every two months, convening one week before the monthly committee elections.</span></div>
-  <div class="clause"><span class="clause-num">5.3</span><span>If prosecuted for mismanagement or rigging of an election, the prosecution shall be brought by the Rules Committee. Conversely, if the Rules Committee is prosecuted, the Committee Committee brings that prosecution. Each serves as the other's check and balance.</span></div>
-  <div class="clause"><span class="clause-num">5.4</span><span>Any dispute between the Rules Committee and the Committee Committee that does not amount to a prosecution under 5.3 shall be resolved by tribunal vote of the full house.</span></div>
-  <div class="clause"><span class="clause-num">5.5</span><span>Notwithstanding 5.1, elections for the Committee Committee itself are administered by the Rules Committee.</span></div>
+  <h3><span lang="en">Article 5 &mdash; The Committee Committee</span><span lang="tr">Madde 5 &mdash; Komite Komitesi</span></h3>
+  <div class="clause"><span class="clause-num">5.1</span><span><span lang="en">Manages the voting process of all other committees and oversees all committee elections.</span><span lang="tr">Diğer tüm komitelerin oylama sürecini yönetir ve tüm komite seçimlerini denetler.</span></span></div>
+  <div class="clause"><span class="clause-num">5.2</span><span><span lang="en">Operates on a staggered election cycle of once every two months, convening one week before the monthly committee elections.</span><span lang="tr">İki ayda bir yapılan kademeli bir seçim döngüsüyle çalışır ve aylık komite seçimlerinden bir hafta önce toplanır.</span></span></div>
+  <div class="clause"><span class="clause-num">5.3</span><span><span lang="en">If prosecuted for mismanagement or rigging of an election, the prosecution shall be brought by the Rules Committee. Conversely, if the Rules Committee is prosecuted, the Committee Committee brings that prosecution. Each serves as the other's check and balance.</span><span lang="tr">Bir seçimin kötü yönetimi veya hileye karıştırılması nedeniyle kovuşturma açılırsa, kovuşturmayı Kurallar Komitesi yürütür. Buna karşılık, Kurallar Komitesi kovuşturulursa, kovuşturmayı Komite Komitesi açar. Her biri diğerinin denge ve denetim unsurudur.</span></span></div>
+  <div class="clause"><span class="clause-num">5.4</span><span><span lang="en">Any dispute between the Rules Committee and the Committee Committee that does not amount to a prosecution under 5.3 shall be resolved by tribunal vote of the full house.</span><span lang="tr">Kurallar Komitesi ile Komite Komitesi arasında 5.3 kapsamında kovuşturma düzeyine ulaşmayan her uyuşmazlık, tüm evin divan oylamasıyla çözülür.</span></span></div>
+  <div class="clause"><span class="clause-num">5.5</span><span><span lang="en">Notwithstanding 5.1, elections for the Committee Committee itself are administered by the Rules Committee.</span><span lang="tr">5.1 hükmüne bakılmaksızın, Komite Komitesinin kendi seçimleri Kurallar Komitesi tarafından yürütülür.</span></span></div>
 
-  <h3>Article 6 &mdash; The Rules Committee</h3>
-  <div class="clause"><span class="clause-num">6.1</span><span>Holds exclusive authority to propose amendments to this Constitution, per the procedure set out in Part VII.</span></div>
-  <div class="clause"><span class="clause-num">6.2</span><span>Any individual member of the Rules Committee may be impeached by a <strong>unanimous</strong> vote of every housemate and EVP holder who is not a member of the Rules Committee. Impeachment removes only the named member &mdash; where the Rules Committee has more than one member, each must be impeached separately. Upon impeachment, the vacated seat is filled by immediate election.</span></div>
+  <h3><span lang="en">Article 6 &mdash; The Rules Committee</span><span lang="tr">Madde 6 &mdash; Kurallar Komitesi</span></h3>
+  <div class="clause"><span class="clause-num">6.1</span><span><span lang="en">Holds exclusive authority to propose amendments to this Constitution, per the procedure set out in Part VII.</span><span lang="tr">Bölüm VII'de belirtilen usule göre, bu Anayasada değişiklik önerme yetkisi münhasıran bu komiteye aittir.</span></span></div>
+  <div class="clause"><span class="clause-num">6.2</span><span><span lang="en">Any individual member of the Rules Committee may be impeached by a <strong>unanimous</strong> vote of every housemate and EVP holder who is not a member of the Rules Committee. Impeachment removes only the named member &mdash; where the Rules Committee has more than one member, each must be impeached separately. Upon impeachment, the vacated seat is filled by immediate election.</span><span lang="tr">Kurallar Komitesinin herhangi bir üyesi, komite üyesi olmayan tüm ev arkadaşları ve EVP sahiplerinin <strong>oybirliğiyle</strong> azledilebilir. Azil yalnızca adı geçen üyeyi görevden alır &mdash; komitenin birden fazla üyesi varsa her biri ayrı ayrı azledilmelidir. Azil üzerine boşalan koltuk derhâl seçimle doldurulur.</span></span></div>
 
-  <h3>Article 7 &mdash; The Pass Committee</h3>
-  <div class="clause"><span class="clause-num">7.1</span><span>Oversees all temporary passes, ensuring they are stocked and correctly placed at their designated locations:</span></div>
+  <h3><span lang="en">Article 7 &mdash; The Pass Committee</span><span lang="tr">Madde 7 &mdash; Pasolar Komitesi</span></h3>
+  <div class="clause"><span class="clause-num">7.1</span><span><span lang="en">Oversees all temporary passes, ensuring they are stocked and correctly placed at their designated locations:</span><span lang="tr">Tüm geçici pasoları denetler; stoklanmalarını ve belirlenen yerlerine doğru şekilde yerleştirilmelerini sağlar:</span></span></div>
   <table class="govuk-table">
-    <thead><tr><th>Pass type</th><th>Location</th></tr></thead>
+    <thead><tr><th><span lang="en">Pass type</span><span lang="tr">Paso türü</span></th><th><span lang="en">Location</span><span lang="tr">Konum</span></th></tr></thead>
     <tbody>
-      <tr><td>Temporary Bathroom Pass (2nd floor)</td><td>Back of the 2nd floor bathroom door</td></tr>
-      <tr><td>Temporary Bathroom Pass (1st floor)</td><td>Back of the 1st floor bathroom door</td></tr>
-      <tr><td>Temporary Crockery Pass</td><td>Kitchen cupboard or near the fridge</td></tr>
-      <tr><td>Temporary Cutlery Pass</td><td>Near the cutlery drawer</td></tr>
+      <tr><td><span lang="en">Temporary Bathroom Pass (2nd floor)</span><span lang="tr">Geçici Banyo Pasosu (2. kat)</span></td><td><span lang="en">Back of the 2nd floor bathroom door</span><span lang="tr">2. kat banyo kapısının arkası</span></td></tr>
+      <tr><td><span lang="en">Temporary Bathroom Pass (1st floor)</span><span lang="tr">Geçici Banyo Pasosu (1. kat)</span></td><td><span lang="en">Back of the 1st floor bathroom door</span><span lang="tr">1. kat banyo kapısının arkası</span></td></tr>
+      <tr><td><span lang="en">Temporary Crockery Pass</span><span lang="tr">Geçici Tabak-Çanak Pasosu</span></td><td><span lang="en">Kitchen cupboard or near the fridge</span><span lang="tr">Mutfak dolabı veya buzdolabının yakını</span></td></tr>
+      <tr><td><span lang="en">Temporary Cutlery Pass</span><span lang="tr">Geçici Çatal-Bıçak Pasosu</span></td><td><span lang="en">Near the cutlery drawer</span><span lang="tr">Çatal-bıçak çekmecesinin yakını</span></td></tr>
     </tbody>
   </table>
 
-  <h3>Article 8 &mdash; The Location Committee</h3>
-  <div class="clause"><span class="clause-num">8.1</span><span>Either party to a matter under this Constitution may refer a dispute over a person's location, whereabouts, or presence within the house to the Location Committee for a ruling &mdash; including the validity of a service attempt under Article 19, and whether a grace-period timer was correctly paused or resumed under 12.2.</span></div>
-  <div class="clause"><span class="clause-num">8.2</span><span>Its rulings are not final; either party may escalate to a jury trial under 20.1&ndash;20.3.</span></div>
+  <h3><span lang="en">Article 8 &mdash; The Location Committee</span><span lang="tr">Madde 8 &mdash; Konum Komitesi</span></h3>
+  <div class="clause"><span class="clause-num">8.1</span><span><span lang="en">Either party to a matter under this Constitution may refer a dispute over a person's location, whereabouts, or presence within the house to the Location Committee for a ruling &mdash; including the validity of a service attempt under Article 19, and whether a grace-period timer was correctly paused or resumed under 12.2.</span><span lang="tr">Bu Anayasa kapsamındaki bir meselenin taraflarından her biri, bir kişinin konumu, nerede olduğu veya evdeki mevcudiyetiyle ilgili bir uyuşmazlığı karar için Konum Komitesine götürebilir &mdash; buna Madde 19 kapsamındaki bir tebligat girişiminin geçerliliği ve 12.2 kapsamında hoşgörü süresi sayacının doğru durdurulup durdurulmadığı da dâhildir.</span></span></div>
+  <div class="clause"><span class="clause-num">8.2</span><span><span lang="en">Its rulings are not final; either party may escalate to a jury trial under 20.1&ndash;20.3.</span><span lang="tr">Kararları kesin değildir; taraflardan her biri 20.1&ndash;20.3 kapsamında jürili yargılamaya taşıyabilir.</span></span></div>
 
-  <h3>Article 9 &mdash; Room-Based Committees</h3>
+  <h3><span lang="en">Article 9 &mdash; Room-Based Committees</span><span lang="tr">Madde 9 &mdash; Oda Bazlı Komiteler</span></h3>
   <table class="govuk-table">
-    <thead><tr><th>Committee</th><th>Jurisdiction</th><th>Size</th></tr></thead>
+    <thead><tr><th><span lang="en">Committee</span><span lang="tr">Komite</span></th><th><span lang="en">Jurisdiction</span><span lang="tr">Yetki alanı</span></th><th><span lang="en">Size</span><span lang="tr">Üye</span></th></tr></thead>
     <tbody>
-      <tr><td>Kitchen Committee</td><td>Kitchen</td><td>2</td></tr>
-      <tr><td>Living Room Committee</td><td>Living Room</td><td>2</td></tr>
-      <tr><td>Corridor Committee</td><td>Corridor</td><td>2</td></tr>
-      <tr><td>Stairs Committee</td><td>Stairs</td><td>2</td></tr>
-      <tr><td>Bathroom Committee (1st floor)</td><td>Alexander Pear, Freddie Austin Smith, Oliver Shawyer</td><td>3</td></tr>
-      <tr><td>Bathroom Committee (2nd floor)</td><td>George Cronin, George Bale</td><td>2</td></tr>
-      <tr><td>Bedroom Committee</td><td>All Bedrooms</td><td>2</td></tr>
+      <tr><td><span lang="en">Kitchen Committee</span><span lang="tr">Mutfak Komitesi</span></td><td><span lang="en">Kitchen</span><span lang="tr">Mutfak</span></td><td>2</td></tr>
+      <tr><td><span lang="en">Living Room Committee</span><span lang="tr">Oturma Odası Komitesi</span></td><td><span lang="en">Living Room</span><span lang="tr">Oturma odası</span></td><td>2</td></tr>
+      <tr><td><span lang="en">Corridor Committee</span><span lang="tr">Koridor Komitesi</span></td><td><span lang="en">Corridor</span><span lang="tr">Koridor</span></td><td>2</td></tr>
+      <tr><td><span lang="en">Stairs Committee</span><span lang="tr">Merdiven Komitesi</span></td><td><span lang="en">Stairs</span><span lang="tr">Merdiven</span></td><td>2</td></tr>
+      <tr><td><span lang="en">Bathroom Committee (1st floor)</span><span lang="tr">Banyo Komitesi (1. kat)</span></td><td>Alexander Pear, Freddie Austin Smith, Oliver Shawyer</td><td>3</td></tr>
+      <tr><td><span lang="en">Bathroom Committee (2nd floor)</span><span lang="tr">Banyo Komitesi (2. kat)</span></td><td>George Cronin, George Bale</td><td>2</td></tr>
+      <tr><td><span lang="en">Bedroom Committee</span><span lang="tr">Yatak Odası Komitesi</span></td><td><span lang="en">All Bedrooms</span><span lang="tr">Tüm yatak odaları</span></td><td>2</td></tr>
     </tbody>
   </table>
 
-  <h3>Article 10 &mdash; The Inter-Room Committee</h3>
-  <div class="clause"><span class="clause-num">10.1</span><span>A temporary, ad-hoc body convened whenever an offence may implicate more than one committee's jurisdiction. The prosecuting party nominates the committees they believe are implicated, provisionally seeding the Inter-Room Committee with one representative from each.</span></div>
-  <div class="clause"><span class="clause-num">10.2</span><span>By simple majority of its provisional members, the Inter-Room Committee decides which councils must be represented for the offence, adding representatives from any further committee found to hold jurisdiction.</span></div>
-  <div class="clause"><span class="clause-num">10.3</span><span>Once composition is settled, one (1) representative sits per committee so determined, regardless of that committee's size, selected by that committee itself. A member sitting on more than one relevant committee is automatically selected for all. Disbands upon resolution.</span></div>
+  <h3><span lang="en">Article 10 &mdash; The Inter-Room Committee</span><span lang="tr">Madde 10 &mdash; Odalar Arası Komite</span></h3>
+  <div class="clause"><span class="clause-num">10.1</span><span><span lang="en">A temporary, ad-hoc body convened whenever an offence may implicate more than one committee's jurisdiction. The prosecuting party nominates the committees they believe are implicated, provisionally seeding the Inter-Room Committee with one representative from each.</span><span lang="tr">Bir suçun birden fazla komitenin yetki alanını ilgilendirebileceği durumlarda toplanan geçici bir organdır. Kovuşturmayı yürüten taraf, ilgili olduğuna inandığı komiteleri aday gösterir ve Odalar Arası Komite, her birinden bir temsilciyle geçici olarak oluşturulur.</span></span></div>
+  <div class="clause"><span class="clause-num">10.2</span><span><span lang="en">By simple majority of its provisional members, the Inter-Room Committee decides which councils must be represented for the offence, adding representatives from any further committee found to hold jurisdiction.</span><span lang="tr">Odalar Arası Komite, geçici üyelerinin salt çoğunluğuyla, suç için hangi kurulların temsil edilmesi gerektiğine karar verir ve yetkili bulunan diğer komitelerden temsilciler ekler.</span></span></div>
+  <div class="clause"><span class="clause-num">10.3</span><span><span lang="en">Once composition is settled, one (1) representative sits per committee so determined, regardless of that committee's size, selected by that committee itself. A member sitting on more than one relevant committee is automatically selected for all. Disbands upon resolution.</span><span lang="tr">Bileşim kesinleştiğinde, belirlenen her komiteden &mdash; büyüklüğüne bakılmaksızın &mdash; kendi seçtiği bir (1) temsilci görev alır. Birden fazla ilgili komitede yer alan bir üye, tümü için otomatik olarak seçilir. Mesele çözüldüğünde dağılır.</span></span></div>
 
   <div id="p4" class="part-header">
-    <span class="govuk-caption-part">Part IV</span>
-    <h2>Room Legislation</h2>
+    <span class="govuk-caption-part"><span lang="en">Part IV</span><span lang="tr">Bölüm IV</span></span>
+    <h2><span lang="en">Room Legislation</span><span lang="tr">Oda Mevzuatı</span></h2>
   </div>
 
-  <h3>Article 11 &mdash; The Kitchen</h3>
-  <div class="clause"><span class="clause-num">11.1</span><span>Disturbance to the status quo is determined by the <em>reasonable person test</em> &mdash; whether a reasonable person would consider the kitchen to have been left in an unacceptable state.</span></div>
-  <div class="clause"><span class="clause-num">11.2</span><span>Upon a disturbance being identified, a twelve (12) hour grace period commences. If unresolved, a Kitchen Committee member may commence prosecution.</span></div>
-  <div class="clause"><span class="clause-num">11.3</span><span><strong>Crockery Pass:</strong> any housemate using another's crockery must complete and obtain the owner's signature on a Temporary Crockery Pass. No limit on passes per week.</span></div>
-  <div class="clause"><span class="clause-num">11.4</span><span><strong>Cutlery Pass:</strong> all visitors must obtain a Temporary Cutlery Pass (no counter-signature required), granting twenty (20) minutes of cutlery usage including wash-up. Exceeding the window results in forcible removal of cutlery. A visitor may obtain as many Temporary Cutlery Passes in a single visit as they like, provided no two passes are active at the same time.</span></div>
+  <h3><span lang="en">Article 11 &mdash; The Kitchen</span><span lang="tr">Madde 11 &mdash; Mutfak</span></h3>
+  <div class="clause"><span class="clause-num">11.1</span><span><span lang="en">Disturbance to the status quo is determined by the <em>reasonable person test</em> &mdash; whether a reasonable person would consider the kitchen to have been left in an unacceptable state.</span><span lang="tr">Mevcut duruma müdahale, <em>makul kişi testi</em> ile belirlenir &mdash; makul bir kişinin mutfağın kabul edilemez bir hâlde bırakıldığını düşünüp düşünmeyeceği esas alınır.</span></span></div>
+  <div class="clause"><span class="clause-num">11.2</span><span><span lang="en">Upon a disturbance being identified, a twelve (12) hour grace period commences. If unresolved, a Kitchen Committee member may commence prosecution.</span><span lang="tr">Bir müdahale tespit edildiğinde on iki (12) saatlik bir hoşgörü süresi başlar. Sorun giderilmezse, bir Mutfak Komitesi üyesi kovuşturma başlatabilir.</span></span></div>
+  <div class="clause"><span class="clause-num">11.3</span><span><span lang="en"><strong>Crockery Pass:</strong> any housemate using another's crockery must complete and obtain the owner's signature on a Temporary Crockery Pass. No limit on passes per week.</span><span lang="tr"><strong>Tabak-Çanak Pasosu:</strong> başkasının tabak-çanağını kullanan her ev arkadaşı, bir Geçici Tabak-Çanak Pasosu doldurmalı ve sahibinin imzasını almalıdır. Haftalık paso sınırı yoktur.</span></span></div>
+  <div class="clause"><span class="clause-num">11.4</span><span><span lang="en"><strong>Cutlery Pass:</strong> all visitors must obtain a Temporary Cutlery Pass (no counter-signature required), granting twenty (20) minutes of cutlery usage including wash-up. Exceeding the window results in forcible removal of cutlery. A visitor may obtain as many Temporary Cutlery Passes in a single visit as they like, provided no two passes are active at the same time.</span><span lang="tr"><strong>Çatal-Bıçak Pasosu:</strong> tüm ziyaretçiler, bulaşık dâhil yirmi (20) dakikalık çatal-bıçak kullanımı sağlayan bir Geçici Çatal-Bıçak Pasosu almalıdır (karşı imza gerekmez). Sürenin aşılması, çatal-bıçağın zorla alınmasıyla sonuçlanır. Bir ziyaretçi, aynı anda iki paso etkin olmamak şartıyla, tek ziyarette dilediği kadar Geçici Çatal-Bıçak Pasosu alabilir.</span></span></div>
 
-  <h3>Article 12 &mdash; The Living Room</h3>
-  <div class="clause"><span class="clause-num">12.1</span><span>Disturbance to the status quo determined case by case, with reference to the understood status quo at the time of the offence and by decision of the prosecution.</span></div>
-  <div class="clause"><span class="clause-num">12.2</span><span>A six (6) hour grace period commences, counted on time spent within the house. If the offending individual leaves, the timer stops and restarts on return.</span></div>
+  <h3><span lang="en">Article 12 &mdash; The Living Room</span><span lang="tr">Madde 12 &mdash; Oturma Odası</span></h3>
+  <div class="clause"><span class="clause-num">12.1</span><span><span lang="en">Disturbance to the status quo determined case by case, with reference to the understood status quo at the time of the offence and by decision of the prosecution.</span><span lang="tr">Mevcut duruma müdahale, suç anındaki anlaşılan mevcut duruma atıfla ve kovuşturmanın kararıyla, vaka bazında belirlenir.</span></span></div>
+  <div class="clause"><span class="clause-num">12.2</span><span><span lang="en">A six (6) hour grace period commences, counted on time spent within the house. If the offending individual leaves, the timer stops and restarts on return.</span><span lang="tr">Evde geçirilen süre üzerinden sayılan altı (6) saatlik bir hoşgörü süresi başlar. Suçu işleyen kişi evden ayrılırsa sayaç durur ve dönüşünde yeniden başlar.</span></span></div>
 
-  <h3>Article 13 &mdash; The Bathrooms</h3>
-  <div class="clause"><span class="clause-num">13.1</span><span>The two bathrooms are entirely independently governed by their respective owners and committees.</span></div>
-  <div class="clause"><span class="clause-num">13.2</span><span><strong>1st floor bathroom:</strong> Alexander Pear, Freddie Austin Smith, Oliver Shawyer. <strong>2nd floor bathroom:</strong> George Cronin, George Bale.</span></div>
-  <div class="clause"><span class="clause-num">13.3</span><span><strong>Bathroom Pass:</strong> cross-floor use requires a signed Temporary Bathroom Pass (countersigned by a floor owner). Maximum three (3) usages per week. Unauthorised or secret use is prosecutable. Forgetting a pass provides no legal defence.</span></div>
-  <div class="clause"><span class="clause-num">13.4</span><span>A bathroom owner may refuse to sign a pass with a valid reason. Validity is determined by the reasonable person test; if disputed, by tribunal. The refused party may prosecute on the basis of damages caused by the refusal.</span></div>
+  <h3><span lang="en">Article 13 &mdash; The Bathrooms</span><span lang="tr">Madde 13 &mdash; Banyolar</span></h3>
+  <div class="clause"><span class="clause-num">13.1</span><span><span lang="en">The two bathrooms are entirely independently governed by their respective owners and committees.</span><span lang="tr">İki banyo, kendi sahipleri ve komiteleri tarafından tamamen bağımsız olarak yönetilir.</span></span></div>
+  <div class="clause"><span class="clause-num">13.2</span><span><span lang="en"><strong>1st floor bathroom:</strong> Alexander Pear, Freddie Austin Smith, Oliver Shawyer. <strong>2nd floor bathroom:</strong> George Cronin, George Bale.</span><span lang="tr"><strong>1. kat banyosu:</strong> Alexander Pear, Freddie Austin Smith, Oliver Shawyer. <strong>2. kat banyosu:</strong> George Cronin, George Bale.</span></span></div>
+  <div class="clause"><span class="clause-num">13.3</span><span><span lang="en"><strong>Bathroom Pass:</strong> cross-floor use requires a signed Temporary Bathroom Pass (countersigned by a floor owner). Maximum three (3) usages per week. Unauthorised or secret use is prosecutable. Forgetting a pass provides no legal defence.</span><span lang="tr"><strong>Banyo Pasosu:</strong> katlar arası kullanım, imzalı bir Geçici Banyo Pasosu gerektirir (kat sahiplerinden biri tarafından karşı imzalanır). Haftada en fazla üç (3) kullanım. İzinsiz veya gizli kullanım kovuşturulabilir. Pasoyu unutmak hukuki savunma sağlamaz.</span></span></div>
+  <div class="clause"><span class="clause-num">13.4</span><span><span lang="en">A bathroom owner may refuse to sign a pass with a valid reason. Validity is determined by the reasonable person test; if disputed, by tribunal. The refused party may prosecute on the basis of damages caused by the refusal.</span><span lang="tr">Bir banyo sahibi, geçerli bir sebeple pasoyu imzalamayı reddedebilir. Geçerlilik makul kişi testiyle; uyuşmazlık hâlinde divanca belirlenir. Reddedilen taraf, reddin yol açtığı zararlar temelinde kovuşturma açabilir.</span></span></div>
 
-  <h3>Article 14 &mdash; The Bedrooms</h3>
-  <div class="clause"><span class="clause-num">14.1</span><span>All five bedrooms operate under identical legislation. Loud noise is prohibited between <strong>11:00 pm and 7:00 am.</strong> During curfew hours, noise must be kept to a minimum.</span></div>
-  <div class="clause"><span class="clause-num">14.2</span><span>Whether a bedroom door is open or closed during curfew is entirely at the occupant's discretion; they accept full responsibility for any resulting noise.</span></div>
-  <div class="clause"><span class="clause-num">14.3</span><span>Odours affecting the surrounding corridor are a cross-jurisdictional offence between the Bedroom Committee and the Corridor Committee, and trigger the Inter-Room Committee.</span></div>
-  <div class="clause"><span class="clause-num">14.4</span><span>Bedroom items causing clutter in communal spaces constitute a low-level offence of common area spillover, attracting a correspondingly low sentencing tier.</span></div>
+  <h3><span lang="en">Article 14 &mdash; The Bedrooms</span><span lang="tr">Madde 14 &mdash; Yatak Odaları</span></h3>
+  <div class="clause"><span class="clause-num">14.1</span><span><span lang="en">All five bedrooms operate under identical legislation. Loud noise is prohibited between <strong>11:00 pm and 7:00 am.</strong> During curfew hours, noise must be kept to a minimum.</span><span lang="tr">Beş yatak odasının tamamı aynı mevzuata tabidir. <strong>23.00 ile 07.00 arasında</strong> yüksek ses yasaktır. Sokağa çıkma saatlerinde gürültü asgaride tutulmalıdır.</span></span></div>
+  <div class="clause"><span class="clause-num">14.2</span><span><span lang="en">Whether a bedroom door is open or closed during curfew is entirely at the occupant's discretion; they accept full responsibility for any resulting noise.</span><span lang="tr">Yasak saatlerde yatak odası kapısının açık mı kapalı mı olacağı tamamen oda sakininin takdirindedir; doğacak her türlü gürültünün tüm sorumluluğunu kabul eder.</span></span></div>
+  <div class="clause"><span class="clause-num">14.3</span><span><span lang="en">Odours affecting the surrounding corridor are a cross-jurisdictional offence between the Bedroom Committee and the Corridor Committee, and trigger the Inter-Room Committee.</span><span lang="tr">Çevredeki koridoru etkileyen kokular, Yatak Odası Komitesi ile Koridor Komitesi arasında yetki alanları kesişen bir suçtur ve Odalar Arası Komiteyi devreye sokar.</span></span></div>
+  <div class="clause"><span class="clause-num">14.4</span><span><span lang="en">Bedroom items causing clutter in communal spaces constitute a low-level offence of common area spillover, attracting a correspondingly low sentencing tier.</span><span lang="tr">Ortak alanlarda dağınıklığa yol açan yatak odası eşyaları, düşük düzeyli bir "ortak alan taşması" suçu oluşturur ve buna karşılık gelen düşük bir ceza kademesi uygulanır.</span></span></div>
 
-  <h3>Article 15 &mdash; The Corridor &amp; Stairs</h3>
-  <div class="clause"><span class="clause-num">15.1</span><span>The Corridor Committee and Stairs Committee hold jurisdiction over their respective spaces. Offences spanning both spaces trigger the Inter-Room Committee.</span></div>
+  <h3><span lang="en">Article 15 &mdash; The Corridor &amp; Stairs</span><span lang="tr">Madde 15 &mdash; Koridor ve Merdiven</span></h3>
+  <div class="clause"><span class="clause-num">15.1</span><span><span lang="en">The Corridor Committee and Stairs Committee hold jurisdiction over their respective spaces. Offences spanning both spaces trigger the Inter-Room Committee.</span><span lang="tr">Koridor Komitesi ve Merdiven Komitesi kendi alanlarında yetkilidir. Her iki alanı kapsayan suçlar Odalar Arası Komiteyi devreye sokar.</span></span></div>
 
-  <h3>Article 16 &mdash; The Punishment Room</h3>
-  <div class="clause"><span class="clause-num">16.1</span><span>The Punishment Room is the formal sentencing facility of the house. Its sentencing tiers:</span></div>
+  <h3><span lang="en">Article 16 &mdash; The Punishment Room</span><span lang="tr">Madde 16 &mdash; Ceza Odası</span></h3>
+  <div class="clause"><span class="clause-num">16.1</span><span><span lang="en">The Punishment Room is the formal sentencing facility of the house. Its sentencing tiers:</span><span lang="tr">Ceza Odası, evin resmî infaz birimidir. Ceza kademeleri şunlardır:</span></span></div>
   <table class="govuk-table">
-    <thead><tr><th>Tier</th><th>Duration</th><th>Conditions</th></tr></thead>
+    <thead><tr><th><span lang="en">Tier</span><span lang="tr">Kademe</span></th><th><span lang="en">Duration</span><span lang="tr">Süre</span></th><th><span lang="en">Conditions</span><span lang="tr">Koşullar</span></th></tr></thead>
     <tbody>
-      <tr><td>Tier 1</td><td>5 minutes</td><td>Standard</td></tr>
-      <tr><td>Tier 2</td><td>10 minutes</td><td>Standard</td></tr>
-      <tr><td>Tier 3</td><td>5 minutes</td><td>No phone</td></tr>
-      <tr><td>Tier 4</td><td>10 minutes</td><td>No phone</td></tr>
-      <tr><td>Tier 5</td><td>20 minutes</td><td>No phone</td></tr>
-      <tr><td>Tier 6</td><td>20 minutes</td><td>No phone, no light</td></tr>
-      <tr><td>Tier 7</td><td>15 minutes</td><td>No phone, no light, controlled speaker</td></tr>
+      <tr><td><span lang="en">Tier 1</span><span lang="tr">Kademe 1</span></td><td><span lang="en">5 minutes</span><span lang="tr">5 dakika</span></td><td><span lang="en">Standard</span><span lang="tr">Standart</span></td></tr>
+      <tr><td><span lang="en">Tier 2</span><span lang="tr">Kademe 2</span></td><td><span lang="en">10 minutes</span><span lang="tr">10 dakika</span></td><td><span lang="en">Standard</span><span lang="tr">Standart</span></td></tr>
+      <tr><td><span lang="en">Tier 3</span><span lang="tr">Kademe 3</span></td><td><span lang="en">5 minutes</span><span lang="tr">5 dakika</span></td><td><span lang="en">No phone</span><span lang="tr">Telefon yok</span></td></tr>
+      <tr><td><span lang="en">Tier 4</span><span lang="tr">Kademe 4</span></td><td><span lang="en">10 minutes</span><span lang="tr">10 dakika</span></td><td><span lang="en">No phone</span><span lang="tr">Telefon yok</span></td></tr>
+      <tr><td><span lang="en">Tier 5</span><span lang="tr">Kademe 5</span></td><td><span lang="en">20 minutes</span><span lang="tr">20 dakika</span></td><td><span lang="en">No phone</span><span lang="tr">Telefon yok</span></td></tr>
+      <tr><td><span lang="en">Tier 6</span><span lang="tr">Kademe 6</span></td><td><span lang="en">20 minutes</span><span lang="tr">20 dakika</span></td><td><span lang="en">No phone, no light</span><span lang="tr">Telefon yok, ışık yok</span></td></tr>
+      <tr><td><span lang="en">Tier 7</span><span lang="tr">Kademe 7</span></td><td><span lang="en">15 minutes</span><span lang="tr">15 dakika</span></td><td><span lang="en">No phone, no light, controlled speaker</span><span lang="tr">Telefon yok, ışık yok, kontrollü hoparlör</span></td></tr>
     </tbody>
   </table>
-  <div class="clause"><span class="clause-num">16.2</span><span>The prosecution determines the tier applied. Additional punishments beyond the Punishment Room tiers may also be imposed. The jury may vote to reduce the proposed punishment; this process is iterative until the jury is satisfied.</span></div>
-  <div class="clause"><span class="clause-num">16.3</span><span>Refusal to enter the Punishment Room without a valid reason or without invoking Article I of the Bill of Rights is an aggravating factor leading to sentence increase.</span></div>
+  <div class="clause"><span class="clause-num">16.2</span><span><span lang="en">The prosecution determines the tier applied. Additional punishments beyond the Punishment Room tiers may also be imposed. The jury may vote to reduce the proposed punishment; this process is iterative until the jury is satisfied.</span><span lang="tr">Uygulanacak kademeyi kovuşturma belirler. Ceza Odası kademelerinin ötesinde ek cezalar da verilebilir. Jüri, önerilen cezanın indirilmesi yönünde oy kullanabilir; bu süreç jüri tatmin olana kadar yinelenir.</span></span></div>
+  <div class="clause"><span class="clause-num">16.3</span><span><span lang="en">Refusal to enter the Punishment Room without a valid reason or without invoking Article I of the Bill of Rights is an aggravating factor leading to sentence increase.</span><span lang="tr">Geçerli bir sebep olmaksızın veya Haklar Bildirgesi'nin I. Maddesine dayanmaksızın Ceza Odasına girmeyi reddetmek, cezayı artıran ağırlaştırıcı bir unsurdur.</span></span></div>
+  <div class="clause"><span class="clause-num">16.4</span><span><span lang="en">The selection of any Punishment Room tier or Cleaning Punishment tier must have regard to the Sentencing Guidelines in Schedule B. A prosecution departing from the guideline band must state its reasons; an unexplained departure is a mitigating factor the jury must weigh in the defendant's favour.</span><span lang="tr">Herhangi bir Ceza Odası veya Temizlik Cezası kademesinin seçiminde Ek B'deki Ceza Rehberi dikkate alınmalıdır. Rehber bandından ayrılan bir kovuşturma gerekçelerini belirtmelidir; açıklanmayan bir sapma, jürinin sanık lehine tartması gereken hafifletici bir unsurdur.</span></span></div>
 
-  <h3>Article 17 &mdash; Cleaning Punishments</h3>
-  <div class="clause"><span class="clause-num">17.1</span><span>The Cleaning Punishment is a formal sentencing mechanism, available as a standalone punishment or stacked on top of a Punishment Room tier:</span></div>
+  <h3><span lang="en">Article 17 &mdash; Cleaning Punishments</span><span lang="tr">Madde 17 &mdash; Temizlik Cezaları</span></h3>
+  <div class="clause"><span class="clause-num">17.1</span><span><span lang="en">The Cleaning Punishment is a formal sentencing mechanism, available as a standalone punishment or stacked on top of a Punishment Room tier:</span><span lang="tr">Temizlik Cezası, tek başına veya bir Ceza Odası kademesinin üzerine eklenerek uygulanabilen resmî bir ceza mekanizmasıdır:</span></span></div>
   <table class="govuk-table">
-    <thead><tr><th>Tier</th><th>Room</th><th>Required tasks</th></tr></thead>
+    <thead><tr><th><span lang="en">Tier</span><span lang="tr">Kademe</span></th><th><span lang="en">Room</span><span lang="tr">Oda</span></th><th><span lang="en">Required tasks</span><span lang="tr">Gereken görevler</span></th></tr></thead>
     <tbody>
-      <tr><td>Cleaning Tier 1</td><td>Corridor</td><td>Hoover the corridor</td></tr>
-      <tr><td>Cleaning Tier 2</td><td>Stairs</td><td>Hoover the stairs</td></tr>
-      <tr><td>Cleaning Tier 3</td><td>Living Room</td><td>Hoover the living room; mop the floor</td></tr>
-      <tr><td>Cleaning Tier 4</td><td>Kitchen</td><td>Hoover; mop floor; wipe all surfaces; clean hob; clean inside microwave</td></tr>
-      <tr><td>Cleaning Tier 5</td><td>Both Bathrooms</td><td>Clean toilet; clean sink; mop floor; wipe all surfaces &mdash; both bathrooms</td></tr>
-      <tr><td>Cleaning Tier 6</td><td>Full House</td><td>All of the above in full</td></tr>
+      <tr><td><span lang="en">Cleaning Tier 1</span><span lang="tr">Temizlik Kademesi 1</span></td><td><span lang="en">Corridor</span><span lang="tr">Koridor</span></td><td><span lang="en">Hoover the corridor</span><span lang="tr">Koridoru süpür</span></td></tr>
+      <tr><td><span lang="en">Cleaning Tier 2</span><span lang="tr">Temizlik Kademesi 2</span></td><td><span lang="en">Stairs</span><span lang="tr">Merdiven</span></td><td><span lang="en">Hoover the stairs</span><span lang="tr">Merdivenleri süpür</span></td></tr>
+      <tr><td><span lang="en">Cleaning Tier 3</span><span lang="tr">Temizlik Kademesi 3</span></td><td><span lang="en">Living Room</span><span lang="tr">Oturma odası</span></td><td><span lang="en">Hoover the living room; mop the floor</span><span lang="tr">Oturma odasını süpür; yeri paspasla</span></td></tr>
+      <tr><td><span lang="en">Cleaning Tier 4</span><span lang="tr">Temizlik Kademesi 4</span></td><td><span lang="en">Kitchen</span><span lang="tr">Mutfak</span></td><td><span lang="en">Hoover; mop floor; wipe all surfaces; clean hob; clean inside microwave</span><span lang="tr">Süpür; yeri paspasla; tüm yüzeyleri sil; ocağı temizle; mikrodalganın içini temizle</span></td></tr>
+      <tr><td><span lang="en">Cleaning Tier 5</span><span lang="tr">Temizlik Kademesi 5</span></td><td><span lang="en">Both Bathrooms</span><span lang="tr">Her iki banyo</span></td><td><span lang="en">Clean toilet; clean sink; mop floor; wipe all surfaces &mdash; both bathrooms</span><span lang="tr">Tuvaleti temizle; lavaboyu temizle; yeri paspasla; tüm yüzeyleri sil &mdash; her iki banyoda</span></td></tr>
+      <tr><td><span lang="en">Cleaning Tier 6</span><span lang="tr">Temizlik Kademesi 6</span></td><td><span lang="en">Full House</span><span lang="tr">Tüm ev</span></td><td><span lang="en">All of the above in full</span><span lang="tr">Yukarıdakilerin tamamı eksiksiz</span></td></tr>
     </tbody>
   </table>
-  <div class="clause"><span class="clause-num">17.2</span><span>One cleaning tier maximum per underlying offence. Where a single prosecution charges multiple separate offences together, each offence may draw its own cleaning tier.</span></div>
-  <div class="clause"><span class="clause-num">17.3</span><span>Cleaning Tier 6 may be split across multiple days with a one (1) week time limit. All other tiers must be completed in a single sitting.</span></div>
-  <div class="clause"><span class="clause-num">17.4</span><span>The jury retains the right to vote for reduction of any cleaning punishment.</span></div>
+  <div class="clause"><span class="clause-num">17.2</span><span><span lang="en">One cleaning tier maximum per underlying offence. Where a single prosecution charges multiple separate offences together, each offence may draw its own cleaning tier.</span><span lang="tr">Her bir temel suç için en fazla bir temizlik kademesi uygulanır. Tek bir kovuşturmada birden fazla ayrı suç birlikte isnat edilirse, her suç kendi temizlik kademesini alabilir.</span></span></div>
+  <div class="clause"><span class="clause-num">17.3</span><span><span lang="en">Cleaning Tier 6 may be split across multiple days with a one (1) week time limit. All other tiers must be completed in a single sitting.</span><span lang="tr">Temizlik Kademesi 6, bir (1) haftalık süre sınırıyla birden fazla güne bölünebilir. Diğer tüm kademeler tek seferde tamamlanmalıdır.</span></span></div>
+  <div class="clause"><span class="clause-num">17.4</span><span><span lang="en">The jury retains the right to vote for reduction of any cleaning punishment.</span><span lang="tr">Jüri, her türlü temizlik cezasının indirilmesi için oy kullanma hakkını saklı tutar.</span></span></div>
 
   <div id="p5" class="part-header">
-    <span class="govuk-caption-part">Part V</span>
-    <h2>Prosecution &amp; Tribunal</h2>
+    <span class="govuk-caption-part"><span lang="en">Part V</span><span lang="tr">Bölüm V</span></span>
+    <h2><span lang="en">Prosecution &amp; Tribunal</span><span lang="tr">Kovuşturma ve Divan</span></h2>
   </div>
 
-  <h3>Article 18 &mdash; Right to Prosecute</h3>
-  <div class="clause"><span class="clause-num">18.1</span><span>The following may bring a prosecution: any housemate; any EVP holder.</span></div>
-  <div class="clause"><span class="clause-num">18.2</span><span>The following may be prosecuted: any housemate; any EVP holder; any visitor.</span></div>
+  <h3><span lang="en">Article 18 &mdash; Right to Prosecute</span><span lang="tr">Madde 18 &mdash; Kovuşturma Hakkı</span></h3>
+  <div class="clause"><span class="clause-num">18.1</span><span><span lang="en">The following may bring a prosecution: any housemate; any EVP holder.</span><span lang="tr">Şu kişiler kovuşturma açabilir: herhangi bir ev arkadaşı; herhangi bir EVP sahibi.</span></span></div>
+  <div class="clause"><span class="clause-num">18.2</span><span><span lang="en">The following may be prosecuted: any housemate; any EVP holder; any visitor.</span><span lang="tr">Şu kişiler kovuşturulabilir: herhangi bir ev arkadaşı; herhangi bir EVP sahibi; herhangi bir ziyaretçi.</span></span></div>
 
-  <h3>Article 19 &mdash; Service of Papers</h3>
-  <div class="clause"><span class="clause-num">19.1</span><span>A prosecution is formally commenced by serving papers upon the defendant, which must display in large writing: <span class="served-badge">YOU'VE BEEN SERVED</span></span></div>
-  <div class="clause"><span class="clause-num">19.2</span><span>Service formally opens the prosecution and triggers the right of both parties to begin preparing their case.</span></div>
-  <div class="clause"><span class="clause-num">19.3</span><span>Service must be completed within <strong>three (3) days</strong> of the offence. If the defendant cannot reasonably be located, a reasonable attempt to deliver the papers (e.g., leaving them at the defendant's known location) constitutes valid service. Whether an attempt was reasonable is determined by the Location Committee (Article 8), appealable to a jury trial under 20.1&ndash;20.3.</span></div>
+  <h3><span lang="en">Article 19 &mdash; Service of Papers</span><span lang="tr">Madde 19 &mdash; Tebligat</span></h3>
+  <div class="clause"><span class="clause-num">19.1</span><span><span lang="en">A prosecution is formally commenced by serving papers upon the defendant, which must display in large writing: <span class="served-badge">YOU'VE BEEN SERVED</span></span><span lang="tr">Kovuşturma, sanığa büyük harflerle şu ibareyi taşıyan evrakın tebliğiyle resmen başlar: <span class="served-badge">TEBLİĞ EDİLDİNİZ</span></span></span></div>
+  <div class="clause"><span class="clause-num">19.2</span><span><span lang="en">Service formally opens the prosecution and triggers the right of both parties to begin preparing their case.</span><span lang="tr">Tebligat, kovuşturmayı resmen açar ve her iki tarafın davasını hazırlamaya başlama hakkını doğurur.</span></span></div>
+  <div class="clause"><span class="clause-num">19.3</span><span><span lang="en">Service must be completed within <strong>three (3) days</strong> of the offence. If the defendant cannot reasonably be located, a reasonable attempt to deliver the papers (e.g., leaving them at the defendant's known location) constitutes valid service. Whether an attempt was reasonable is determined by the Location Committee (Article 8), appealable to a jury trial under 20.1&ndash;20.3.</span><span lang="tr">Tebligat, suçtan itibaren <strong>üç (3) gün</strong> içinde tamamlanmalıdır. Sanık makul biçimde bulunamıyorsa, evrakı ulaştırmaya yönelik makul bir girişim (örneğin sanığın bilinen yerine bırakmak) geçerli tebligat sayılır. Girişimin makul olup olmadığını Konum Komitesi (Madde 8) belirler; bu karara karşı 20.1&ndash;20.3 kapsamında jürili yargılamaya başvurulabilir.</span></span></div>
 
-  <h3>Article 20 &mdash; The Tribunal</h3>
-  <div class="clause"><span class="clause-num">20.1</span><span>All proceedings are entirely self-organised. The prosecution and defendant each present their own case to the jury. The defendant may represent themselves litigant in person.</span></div>
-  <div class="clause"><span class="clause-num">20.2</span><span>Jury consists of one (1) to five (5) persons, drawn only from housemates and EVP holders who are neither the prosecution nor the defendant in the matter. Simple majority verdict required. In the event of a tied vote, a sibling of a housemate &mdash; present and not connected to either party &mdash; casts the deciding vote, which is final.</span></div>
-  <div class="clause"><span class="clause-num">20.3</span><span>Both parties have the right to call witnesses. Witnesses cannot be compelled to appear. A prosecution brought in bad faith is itself a prosecutable offence.</span></div>
-  <div class="clause"><span class="clause-num">20.4</span><span>Wherever this Constitution calls for a tribunal vote of the full house (including under Article 5, Part VII, and Article 22 appeals), every housemate and EVP holder who is not the defendant in the matter is entitled to vote, and a simple majority &mdash; over half of eligible voters &mdash; is required to pass, except where this Constitution specifies otherwise (e.g., the unanimous vote required to impeach a Rules Committee member under 6.2, and the housemates-only vote on EVP status under Article 3).</span></div>
+  <h3><span lang="en">Article 20 &mdash; The Tribunal</span><span lang="tr">Madde 20 &mdash; Divan</span></h3>
+  <div class="clause"><span class="clause-num">20.1</span><span><span lang="en">All proceedings are entirely self-organised. The prosecution and defendant each present their own case to the jury. The defendant may represent themselves litigant in person.</span><span lang="tr">Tüm yargılamalar tamamen öz-örgütlüdür. Kovuşturma ve sanık, davalarını jüriye kendileri sunar. Sanık kendini bizzat temsil edebilir.</span></span></div>
+  <div class="clause"><span class="clause-num">20.2</span><span><span lang="en">Jury consists of one (1) to five (5) persons, drawn only from housemates and EVP holders who are neither the prosecution nor the defendant in the matter. Simple majority verdict required. In the event of a tied vote, a sibling of a housemate &mdash; present and not connected to either party &mdash; casts the deciding vote, which is final.</span><span lang="tr">Jüri, davada ne kovuşturan ne de sanık olan ev arkadaşları ve EVP sahipleri arasından seçilen bir (1) ilâ beş (5) kişiden oluşur. Salt çoğunlukla karar verilir. Oyların eşitliği hâlinde, orada bulunan ve taraflarla bağlantısı olmayan bir ev arkadaşının kardeşi belirleyici oyu kullanır; bu oy kesindir.</span></span></div>
+  <div class="clause"><span class="clause-num">20.3</span><span><span lang="en">Both parties have the right to call witnesses. Witnesses cannot be compelled to appear. A prosecution brought in bad faith is itself a prosecutable offence.</span><span lang="tr">Her iki tarafın da tanık çağırma hakkı vardır. Tanıklar gelmeye zorlanamaz. Kötü niyetle açılan bir kovuşturma, kendisi kovuşturulabilir bir suçtur.</span></span></div>
+  <div class="clause"><span class="clause-num">20.4</span><span><span lang="en">Wherever this Constitution calls for a tribunal vote of the full house (including under Article 5, Part VII, and Article 22 appeals), every housemate and EVP holder who is not the defendant in the matter is entitled to vote, and a simple majority &mdash; over half of eligible voters &mdash; is required to pass, except where this Constitution specifies otherwise (e.g., the unanimous vote required to impeach a Rules Committee member under 6.2, and the housemates-only vote on EVP status under Article 3).</span><span lang="tr">Bu Anayasanın tüm evin divan oylamasını öngördüğü her durumda (Madde 5, Bölüm VII ve Madde 22 temyizleri dâhil), davada sanık olmayan her ev arkadaşı ve EVP sahibi oy kullanma hakkına sahiptir ve kabul için salt çoğunluk &mdash; oy hakkı olanların yarısından fazlası &mdash; gerekir; bu Anayasanın aksini belirttiği hâller (örneğin 6.2 kapsamında Kurallar Komitesi üyesinin azli için gereken oybirliği ve Madde 3 kapsamındaki yalnızca ev arkadaşlarına özgü EVP oylaması) saklıdır.</span></span></div>
 
-  <h3>Article 21 &mdash; Statute of Limitations</h3>
-  <div class="clause"><span class="clause-num">21.1</span><span>Any offence for which service of papers (Article 19) is not completed within <strong>three (3) days</strong> of its commission is null and void.</span></div>
+  <h3><span lang="en">Article 21 &mdash; Statute of Limitations</span><span lang="tr">Madde 21 &mdash; Zamanaşımı</span></h3>
+  <div class="clause"><span class="clause-num">21.1</span><span><span lang="en">Any offence for which service of papers (Article 19) is not completed within <strong>three (3) days</strong> of its commission is null and void.</span><span lang="tr">İşlenmesinden itibaren <strong>üç (3) gün</strong> içinde tebligatı (Madde 19) tamamlanmayan her suç hükümsüzdür.</span></span></div>
 
-  <h3>Article 22 &mdash; Appeals</h3>
-  <div class="clause"><span class="clause-num">22.1</span><span>Any party to a non-unanimous tribunal verdict may appeal, within <strong>forty-eight (48) hours</strong> of the verdict, by demanding a new hearing, provided they present evidence not considered at the original tribunal. A unanimous verdict may not be appealed.</span></div>
-  <div class="clause"><span class="clause-num">22.2</span><span>The appeal hearing follows the standard tribunal process of Article 20, convened with a newly assembled jury, and must take place within <strong>seventy-two (72) hours</strong> of the appeal being demanded.</span></div>
-  <div class="clause"><span class="clause-num">22.3</span><span>Only one appeal is permitted per offence. The verdict of the appeal hearing is final, regardless of unanimity.</span></div>
+  <h3><span lang="en">Article 22 &mdash; Appeals</span><span lang="tr">Madde 22 &mdash; Temyiz</span></h3>
+  <div class="clause"><span class="clause-num">22.1</span><span><span lang="en">Any party to a non-unanimous tribunal verdict may appeal, within <strong>forty-eight (48) hours</strong> of the verdict, by demanding a new hearing, provided they present evidence not considered at the original tribunal. A unanimous verdict may not be appealed.</span><span lang="tr">Oybirliğiyle alınmamış bir divan kararının tarafları, ilk divanda değerlendirilmemiş delil sunmaları şartıyla, karardan itibaren <strong>kırk sekiz (48) saat</strong> içinde yeni bir duruşma talep ederek temyize gidebilir. Oybirliğiyle alınan karar temyiz edilemez.</span></span></div>
+  <div class="clause"><span class="clause-num">22.2</span><span><span lang="en">The appeal hearing follows the standard tribunal process of Article 20, convened with a newly assembled jury, and must take place within <strong>seventy-two (72) hours</strong> of the appeal being demanded.</span><span lang="tr">Temyiz duruşması, yeni oluşturulan bir jüriyle Madde 20'deki standart divan usulünü izler ve temyiz talebinden itibaren <strong>yetmiş iki (72) saat</strong> içinde yapılmalıdır.</span></span></div>
+  <div class="clause"><span class="clause-num">22.3</span><span><span lang="en">Only one appeal is permitted per offence. The verdict of the appeal hearing is final, regardless of unanimity.</span><span lang="tr">Her suç için yalnızca bir temyize izin verilir. Temyiz duruşmasının kararı, oybirliği olup olmadığına bakılmaksızın kesindir.</span></span></div>
 
   <div id="p6" class="part-header">
-    <span class="govuk-caption-part">Part VI</span>
-    <h2>The Bill of Rights</h2>
+    <span class="govuk-caption-part"><span lang="en">Part VI</span><span lang="tr">Bölüm VI</span></span>
+    <h2><span lang="en">The Bill of Rights</span><span lang="tr">Haklar Bildirgesi</span></h2>
   </div>
 
   <div class="govuk-inset-text">
-    <p class="bor-title">Article I &mdash; The right of postponement</p>
-    <p>Any punishment may be postponed for up to one (1) week upon utterance of the command phrase: <span class="command-phrase">"Stop it, I do not like this anymore!"</span></p>
-    <p>Invocable once per offence only, independently for each separate offence. The defendant remains fully convicted during the postponement week and may serve their sentence at any point during it. The right to appeal is preserved.</p>
+    <p class="bor-title"><span lang="en">Article I &mdash; The right of postponement</span><span lang="tr">Madde I &mdash; Erteleme hakkı</span></p>
+    <p><span lang="en">Any punishment may be postponed for up to one (1) week upon utterance of the command phrase: <span class="command-phrase">"Stop it, I do not like this anymore!"</span></span><span lang="tr">Her ceza, şu komut cümlesinin söylenmesiyle bir (1) haftaya kadar ertelenebilir: <span class="command-phrase">"Stop it, I do not like this anymore!"</span></span></p>
+    <p><span lang="en">Invocable once per offence only, independently for each separate offence. The defendant remains fully convicted during the postponement week and may serve their sentence at any point during it. The right to appeal is preserved.</span><span lang="tr">Her suç için yalnızca bir kez, her ayrı suç için bağımsız olarak kullanılabilir. Sanık, erteleme haftası boyunca mahkûm kalmaya devam eder ve cezasını bu süre içinde dilediği an çekebilir. Temyiz hakkı saklıdır.</span></span></p>
   </div>
 
   <div class="govuk-inset-text">
-    <p class="bor-title">Article II &mdash; The right to a timely tribunal</p>
-    <p>Every defendant has the right to a fair and timely tribunal. A prosecution may not be indefinitely delayed once formally filed. The statute of limitations in Article 21 governs timeliness.</p>
+    <p class="bor-title"><span lang="en">Article II &mdash; The right to a timely tribunal</span><span lang="tr">Madde II &mdash; Zamanında divan hakkı</span></p>
+    <p><span lang="en">Every defendant has the right to a fair and timely tribunal. A prosecution may not be indefinitely delayed once formally filed. The statute of limitations in Article 21 governs timeliness.</span><span lang="tr">Her sanık, adil ve zamanında bir divan hakkına sahiptir. Resmen açılmış bir kovuşturma süresiz olarak geciktirilemez. Zamanındalık, Madde 21'deki zamanaşımıyla düzenlenir.</span></span></p>
   </div>
 
   <div class="govuk-inset-text">
-    <p class="bor-title">Article III &mdash; The right against double jeopardy</p>
-    <p>No housemate, EVP holder, or visitor may be prosecuted twice for the same offence. Once a verdict is delivered, the matter is permanently closed, save for a single appeal under Article 22.</p>
+    <p class="bor-title"><span lang="en">Article III &mdash; The right against double jeopardy</span><span lang="tr">Madde III &mdash; Aynı suçtan iki kez yargılanmama hakkı</span></p>
+    <p><span lang="en">No housemate, EVP holder, or visitor may be prosecuted twice for the same offence. Once a verdict is delivered, the matter is permanently closed, save for a single appeal under Article 22.</span><span lang="tr">Hiçbir ev arkadaşı, EVP sahibi veya ziyaretçi aynı suçtan iki kez kovuşturulamaz. Karar verildiğinde mesele, Madde 22 kapsamındaki tek temyiz hakkı saklı kalmak üzere, kalıcı olarak kapanır.</span></span></p>
   </div>
 
   <div class="govuk-inset-text">
-    <p class="bor-title">Article IV &mdash; The right to call witnesses</p>
-    <p>Both the prosecution and the defendant have the right to call witnesses during tribunal proceedings. Witnesses may not be compelled to appear and retain the right to refuse.</p>
+    <p class="bor-title"><span lang="en">Article IV &mdash; The right to call witnesses</span><span lang="tr">Madde IV &mdash; Tanık çağırma hakkı</span></p>
+    <p><span lang="en">Both the prosecution and the defendant have the right to call witnesses during tribunal proceedings. Witnesses may not be compelled to appear and retain the right to refuse.</span><span lang="tr">Divan yargılamasında hem kovuşturma hem de sanık tanık çağırma hakkına sahiptir. Tanıklar gelmeye zorlanamaz ve reddetme hakkını saklı tutar.</span></span></p>
   </div>
 
   <div class="govuk-inset-text">
-    <p class="bor-title">Article V &mdash; The right to bedroom privacy</p>
-    <p>Every housemate has the right to privacy within their own bedroom. No housemate may enter another's bedroom without the explicit permission of the occupant.</p>
+    <p class="bor-title"><span lang="en">Article V &mdash; The right to bedroom privacy</span><span lang="tr">Madde V &mdash; Yatak odası mahremiyeti hakkı</span></p>
+    <p><span lang="en">Every housemate has the right to privacy within their own bedroom. No housemate may enter another's bedroom without the explicit permission of the occupant.</span><span lang="tr">Her ev arkadaşı, kendi yatak odasında mahremiyet hakkına sahiptir. Hiçbir ev arkadaşı, oda sakininin açık izni olmadan başkasının yatak odasına giremez.</span></span></p>
   </div>
 
   <div class="govuk-inset-text">
-    <p class="bor-title">Article VI &mdash; The presumption of innocence</p>
-    <p>Every defendant is presumed innocent until found guilty by tribunal vote. The burden of proof lies with the prosecution.</p>
+    <p class="bor-title"><span lang="en">Article VI &mdash; The presumption of innocence</span><span lang="tr">Madde VI &mdash; Masumiyet karinesi</span></p>
+    <p><span lang="en">Every defendant is presumed innocent until found guilty by tribunal vote. The burden of proof lies with the prosecution.</span><span lang="tr">Her sanık, divan oylamasıyla suçlu bulunana dek masum sayılır. İspat yükü kovuşturmaya aittir.</span></span></p>
   </div>
 
   <div id="p7" class="part-header">
-    <span class="govuk-caption-part">Part VII</span>
-    <h2>Constitutional Amendments</h2>
+    <span class="govuk-caption-part"><span lang="en">Part VII</span><span lang="tr">Bölüm VII</span></span>
+    <h2><span lang="en">Constitutional Amendments</span><span lang="tr">Anayasa Değişiklikleri</span></h2>
   </div>
-  <div class="clause"><span class="clause-num">1</span><span>New rules and amendments may only be proposed by the Rules Committee.</span></div>
-  <div class="clause"><span class="clause-num">2</span><span>All proposed amendments must be ratified by a tribunal vote of the house before taking effect.</span></div>
-  <div class="clause"><span class="clause-num">3</span><span>No amendment may remove or diminish the rights enshrined in the Bill of Rights.</span></div>
+  <div class="clause"><span class="clause-num">1</span><span><span lang="en">New rules and amendments may only be proposed by the Rules Committee.</span><span lang="tr">Yeni kurallar ve değişiklikler yalnızca Kurallar Komitesi tarafından önerilebilir.</span></span></div>
+  <div class="clause"><span class="clause-num">2</span><span><span lang="en">All proposed amendments must be ratified by a tribunal vote of the house before taking effect.</span><span lang="tr">Önerilen tüm değişiklikler, yürürlüğe girmeden önce evin divan oylamasıyla onaylanmalıdır.</span></span></div>
+  <div class="clause"><span class="clause-num">3</span><span><span lang="en">No amendment may remove or diminish the rights enshrined in the Bill of Rights.</span><span lang="tr">Hiçbir değişiklik, Haklar Bildirgesi'nde güvence altına alınan hakları kaldıramaz veya zayıflatamaz.</span></span></div>
+
+  <div id="p8" class="part-header">
+    <span class="govuk-caption-part"><span lang="en">Part VIII</span><span lang="tr">Bölüm VIII</span></span>
+    <h2><span lang="en">External Relations &amp; Emergency Provisions</span><span lang="tr">Dış İlişkiler ve Olağanüstü Hâl Hükümleri</span></h2>
+  </div>
+
+  <h3><span lang="en">Article 23 &mdash; The Foreign Affairs Committee &amp; Treaties</span><span lang="tr">Madde 23 &mdash; Dışişleri Komitesi ve Antlaşmalar</span></h3>
+  <div class="clause"><span class="clause-num">23.1</span><span><span lang="en">The Foreign Affairs Committee holds exclusive authority to negotiate treaties with other households, including noise pacts, mutual aid agreements, item-lending conventions, and reciprocal EVP recognition.</span><span lang="tr">Dışişleri Komitesi; gürültü paktları, karşılıklı yardım anlaşmaları, eşya ödünç verme sözleşmeleri ve karşılıklı EVP tanınması dâhil olmak üzere diğer hanelerle antlaşma müzakere etme yetkisini münhasıran elinde tutar.</span></span></div>
+  <div class="clause"><span class="clause-num">23.2</span><span><span lang="en">No treaty binds the house until ratified by a tribunal vote of the full house under 20.4.</span><span lang="tr">Hiçbir antlaşma, 20.4 kapsamında tüm evin divan oylamasıyla onaylanmadıkça evi bağlamaz.</span></span></div>
+  <div class="clause"><span class="clause-num">23.3</span><span><span lang="en">Ratified treaties rank below this Constitution. Any treaty term conflicting with this Constitution or the Bill of Rights is void to the extent of the conflict.</span><span lang="tr">Onaylanan antlaşmalar bu Anayasanın altında yer alır. Bu Anayasa veya Haklar Bildirgesi ile çelişen her antlaşma hükmü, çelişki ölçüsünde geçersizdir.</span></span></div>
+  <div class="clause"><span class="clause-num">23.4</span><span><span lang="en">The house may withdraw from a treaty by the same vote required to ratify it. Withdrawal must be notified in writing to the counterpart household.</span><span lang="tr">Ev, bir antlaşmadan, onaylanması için gereken oylamanın aynısıyla çekilebilir. Çekilme, karşı haneye yazılı olarak bildirilmelidir.</span></span></div>
+
+  <h3><span lang="en">Article 24 &mdash; States of Emergency</span><span lang="tr">Madde 24 &mdash; Olağanüstü Hâller</span></h3>
+  <div class="clause"><span class="clause-num">24.1</span><span><span lang="en">Any housemate may declare a State of Emergency upon the arrival, or confirmed imminent arrival, of an external authority &mdash; including a landlord or agent inspection, a parental visit, or tradespeople.</span><span lang="tr">Herhangi bir ev arkadaşı; ev sahibi veya emlakçı denetimi, ebeveyn ziyareti veya tamirci gelişi dâhil olmak üzere harici bir otoritenin gelmesi ya da gelişinin kesinleşmesi üzerine Olağanüstü Hâl ilan edebilir.</span></span></div>
+  <div class="clause"><span class="clause-num">24.2</span><span><span lang="en">During a State of Emergency: all pass requirements are suspended; all grace-period timers are paused; and no new prosecution may be commenced in respect of conduct forming part of the emergency response.</span><span lang="tr">Olağanüstü Hâl süresince: tüm paso zorunlulukları askıya alınır; tüm hoşgörü süresi sayaçları durdurulur; ve olağanüstü hâle müdahale kapsamındaki davranışlarla ilgili yeni kovuşturma açılamaz.</span></span></div>
+  <div class="clause"><span class="clause-num">24.3</span><span><span lang="en">The State of Emergency ends automatically when the external party departs the premises. Any time limit (service, appeal, grace period) suspended during the emergency resumes upon its end.</span><span lang="tr">Olağanüstü Hâl, harici tarafın evden ayrılmasıyla kendiliğinden sona erer. Olağanüstü hâl sırasında askıya alınan her süre sınırı (tebligat, temyiz, hoşgörü süresi), hâlin sona ermesiyle kaldığı yerden devam eder.</span></span></div>
+  <div class="clause"><span class="clause-num">24.4</span><span><span lang="en">A declaration made in bad faith &mdash; where no external party arrives or was genuinely expected &mdash; is a prosecutable offence falling within Band 3 (Serious) of Schedule B.</span><span lang="tr">Kötü niyetle yapılan bir ilan &mdash; hiçbir harici tarafın gelmediği veya gerçekten beklenmediği durumlarda &mdash; Ek B'nin 3. Bandı (Ciddi) kapsamına giren kovuşturulabilir bir suçtur.</span></span></div>
 
   <div id="sched" class="part-header">
-    <span class="govuk-caption-part">Schedule A</span>
-    <h2>Full Committee Directory</h2>
+    <span class="govuk-caption-part"><span lang="en">Schedule A</span><span lang="tr">Ek A</span></span>
+    <h2><span lang="en">Full Committee Directory</span><span lang="tr">Tam Komite Rehberi</span></h2>
   </div>
   <table class="govuk-table">
-    <thead><tr><th>Committee</th><th>Size</th><th>Election cycle</th><th>Oversight</th></tr></thead>
+    <thead><tr><th><span lang="en">Committee</span><span lang="tr">Komite</span></th><th><span lang="en">Size</span><span lang="tr">Üye</span></th><th><span lang="en">Election cycle</span><span lang="tr">Seçim döngüsü</span></th><th><span lang="en">Oversight</span><span lang="tr">Denetim</span></th></tr></thead>
     <tbody>
-      <tr><td>Kitchen Committee</td><td>2</td><td>Monthly</td><td>Inter-Room if cross-jurisdictional</td></tr>
-      <tr><td>Living Room Committee</td><td>2</td><td>Monthly</td><td>Inter-Room if cross-jurisdictional</td></tr>
-      <tr><td>Corridor Committee</td><td>2</td><td>Monthly</td><td>Inter-Room if cross-jurisdictional</td></tr>
-      <tr><td>Stairs Committee</td><td>2</td><td>Monthly</td><td>Inter-Room if cross-jurisdictional</td></tr>
-      <tr><td>Bathroom Committee (1st floor)</td><td>3</td><td>Monthly</td><td>Independent</td></tr>
-      <tr><td>Bathroom Committee (2nd floor)</td><td>2</td><td>Monthly</td><td>Independent</td></tr>
-      <tr><td>Bedroom Committee</td><td>2</td><td>Monthly</td><td>Inter-Room if cross-jurisdictional</td></tr>
-      <tr><td>Rules Committee</td><td>2</td><td>Monthly</td><td>Prosecuted by Committee Committee; members individually impeachable by unanimous vote of the rest of the house</td></tr>
-      <tr><td>Committee Committee</td><td>2</td><td>Bi-monthly (staggered)</td><td>Prosecuted by Rules Committee; elections run by Rules Committee</td></tr>
-      <tr><td>Pass Committee</td><td>2</td><td>Monthly</td><td>Standard</td></tr>
-      <tr><td>Location Committee</td><td>2</td><td>Monthly</td><td>Rulings appealable to tribunal</td></tr>
-      <tr><td>Inter-Room Committee</td><td>2 (1 per committee)</td><td>Ad-hoc</td><td>Temporary</td></tr>
+      <tr><td><span lang="en">Kitchen Committee</span><span lang="tr">Mutfak Komitesi</span></td><td>2</td><td><span lang="en">Monthly</span><span lang="tr">Aylık</span></td><td><span lang="en">Inter-Room if cross-jurisdictional</span><span lang="tr">Yetki alanları kesişirse Odalar Arası</span></td></tr>
+      <tr><td><span lang="en">Living Room Committee</span><span lang="tr">Oturma Odası Komitesi</span></td><td>2</td><td><span lang="en">Monthly</span><span lang="tr">Aylık</span></td><td><span lang="en">Inter-Room if cross-jurisdictional</span><span lang="tr">Yetki alanları kesişirse Odalar Arası</span></td></tr>
+      <tr><td><span lang="en">Corridor Committee</span><span lang="tr">Koridor Komitesi</span></td><td>2</td><td><span lang="en">Monthly</span><span lang="tr">Aylık</span></td><td><span lang="en">Inter-Room if cross-jurisdictional</span><span lang="tr">Yetki alanları kesişirse Odalar Arası</span></td></tr>
+      <tr><td><span lang="en">Stairs Committee</span><span lang="tr">Merdiven Komitesi</span></td><td>2</td><td><span lang="en">Monthly</span><span lang="tr">Aylık</span></td><td><span lang="en">Inter-Room if cross-jurisdictional</span><span lang="tr">Yetki alanları kesişirse Odalar Arası</span></td></tr>
+      <tr><td><span lang="en">Bathroom Committee (1st floor)</span><span lang="tr">Banyo Komitesi (1. kat)</span></td><td>3</td><td><span lang="en">Monthly</span><span lang="tr">Aylık</span></td><td><span lang="en">Independent</span><span lang="tr">Bağımsız</span></td></tr>
+      <tr><td><span lang="en">Bathroom Committee (2nd floor)</span><span lang="tr">Banyo Komitesi (2. kat)</span></td><td>2</td><td><span lang="en">Monthly</span><span lang="tr">Aylık</span></td><td><span lang="en">Independent</span><span lang="tr">Bağımsız</span></td></tr>
+      <tr><td><span lang="en">Bedroom Committee</span><span lang="tr">Yatak Odası Komitesi</span></td><td>2</td><td><span lang="en">Monthly</span><span lang="tr">Aylık</span></td><td><span lang="en">Inter-Room if cross-jurisdictional</span><span lang="tr">Yetki alanları kesişirse Odalar Arası</span></td></tr>
+      <tr><td><span lang="en">Rules Committee</span><span lang="tr">Kurallar Komitesi</span></td><td>2</td><td><span lang="en">Monthly</span><span lang="tr">Aylık</span></td><td><span lang="en">Prosecuted by Committee Committee; members individually impeachable by unanimous vote of the rest of the house</span><span lang="tr">Komite Komitesi tarafından kovuşturulur; üyeler, evin geri kalanının oybirliğiyle tek tek azledilebilir</span></td></tr>
+      <tr><td><span lang="en">Committee Committee</span><span lang="tr">Komite Komitesi</span></td><td>2</td><td><span lang="en">Bi-monthly (staggered)</span><span lang="tr">İki ayda bir (kademeli)</span></td><td><span lang="en">Prosecuted by Rules Committee; elections run by Rules Committee</span><span lang="tr">Kurallar Komitesi tarafından kovuşturulur; seçimlerini Kurallar Komitesi yürütür</span></td></tr>
+      <tr><td><span lang="en">Pass Committee</span><span lang="tr">Pasolar Komitesi</span></td><td>2</td><td><span lang="en">Monthly</span><span lang="tr">Aylık</span></td><td><span lang="en">Standard</span><span lang="tr">Standart</span></td></tr>
+      <tr><td><span lang="en">Location Committee</span><span lang="tr">Konum Komitesi</span></td><td>2</td><td><span lang="en">Monthly</span><span lang="tr">Aylık</span></td><td><span lang="en">Rulings appealable to tribunal</span><span lang="tr">Kararlarına karşı divana başvurulabilir</span></td></tr>
+      <tr><td><span lang="en">Foreign Affairs Committee</span><span lang="tr">Dışişleri Komitesi</span></td><td>2</td><td><span lang="en">Monthly</span><span lang="tr">Aylık</span></td><td><span lang="en">Treaties require full-house ratification (23.2)</span><span lang="tr">Antlaşmalar tüm evin onayını gerektirir (23.2)</span></td></tr>
+      <tr><td><span lang="en">Inter-Room Committee</span><span lang="tr">Odalar Arası Komite</span></td><td><span lang="en">1 per committee</span><span lang="tr">Komite başına 1</span></td><td><span lang="en">Ad-hoc</span><span lang="tr">Geçici</span></td><td><span lang="en">Temporary</span><span lang="tr">Geçici</span></td></tr>
     </tbody>
   </table>
 
+  <div id="schedb" class="part-header">
+    <span class="govuk-caption-part"><span lang="en">Schedule B</span><span lang="tr">Ek B</span></span>
+    <h2><span lang="en">Sentencing Guidelines</span><span lang="tr">Ceza Rehberi</span></h2>
+  </div>
+  <p><span lang="en">These guidelines are binding under clause 16.4. The prosecution selects a tier within the band for the offence; departures require stated reasons.</span><span lang="tr">Bu rehber, 16.4 hükmü uyarınca bağlayıcıdır. Kovuşturma, suçun bandı içinde bir kademe seçer; sapmalar gerekçe gösterilmesini gerektirir.</span></p>
+  <table class="govuk-table">
+    <thead><tr><th><span lang="en">Band</span><span lang="tr">Bant</span></th><th><span lang="en">Range</span><span lang="tr">Aralık</span></th><th><span lang="en">Example offences</span><span lang="tr">Örnek suçlar</span></th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span lang="en"><strong>Band 1 &mdash; Minor</strong></span><span lang="tr"><strong>Bant 1 &mdash; Hafif</strong></span></td>
+        <td><span lang="en">Punishment Room Tiers 1&ndash;2</span><span lang="tr">Ceza Odası Kademe 1&ndash;2</span></td>
+        <td><span lang="en">Common area spillover (14.4); a kitchen disturbance remedied shortly after the grace period; a visitor's cutlery overrun under ten minutes</span><span lang="tr">Ortak alan taşması (14.4); hoşgörü süresinden kısa süre sonra giderilen mutfak dağınıklığı; ziyaretçinin çatal-bıçak süresini on dakikadan az aşması</span></td>
+      </tr>
+      <tr>
+        <td><span lang="en"><strong>Band 2 &mdash; Moderate</strong></span><span lang="tr"><strong>Bant 2 &mdash; Orta</strong></span></td>
+        <td><span lang="en">Tiers 3&ndash;4, plus Cleaning Tiers 1&ndash;2</span><span lang="tr">Kademe 3&ndash;4, artı Temizlik Kademesi 1&ndash;2</span></td>
+        <td><span lang="en">Kitchen disturbance unresolved past the grace period (11.2); curfew noise (14.1); living room status quo disturbance (12.1); an odour offence (14.3)</span><span lang="tr">Hoşgörü süresi geçtiği hâlde giderilmeyen mutfak dağınıklığı (11.2); yasak saat gürültüsü (14.1); oturma odası düzeninin bozulması (12.1); koku suçu (14.3)</span></td>
+      </tr>
+      <tr>
+        <td><span lang="en"><strong>Band 3 &mdash; Serious</strong></span><span lang="tr"><strong>Bant 3 &mdash; Ciddi</strong></span></td>
+        <td><span lang="en">Tiers 5&ndash;6, plus Cleaning Tiers 3&ndash;4</span><span lang="tr">Kademe 5&ndash;6, artı Temizlik Kademesi 3&ndash;4</span></td>
+        <td><span lang="en">Unauthorised or secret bathroom use (13.3); forging or falsifying a pass; a bad-faith emergency declaration (24.4); a second Band 2 offence within one month</span><span lang="tr">İzinsiz veya gizli banyo kullanımı (13.3); paso sahteciliği; kötü niyetli olağanüstü hâl ilanı (24.4); bir ay içinde ikinci Bant 2 suçu</span></td>
+      </tr>
+      <tr>
+        <td><span lang="en"><strong>Band 4 &mdash; Egregious</strong></span><span lang="tr"><strong>Bant 4 &mdash; Vahim</strong></span></td>
+        <td><span lang="en">Tier 7, plus Cleaning Tiers 5&ndash;6</span><span lang="tr">Kademe 7, artı Temizlik Kademesi 5&ndash;6</span></td>
+        <td><span lang="en">A prosecution brought in bad faith (20.3); violation of bedroom privacy (Bill of Rights V); tampering with a committee election (5.3); a second Band 3 offence within one month</span><span lang="tr">Kötü niyetle açılan kovuşturma (20.3); yatak odası mahremiyetinin ihlali (Haklar Bildirgesi V); komite seçimine hile karıştırma (5.3); bir ay içinde ikinci Bant 3 suçu</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><span lang="en">Aggravating factors</span><span lang="tr">Ağırlaştırıcı unsurlar</span></h3>
+  <ul>
+    <li><span lang="en">Refusing to enter the Punishment Room without valid reason (16.3)</span><span lang="tr">Geçerli sebep olmaksızın Ceza Odasına girmeyi reddetmek (16.3)</span></li>
+    <li><span lang="en">Committing the offence during a declared State of Emergency</span><span lang="tr">Suçu ilan edilmiş bir Olağanüstü Hâl sırasında işlemek</span></li>
+    <li><span lang="en">Concealing evidence or lying to the tribunal</span><span lang="tr">Delil gizlemek veya divana yalan söylemek</span></li>
+    <li><span lang="en">Targeting a visitor who cannot easily defend themselves</span><span lang="tr">Kendini kolayca savunamayacak bir ziyaretçiyi hedef almak</span></li>
+  </ul>
+  <h3><span lang="en">Mitigating factors</span><span lang="tr">Hafifletici unsurlar</span></h3>
+  <ul>
+    <li><span lang="en">Remedying the disturbance before prosecution commenced</span><span lang="tr">Kovuşturma başlamadan önce durumu düzeltmek</span></li>
+    <li><span lang="en">A first offence</span><span lang="tr">İlk suç olması</span></li>
+    <li><span lang="en">Self-reporting the offence</span><span lang="tr">Suçu kendiliğinden bildirmek</span></li>
+    <li><span lang="en">A genuine apology accepted by the affected party</span><span lang="tr">Mağdur tarafça kabul edilen samimi bir özür</span></li>
+  </ul>
+
   <div class="ratification">
-    <h2>Ratification</h2>
-    <p>We, the undersigned housemates of 19 Larkspur Terrace, do hereby adopt and ratify this Constitution as the supreme law of the house.</p>
+    <h2><span lang="en">Ratification</span><span lang="tr">Onay</span></h2>
+    <p><span lang="en">We, the undersigned housemates of 19 Larkspur Terrace, do hereby adopt and ratify this Constitution as the supreme law of the house.</span><span lang="tr">Biz, aşağıda imzası bulunan 19 Larkspur Terrace ev arkadaşları, bu Anayasayı evin en üstün yasası olarak kabul ve tasdik ederiz.</span></p>
     <div class="sig-block">
       <div><div class="sig-line"></div><div class="sig-name">George Cronin</div></div>
       <div><div class="sig-line"></div><div class="sig-name">George Bale</div></div>
       <div><div class="sig-line"></div><div class="sig-name">Alexander Pear</div></div>
       <div><div class="sig-line"></div><div class="sig-name">Freddie Austin Smith</div></div>
       <div><div class="sig-line"></div><div class="sig-name">Oliver Shawyer</div></div>
-      <div><div class="sig-line"></div><div class="sig-name">Date of ratification</div></div>
+      <div><div class="sig-line"></div><div class="sig-name"><span lang="en">Date of ratification</span><span lang="tr">Onay tarihi</span></div></div>
     </div>
   </div>
 
@@ -610,17 +393,20 @@
 <footer class="govuk-footer">
   <div class="width-container">
     <ul class="govuk-footer__links">
-      <li><a href="index.html">How the house works</a></li>
-      <li><a href="constitution.pdf" download>Download PDF</a></li>
+      <li><a href="index.html"><span lang="en">How the house works</span><span lang="tr">Ev nasıl işler</span></a></li>
+      <li><a href="amendments.html"><span lang="en">Amendment history</span><span lang="tr">Değişiklik geçmişi</span></a></li>
+      <li><a href="case-law.html"><span lang="en">Case law</span><span lang="tr">İçtihat</span></a></li>
+      <li><a href="constitution.pdf" download><span lang="en">Download PDF</span><span lang="tr">PDF indir</span></a></li>
     </ul>
     <div class="govuk-footer__meta">
       <div class="govuk-footer__licence">
-        <p>All content is available under the Open Household Licence v1.0, except where otherwise stated.</p>
+        <p><span lang="en">All content is available under the Open Household Licence v1.0, except where otherwise stated.</span><span lang="tr">Aksi belirtilmedikçe tüm içerik Açık Hane Lisansı v1.0 kapsamında sunulur.</span></p>
       </div>
-      <div class="govuk-footer__copyright">&copy; House copyright</div>
+      <div class="govuk-footer__copyright"><span lang="en">&copy; House copyright</span><span lang="tr">&copy; Hane telif hakkı</span></div>
     </div>
   </div>
 </footer>
 
+<script src="site.js"></script>
 </body>
 </html>

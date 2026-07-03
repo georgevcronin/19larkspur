@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serve prosecution papers - 19 Larkspur Terrace</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-lang="en">
+
+<div id="cookie-banner" class="cookie-banner" hidden>
+  <div class="width-container">
+    <h2><span lang="en">Cookies on 19 Larkspur Terrace</span><span lang="tr">19 Larkspur Terrace'ta çerezler</span></h2>
+    <p><span lang="en">This house uses no cookies except those in the kitchen, which require a Temporary Crockery Pass.</span><span lang="tr">Bu ev, mutfaktakiler dışında çerez kullanmaz; onlar için de Geçici Tabak-Çanak Pasosu gerekir.</span></p>
+    <button class="govuk-button" onclick="return acceptCookies()"><span lang="en">Accept house cookies</span><span lang="tr">Ev çerezlerini kabul et</span></button>
+  </div>
+</div>
+
+<header class="govuk-header">
+  <div class="govuk-header__inner">
+    <a href="index.html" class="govuk-header__logo"><span class="govuk-header__crest">&#9878;</span> 19&nbsp;Larkspur&nbsp;Terrace</a>
+    <a href="constitution.html" class="govuk-header__service"><span lang="en">The Constitution</span><span lang="tr">Anayasa</span></a>
+  </div>
+</header>
+
+<div class="phase-banner">
+  <div class="width-container">
+    <span class="govuk-tag"><span lang="en">Official</span><span lang="tr">Resmî</span></span>
+    <span><span lang="en">Service must comply with Article 19. Papers must be served within 3 days of the offence.</span><span lang="tr">Tebligat Madde 19'a uygun olmalıdır. Evrak, suçtan itibaren 3 gün içinde tebliğ edilmelidir.</span></span>
+    <span class="phase-banner__spacer"></span>
+    <span class="lang-toggle"><a href="#" onclick="return setLang('en')">English</a> | <a href="#" onclick="return setLang('tr')">Türkçe</a></span>
+  </div>
+</div>
+
+<div class="width-container">
+<ol class="govuk-breadcrumbs">
+  <li><a href="index.html"><span lang="en">Home</span><span lang="tr">Ana sayfa</span></a></li>
+  <li><span lang="en">Serve prosecution papers</span><span lang="tr">Kovuşturma tebligatı</span></li>
+</ol>
+
+<main>
+  <h1><span lang="en">Serve prosecution papers</span><span lang="tr">Kovuşturma tebligatı düzenle</span></h1>
+  <p><span lang="en">Fill in the details, generate the papers, print them, and hand them to the defendant. Any housemate or EVP holder may prosecute (Article 18.1).</span><span lang="tr">Bilgileri doldurun, evrakı oluşturun, yazdırın ve sanığa teslim edin. Herhangi bir ev arkadaşı veya EVP sahibi kovuşturma açabilir (Madde 18.1).</span></p>
+
+  <form id="serve-form" class="no-print" onsubmit="return generatePapers()">
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="prosecutor"><span lang="en">Prosecutor (you)</span><span lang="tr">Kovuşturan (siz)</span></label>
+      <input class="govuk-input" id="prosecutor" required>
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="defendant"><span lang="en">Defendant</span><span lang="tr">Sanık</span></label>
+      <input class="govuk-input" id="defendant" required>
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="article"><span lang="en">Article allegedly breached</span><span lang="tr">İhlal edildiği iddia edilen madde</span></label>
+      <select class="govuk-select" id="article" required>
+        <option value="Article 11 — The Kitchen">Article 11 — The Kitchen / Mutfak</option>
+        <option value="Article 12 — The Living Room">Article 12 — The Living Room / Oturma Odası</option>
+        <option value="Article 13 — The Bathrooms">Article 13 — The Bathrooms / Banyolar</option>
+        <option value="Article 14 — The Bedrooms">Article 14 — The Bedrooms / Yatak Odaları</option>
+        <option value="Article 15 — The Corridor &amp; Stairs">Article 15 — The Corridor &amp; Stairs / Koridor ve Merdiven</option>
+        <option value="Article 2 — Visitors">Article 2 — Visitors / Ziyaretçiler</option>
+        <option value="Article 20.3 — Bad-faith prosecution">Article 20.3 — Bad-faith prosecution / Kötü niyetli kovuşturma</option>
+        <option value="Article 24.4 — Bad-faith emergency declaration">Article 24.4 — Bad-faith emergency / Kötü niyetli OHAL ilanı</option>
+        <option value="Bill of Rights, Article V — Bedroom privacy">Bill of Rights V — Bedroom privacy / Yatak odası mahremiyeti</option>
+        <option value="Other (see description)">Other / Diğer</option>
+      </select>
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="offence"><span lang="en">Description of the alleged offence</span><span lang="tr">İddia edilen suçun açıklaması</span></label>
+      <textarea class="govuk-textarea" id="offence" required></textarea>
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="when"><span lang="en">Date and time of the offence</span><span lang="tr">Suçun tarihi ve saati</span></label>
+      <input class="govuk-input govuk-input--width-10" id="when" type="datetime-local" required>
+      <p class="govuk-hint" id="deadline-hint"></p>
+    </div>
+    <button type="submit" class="govuk-button"><span lang="en">Generate papers</span><span lang="tr">Evrakı oluştur</span></button>
+  </form>
+
+  <div id="papers-output" hidden>
+    <div class="papers">
+      <div class="papers-served"><span lang="en">YOU'VE BEEN SERVED</span><span lang="tr">TEBLİĞ EDİLDİNİZ</span></div>
+      <dl>
+        <dt><span lang="en">Defendant</span><span lang="tr">Sanık</span></dt><dd id="p-defendant"></dd>
+        <dt><span lang="en">Prosecutor</span><span lang="tr">Kovuşturan</span></dt><dd id="p-prosecutor"></dd>
+        <dt><span lang="en">Article allegedly breached</span><span lang="tr">İhlal edildiği iddia edilen madde</span></dt><dd id="p-article"></dd>
+        <dt><span lang="en">Alleged offence</span><span lang="tr">İddia edilen suç</span></dt><dd id="p-offence"></dd>
+        <dt><span lang="en">Date and time of offence</span><span lang="tr">Suç tarihi ve saati</span></dt><dd id="p-when"></dd>
+        <dt><span lang="en">Service deadline (Article 21.1)</span><span lang="tr">Tebligat son tarihi (Madde 21.1)</span></dt><dd id="p-deadline"></dd>
+      </dl>
+      <p style="margin-top:25px"><span lang="en">Service of these papers formally opens the prosecution (Article 19.2). Both parties may now prepare their case and call witnesses. The defendant is presumed innocent until found guilty by tribunal vote, and holds every protection of the Bill of Rights, including the right of postponement and one appeal against a non-unanimous verdict.</span><span lang="tr">Bu evrakın tebliği kovuşturmayı resmen açar (Madde 19.2). Her iki taraf artık davasını hazırlayabilir ve tanık çağırabilir. Sanık, divan oylamasıyla suçlu bulunana dek masumdur ve erteleme hakkı ile oybirliği olmayan karara karşı tek temyiz hakkı dâhil, Haklar Bildirgesi'nin tüm güvencelerine sahiptir.</span></p>
+      <div class="sig-block" style="margin-top:20px">
+        <div><div class="sig-line"></div><div class="sig-name"><span lang="en">Prosecutor's signature</span><span lang="tr">Kovuşturanın imzası</span></div></div>
+        <div><div class="sig-line"></div><div class="sig-name"><span lang="en">Date and time of service</span><span lang="tr">Tebliğ tarihi ve saati</span></div></div>
+      </div>
+      <p class="papers-footer"><span lang="en">Issued under the 19 Larkspur Terrace Declaration of Independence Constitution, Articles 18&ndash;19. If the defendant cannot reasonably be located, leave these papers at their known location; disputes over reasonableness go to the Location Committee (Article 8).</span><span lang="tr">19 Larkspur Terrace Bağımsızlık Bildirgesi Anayasası, Madde 18&ndash;19 uyarınca düzenlenmiştir. Sanık makul biçimde bulunamıyorsa, bu evrakı bilinen yerine bırakın; makullük uyuşmazlıkları Konum Komitesine gider (Madde 8).</span></p>
+    </div>
+    <button class="govuk-button no-print" onclick="window.print()"><span lang="en">Print the papers</span><span lang="tr">Evrakı yazdır</span></button>
+  </div>
+</main>
+</div>
+
+<footer class="govuk-footer">
+  <div class="width-container">
+    <ul class="govuk-footer__links">
+      <li><a href="index.html"><span lang="en">How the house works</span><span lang="tr">Ev nasıl işler</span></a></li>
+      <li><a href="constitution.html"><span lang="en">The full constitution</span><span lang="tr">Anayasanın tamamı</span></a></li>
+      <li><a href="sentencing.html"><span lang="en">Sentencing guidelines</span><span lang="tr">Ceza rehberi</span></a></li>
+    </ul>
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__licence"><p><span lang="en">All content is available under the Open Household Licence v1.0.</span><span lang="tr">Tüm içerik Açık Hane Lisansı v1.0 kapsamında sunulur.</span></p></div>
+      <div class="govuk-footer__copyright"><span lang="en">&copy; House copyright</span><span lang="tr">&copy; Hane telif hakkı</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+function fmt(dt, lang) {
+  return dt.toLocaleString(lang === "tr" ? "tr-TR" : "en-GB", {
+    weekday: "long", day: "numeric", month: "long", year: "numeric",
+    hour: "2-digit", minute: "2-digit"
+  });
+}
+document.getElementById("when").addEventListener("change", function () {
+  var v = this.value;
+  if (!v) return;
+  var deadline = new Date(new Date(v).getTime() + 3 * 24 * 60 * 60 * 1000);
+  var lang = document.body.getAttribute("data-lang");
+  document.getElementById("deadline-hint").textContent =
+    (lang === "tr" ? "Tebligat son tarihi: " : "Service deadline: ") + fmt(deadline, lang);
+});
+function generatePapers() {
+  var lang = document.body.getAttribute("data-lang");
+  var when = new Date(document.getElementById("when").value);
+  var deadline = new Date(when.getTime() + 3 * 24 * 60 * 60 * 1000);
+  document.getElementById("p-defendant").textContent = document.getElementById("defendant").value;
+  document.getElementById("p-prosecutor").textContent = document.getElementById("prosecutor").value;
+  document.getElementById("p-article").textContent = document.getElementById("article").value;
+  document.getElementById("p-offence").textContent = document.getElementById("offence").value;
+  document.getElementById("p-when").textContent = fmt(when, lang);
+  document.getElementById("p-deadline").textContent = fmt(deadline, lang);
+  var out = document.getElementById("papers-output");
+  out.hidden = false;
+  out.scrollIntoView({ behavior: "smooth" });
+  return false;
+}
+</script>
+</body>
+</html>

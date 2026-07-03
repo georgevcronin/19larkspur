@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Committee register - 19 Larkspur Terrace</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-lang="en">
+
+<div id="cookie-banner" class="cookie-banner" hidden>
+  <div class="width-container">
+    <h2><span lang="en">Cookies on 19 Larkspur Terrace</span><span lang="tr">19 Larkspur Terrace'ta çerezler</span></h2>
+    <p><span lang="en">This house uses no cookies except those in the kitchen, which require a Temporary Crockery Pass.</span><span lang="tr">Bu ev, mutfaktakiler dışında çerez kullanmaz; onlar için de Geçici Tabak-Çanak Pasosu gerekir.</span></p>
+    <button class="govuk-button" onclick="return acceptCookies()"><span lang="en">Accept house cookies</span><span lang="tr">Ev çerezlerini kabul et</span></button>
+  </div>
+</div>
+
+<header class="govuk-header">
+  <div class="govuk-header__inner">
+    <a href="index.html" class="govuk-header__logo"><span class="govuk-header__crest">&#9878;</span> 19&nbsp;Larkspur&nbsp;Terrace</a>
+    <a href="constitution.html" class="govuk-header__service"><span lang="en">The Constitution</span><span lang="tr">Anayasa</span></a>
+  </div>
+</header>
+
+<div class="phase-banner">
+  <div class="width-container">
+    <span class="govuk-tag"><span lang="en">Official</span><span lang="tr">Resmî</span></span>
+    <span><span lang="en">The live record of who holds each committee seat.</span><span lang="tr">Her komite koltuğunu kimin doldurduğunun güncel kaydı.</span></span>
+    <span class="phase-banner__spacer"></span>
+    <span class="lang-toggle"><a href="#" onclick="return setLang('en')">English</a> | <a href="#" onclick="return setLang('tr')">Türkçe</a></span>
+  </div>
+</div>
+
+<div class="width-container">
+<ol class="govuk-breadcrumbs">
+  <li><a href="index.html"><span lang="en">Home</span><span lang="tr">Ana sayfa</span></a></li>
+  <li><span lang="en">Committee register</span><span lang="tr">Komite kaydı</span></li>
+</ol>
+
+<main>
+  <h1><span lang="en">Committee register</span><span lang="tr">Komite kaydı</span></h1>
+  <p class="govuk-body-l"><span lang="en">Current membership of every committee. Elections are run by the Committee Committee (and the Rules Committee runs the Committee Committee's own).</span><span lang="tr">Tüm komitelerin güncel üyelikleri. Seçimleri Komite Komitesi yürütür (Komite Komitesinin kendi seçimlerini ise Kurallar Komitesi).</span></p>
+
+  <div class="govuk-inset-text">
+    <p><span lang="en"><strong>First elections are yet to be scheduled.</strong> Until then, most committees are vacant &mdash; except the two Bathroom Committees, whose membership is fixed by Article 13.2 of the constitution. Election results are recorded here as they happen; membership data lives in <code>committees.js</code>.</span><span lang="tr"><strong>İlk seçimler henüz takvime bağlanmamıştır.</strong> O zamana dek çoğu komite boştur &mdash; üyeliği anayasanın 13.2 maddesiyle sabitlenmiş iki Banyo Komitesi hariç. Seçim sonuçları gerçekleştikçe buraya işlenir; üyelik verisi <code>committees.js</code> dosyasındadır.</span></p>
+  </div>
+
+  <table class="govuk-table">
+    <thead><tr>
+      <th><span lang="en">Committee</span><span lang="tr">Komite</span></th>
+      <th><span lang="en">Seats</span><span lang="tr">Koltuk</span></th>
+      <th><span lang="en">Current members</span><span lang="tr">Mevcut üyeler</span></th>
+      <th><span lang="en">Election cycle</span><span lang="tr">Seçim döngüsü</span></th>
+    </tr></thead>
+    <tbody id="register-body"></tbody>
+  </table>
+
+  <h2><span lang="en">Election results</span><span lang="tr">Seçim sonuçları</span></h2>
+  <table class="govuk-table">
+    <thead><tr>
+      <th><span lang="en">Date</span><span lang="tr">Tarih</span></th>
+      <th><span lang="en">Committee</span><span lang="tr">Komite</span></th>
+      <th><span lang="en">Elected</span><span lang="tr">Seçilen</span></th>
+    </tr></thead>
+    <tbody>
+      <tr><td colspan="3"><span lang="en">No elections have been held yet.</span><span lang="tr">Henüz seçim yapılmamıştır.</span></td></tr>
+    </tbody>
+  </table>
+</main>
+</div>
+
+<footer class="govuk-footer">
+  <div class="width-container">
+    <ul class="govuk-footer__links">
+      <li><a href="index.html"><span lang="en">How the house works</span><span lang="tr">Ev nasıl işler</span></a></li>
+      <li><a href="constitution.html#sched"><span lang="en">Schedule A (legal text)</span><span lang="tr">Ek A (yasal metin)</span></a></li>
+      <li><a href="report.html"><span lang="en">Report a disturbance</span><span lang="tr">Müdahale bildir</span></a></li>
+    </ul>
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__licence"><p><span lang="en">All content is available under the Open Household Licence v1.0.</span><span lang="tr">Tüm içerik Açık Hane Lisansı v1.0 kapsamında sunulur.</span></p></div>
+      <div class="govuk-footer__copyright"><span lang="en">&copy; House copyright</span><span lang="tr">&copy; Hane telif hakkı</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script src="committees.js"></script>
+<script>
+(function renderRegister() {
+  var tbody = document.getElementById("register-body");
+  COMMITTEES.forEach(function (c) {
+    var tr = document.createElement("tr");
+    var members = c.members.length
+      ? c.members.map(function (m) { return HOUSEMATES[m].name; }).join(", ")
+      : null;
+    tr.innerHTML =
+      '<td><span lang="en">' + c.nameEn + '</span><span lang="tr">' + c.nameTr + '</span></td>' +
+      '<td>' + c.seats + '</td>' +
+      '<td>' + (members
+        ? members
+        : '<span class="govuk-tag govuk-tag--grey"><span lang="en">Vacant</span><span lang="tr">Boş</span></span> <span lang="en">awaiting first election</span><span lang="tr">ilk seçimi bekliyor</span>') + '</td>' +
+      '<td><span lang="en">' + c.cycleEn + '</span><span lang="tr">' + c.cycleTr + '</span></td>';
+    tbody.appendChild(tr);
+  });
+})();
+</script>
+</body>
+</html>
